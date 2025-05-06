@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.base.json",
+    "extends": "./tsconfig.paths.json",
     "ts-node": {
         "compilerOptions": {
             "module": "CommonJS",
@@ -7,7 +7,7 @@
     },
     "references": [
         {
-            "path": "./tsconfig.paths.json"
+            "path": "../../tsconfig.base.json",
         }
     ]
 }
