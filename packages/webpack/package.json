@@ -1,11 +1,13 @@
 {
-  "name": "webpack",
+  "name": "@packages/webpack",
   "version": "1.0.0",
   "main": "./src/index.ts",
   "license": "MIT",
   "repository": "git@github.com:AntonKreida/chat.git",
   "author": "Anton Kreida <kreida.anton@yandex.ru>",
   "devDependencies": {
+    "@packages/eslint-config": "*",
+    "eslint": "~8.57.0",
     "@babel/core": "^7.27.1",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",

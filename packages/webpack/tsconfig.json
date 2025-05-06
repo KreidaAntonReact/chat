@@ -5,9 +5,4 @@
             "module": "CommonJS",
         }
     },
-    "references": [
-        {
-            "path": "../../tsconfig.base.json",
-        }
-    ]
 }
