@@ -35,6 +35,8 @@ module.exports = {
         "varsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
 
     // Стилизация кода
     "arrow-body-style": ["error", "as-needed"],
