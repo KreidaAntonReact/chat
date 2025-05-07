@@ -1,4 +1,4 @@
-import type { TConfigWebpack, TOptionsBuild } from './lib';
+import type { TConfigWebpack, TOptionsBuild } from '@/lib';
 
 
 export const buildWebpackConfig = (options: TOptionsBuild): TConfigWebpack => {

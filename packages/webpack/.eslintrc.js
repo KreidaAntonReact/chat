@@ -8,5 +8,5 @@ module.exports = {
         project: './tsconfig.json',
     },
     ignorePatterns: ['node_modules', 'dist'],
-    
+
 }
