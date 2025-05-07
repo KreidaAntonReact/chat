@@ -28,6 +28,8 @@
     "postcss-preset-env": "^10.1.6",
     "react-refresh": "^0.17.0",
     "react-refresh-typescript": "^2.0.10",
+    "sass": "^1.87.0",
+    "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.3",
