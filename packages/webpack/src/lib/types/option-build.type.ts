@@ -1,4 +1,6 @@
 import type { TMode } from './mode.type';
+import type { ResolveOptions } from 'webpack';
+
 
 export type TOptionsBuild = {
     mode: TMode;
@@ -9,4 +11,5 @@ export type TOptionsBuild = {
         html: string;
         tsconfig: string;
     }
+    alias: ResolveOptions['alias'];
 }
