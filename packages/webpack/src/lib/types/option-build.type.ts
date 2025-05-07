@@ -6,5 +6,7 @@ export type TOptionsBuild = {
     paths: {
         entry: string;
         output: string;
+        html: string;
+        tsconfig: string;
     }
 }
