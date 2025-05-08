@@ -11,6 +11,9 @@ export const loadersWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['ru
   const assetResource: TRule = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
+    generator: {
+      filename: 'assets/images/[name][ext]',
+    }
   };
 
   const svgLoader: TRule = {

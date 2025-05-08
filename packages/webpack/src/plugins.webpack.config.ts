@@ -34,8 +34,8 @@ export const pluginsWebpackConfig = ({ mode, paths }: TOptionsBuild): Configurat
     plugins.push(new ReactRefreshWebpackPlugin());
   } else {
     plugins.push(new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css',
-      chunkFilename: 'css/[name].[contenthash].css'
+      filename: 'styles/[name].[contenthash].css',
+      chunkFilename: 'styles/[name].[contenthash].css'
     }));
   }
 

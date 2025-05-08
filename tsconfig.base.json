@@ -12,6 +12,6 @@
         "strict": true
     },
     "exclude": [
-        "./packages/eslint-config",
+        "**/*/packages/eslint-config/**",
     ]
 }
