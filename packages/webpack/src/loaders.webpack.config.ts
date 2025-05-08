@@ -64,16 +64,17 @@ export const loadersWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['ru
     },
   ];
 
+
   const tsLoader: TRule =  {
     test: /\.tsx?$/,
     use: [
       {
-        loader: 'ts-loader',
+        loader: require.resolve('ts-loader'),
         options: {
           getCustomTransformers: () => ({
             before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
           }),
-          transpileOnly: true,
+          transpileOnly: isDev
         },
       }
     ],

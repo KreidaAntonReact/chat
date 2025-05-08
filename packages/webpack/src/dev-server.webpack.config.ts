@@ -10,7 +10,8 @@ export const devServerWebpackConfig = ({ port, mode }: TOptionsBuild): Configura
       port: port,
       open: true,
       historyApiFallback: true,
-      hot: true
+      hot: true,
+      compress: true,
     }
     : undefined;
 };
