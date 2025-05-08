@@ -5,8 +5,8 @@ import { type TConfigWebpack, buildWebpackConfig } from '@packages/webpack';
 
 export default (): TConfigWebpack => {
   const config = buildWebpackConfig({
-    mode: 'development',
-    port: 3001,
+    mode: process.env.NODE_ENV ?? 'development',
+    port: process.env.PORT ?? 3001,
     paths: {
       output: path.resolve(__dirname, 'dist'),
       html: path.resolve(__dirname, 'public', 'index.html'),
