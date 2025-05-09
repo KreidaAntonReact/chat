@@ -14,6 +14,7 @@ export default (): TConfigWebpack => {
       entry: path.resolve(__dirname, 'src', 'index.ts'),
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
       env: path.resolve(__dirname, '.env'),
+      eslintconfig: path.resolve(__dirname, '.eslintrc.ts')
     },
     alias: {
       '@': path.resolve(__dirname, 'src'),
