@@ -19,6 +19,7 @@
     "@types/node-sass": "^4.11.8",
     "@types/webpack": "^5.28.5",
     "@types/webpack-dev-server": "^4.7.2",
+    "@vue/compiler-sfc": "^3.5.13",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "dotenv": "^16.5.0",
@@ -39,6 +40,8 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
+    "vue-loader": "^17.4.2",
+    "vue-template-compiler": "^2.7.16",
     "webpack": "^5.99.7",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"

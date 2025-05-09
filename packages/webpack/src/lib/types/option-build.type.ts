@@ -2,6 +2,7 @@ import type { TMode } from './mode.type';
 import type { ResolveOptions } from 'webpack';
 
 export type TOptionsBuild = {
+    framework: 'react' | 'vue'
     mode: TMode;
     port: number;
     paths: {
@@ -9,8 +10,8 @@ export type TOptionsBuild = {
         output: string;
         html: string;
         tsconfig: string;
-        eslintconfig: string;
-        env: string
+        env: string;
+        eslintconfig?: string;
     }
     alias: ResolveOptions['alias'];
 }

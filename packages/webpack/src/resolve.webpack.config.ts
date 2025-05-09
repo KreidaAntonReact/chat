@@ -3,6 +3,6 @@ import type { ResolveOptions } from 'webpack';
 
 
 export const resolveWebpackConfig = ({ alias }: TOptionsBuild): ResolveOptions => ({
-  extensions: ['.tsx', '.ts', '.js', '.scss', '.css'],
+  extensions: ['.tsx', '.ts', '.vue', '.jsx', '.js', '.json', '.css', '.scss'],
   alias,
 });

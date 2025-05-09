@@ -2,9 +2,6 @@ import 'dotenv/config';
 import path from 'path';
 
 import { type TConfigWebpack, buildWebpackConfig } from '@packages/webpack';
-import { container } from 'webpack';
-
-import packageJson from './package.json';
 
 
 export default (): TConfigWebpack => {
@@ -14,34 +11,17 @@ export default (): TConfigWebpack => {
     paths: {
       output: path.resolve(__dirname, 'dist'),
       html: path.resolve(__dirname, 'public', 'index.html'),
-      entry: path.resolve(__dirname, 'src', 'index.tsx'),
+      entry: path.resolve(__dirname, 'src', 'index.ts'),
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-      eslintconfig: path.resolve(__dirname, '.eslintrc.js'),
       env: path.resolve(__dirname, '.env'),
     },
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      'vue': 'vue/dist/vue.esm-bundler.js',
     },
-    framework: 'react'
+    framework: 'vue'
   });
 
-
-  config.plugins?.push(new container.ModuleFederationPlugin({
-    name: 'host',
-    filename: 'remoteEntry.js',
-    shared: {
-      ...packageJson.dependencies,
-      react: {
-        eager: true,
-      },
-      'react-router': {
-        eager: true,
-      },
-      'react-dom': {
-        eager: true,
-      }
-    }
-  }));
 
   return config;
 };

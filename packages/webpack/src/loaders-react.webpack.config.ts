@@ -5,7 +5,7 @@ import type { TOptionsBuild, TRule } from './lib';
 import type { ModuleOptions } from 'webpack';
 
 
-export const loadersWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['rules'] => {
+export const loadersReactWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['rules'] => {
   const isDev = mode === 'development';
 
   const assetResource: TRule = {
@@ -58,7 +58,12 @@ export const loadersWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['ru
       test: /\.css$/i,
       use: [
         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-        'css-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+          }
+        },,
         'postcss-loader'
       ],
     },

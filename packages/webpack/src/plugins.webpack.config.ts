@@ -4,13 +4,15 @@ import EslintWebpackPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 import { type Configuration, ProgressPlugin } from 'webpack';
 
 import type { TOptionsBuild } from './lib';
 
 
-export const pluginsWebpackConfig = ({ mode, paths }: TOptionsBuild): Configuration['plugins'] => {
+export const pluginsWebpackConfig = ({ mode, paths, framework }: TOptionsBuild): Configuration['plugins'] => {
   const isDev = mode === 'development';
+  const isReact = framework === 'react';
 
   const plugins: Configuration['plugins'] = [
     new Dotenv({
@@ -27,17 +29,27 @@ export const pluginsWebpackConfig = ({ mode, paths }: TOptionsBuild): Configurat
       },
       devServer: isDev,
     }),
-    new EslintWebpackPlugin({
+  ];
+
+  if(paths?.eslintconfig) {
+    plugins.push(new EslintWebpackPlugin({
       configType: 'eslintrc',
       fix: true,
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      extensions: ['js','ts','jsx','tsx', 'vue'],
       files: paths.eslintconfig,
-    }),
-  ];
+    }));
+  }
+
+  if(isDev && isReact) {
+    plugins.push(new ReactRefreshWebpackPlugin());
+  }
+
+  if(!isReact) {
+    plugins.push(new VueLoaderPlugin());
+  }
 
   if (isDev) {
     plugins.push(new ProgressPlugin());
-    plugins.push(new ReactRefreshWebpackPlugin());
   } else {
     plugins.push(new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',

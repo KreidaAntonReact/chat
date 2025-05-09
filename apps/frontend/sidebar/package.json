@@ -1,0 +1,41 @@
+{
+  "name": "@apps/sidebar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack serve"
+  },
+  "dependencies": {
+    "@packages/eslint-config": "*",
+    "@packages/types": "*",
+    "@packages/webpack": "*",
+    "@vue/compiler-sfc": "^3.5.13",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/dotenv-webpack": "^7.0.8",
+    "@types/node": "^22.15.17",
+    "@types/vue": "^2.0.0",
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-dev-server": "^4.7.2",
+    "@vue/compiler-sfc": "^3.5.13",
+    "autoprefixer": "^10.4.21",
+    "css-loader": "^7.1.2",
+    "dotenv": "^16.5.0",
+    "dotenv-webpack": "^8.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "postcss": "^8.5.3",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.1.6",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "vue-loader": "^17.4.2",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  }
+}
