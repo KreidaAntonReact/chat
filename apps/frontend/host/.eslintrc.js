@@ -2,10 +2,15 @@ require('@packages/eslint-config/patch');
 
 module.exports = {
     root: true,
-    extends: ['@packages/eslint-config'],
+    extends: ['@packages/eslint-config/react.js'],
     parserOptions: {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
+    },
+    env: {
+        browser: true,
+        amd: true,
+        node: true,
     },
     ignorePatterns: ['node_modules', 'dist'],
 }
