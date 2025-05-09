@@ -1,7 +1,6 @@
 import type { TMode } from './mode.type';
 import type { ResolveOptions } from 'webpack';
 
-
 export type TOptionsBuild = {
     mode: TMode;
     port: number;
@@ -10,6 +9,8 @@ export type TOptionsBuild = {
         output: string;
         html: string;
         tsconfig: string;
+        eslintconfig: string;
+        env: string
     }
     alias: ResolveOptions['alias'];
 }

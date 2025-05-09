@@ -1,4 +1,5 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 import EslintWebpackPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -12,6 +13,10 @@ export const pluginsWebpackConfig = ({ mode, paths }: TOptionsBuild): Configurat
   const isDev = mode === 'development';
 
   const plugins: Configuration['plugins'] = [
+    new Dotenv({
+      path: paths.env,
+      safe: false,
+    }),
     new HtmlWebpackPlugin({
       template: paths.html,
       publicPath: '/'
@@ -26,7 +31,8 @@ export const pluginsWebpackConfig = ({ mode, paths }: TOptionsBuild): Configurat
       configType: 'eslintrc',
       fix: true,
       extensions: ['js', 'jsx', 'ts', 'tsx'],
-    })
+      files: paths.eslintconfig,
+    }),
   ];
 
   if (isDev) {

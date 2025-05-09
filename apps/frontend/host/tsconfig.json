@@ -9,12 +9,14 @@
                 "./src/*"
             ]
         },
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/types",
+        ]
     },
     "include": [
         "./src/**/*.ts",
         "./src/**/*.tsx",
-        "./webpack.config.ts",
-        "./types/*.d.ts"
     ],
     "ts-node": {
         "compilerOptions": {
