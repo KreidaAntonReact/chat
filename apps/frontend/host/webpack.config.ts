@@ -9,8 +9,8 @@ import packageJson from './package.json';
 
 export default (): TConfigWebpack => {
   const config = buildWebpackConfig({
-    mode: process.env.NODE_ENV as 'development' | 'production' || 'development',
-    port: Number(process.env.PORT) || 3000,
+    mode: process.env.NODE_ENV as 'development' | 'production' ?? 'development',
+    port: Number(process.env.PORT) ?? 3000,
     paths: {
       output: path.resolve(__dirname, 'dist'),
       html: path.resolve(__dirname, 'public', 'index.html'),
