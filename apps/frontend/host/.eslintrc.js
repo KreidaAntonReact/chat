@@ -12,7 +12,6 @@ module.exports = {
             alias: {
                 map: [
                     ['@', './src'],
-                    ['sidebar/sidebarApp', './apps/frontend/sidebar/src/app/app.tsx'],
                 ],
                 extensions: ['.js', '.jsx', '.ts', '.tsx'], // Аналогично Webpack
             },
