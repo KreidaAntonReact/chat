@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import SidebarApp from  'vue_sidebar/sidebar';
+import Sidebar from  'vue_sidebar/sidebar';
 import { createApp } from 'vue_sidebar/vue';
 
 export const SidebarWrapper = () => {
@@ -9,7 +9,7 @@ export const SidebarWrapper = () => {
   useEffect(() => {
     if(!containerRef?.current) return;
 
-    const sidebar = createApp(SidebarApp);
+    const sidebar = createApp(Sidebar);
     sidebar.mount(containerRef.current);
 
     return () => {
