@@ -25,12 +25,13 @@ export default (): TConfigWebpack => {
     framework: 'react'
   });
 
+  const VUE_SIDEBAR_URL = 'http://localhost:3001';
 
   config.plugins?.push(new container.ModuleFederationPlugin({
     name: 'host',
     filename: 'remoteEntry.js',
     remotes: {
-      'vue_sidebar': 'vue_sidebar@http://localhost:3001/remoteEntry.js',
+      'vue_sidebar': `vue_sidebar@${VUE_SIDEBAR_URL}/remoteEntry.js`,
     },
     shared: {
       ...packageJson.dependencies,
