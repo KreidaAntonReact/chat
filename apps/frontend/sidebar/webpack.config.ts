@@ -1,7 +1,10 @@
 import 'dotenv/config';
 import path from 'path';
 
-import { type TConfigWebpack, buildWebpackConfig } from '@packages/webpack';
+import {  type TConfigWebpack, buildWebpackConfig } from '@packages/webpack';
+import { container } from 'webpack';
+
+import packageJson from './package.json';
 
 
 export default (): TConfigWebpack => {
@@ -17,11 +20,33 @@ export default (): TConfigWebpack => {
       eslintconfig: path.resolve(__dirname, '.eslintrc.ts')
     },
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, '.'),
       'vue': 'vue/dist/vue.esm-bundler.js',
     },
     framework: 'vue'
   });
+
+  config.plugins?.push(new container.ModuleFederationPlugin({
+    name: 'vue_sidebar',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './sidebar': './src/app/app.vue',
+      './vue': 'vue',
+    },
+    shared: {
+      ...packageJson.dependencies,
+      vue: {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.dependencies.vue,
+      },
+      '@vue/compiler-sfc': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.dependencies['@vue/compiler-sfc'],
+      }
+    }
+  }));
 
 
   return config;

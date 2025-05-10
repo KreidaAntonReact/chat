@@ -10,13 +10,6 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:import/typescript",
   ],
-  settings: {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      },
-    }
-  },
   plugins: [
     "@typescript-eslint",
     "import",

@@ -5,7 +5,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
-import { type Configuration, ProgressPlugin } from 'webpack';
+import { type Configuration, ProgressPlugin, DefinePlugin } from 'webpack';
 
 import type { TOptionsBuild } from './lib';
 
@@ -45,6 +45,11 @@ export const pluginsWebpackConfig = ({ mode, paths, framework }: TOptionsBuild):
   }
 
   if(!isReact) {
+    plugins.push(new DefinePlugin({
+      '__VUE_OPTIONS_API__': JSON.stringify(true),
+      '__VUE_PROD_DEVTOOLS__': JSON.stringify(isDev ? true : false),
+      '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': JSON.stringify(false)
+    }))
     plugins.push(new VueLoaderPlugin());
   }
 

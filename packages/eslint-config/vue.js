@@ -15,7 +15,7 @@ module.exports = {
       "node": {
         "extensions": [".js", ".ts", ".vue"]
       },
-    }
+    },
   },
   plugins: [
     "vue",

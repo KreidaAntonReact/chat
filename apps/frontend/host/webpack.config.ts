@@ -29,6 +29,9 @@ export default (): TConfigWebpack => {
   config.plugins?.push(new container.ModuleFederationPlugin({
     name: 'host',
     filename: 'remoteEntry.js',
+    remotes: {
+      'vue_sidebar': 'vue_sidebar@http://localhost:3001/remoteEntry.js',
+    },
     shared: {
       ...packageJson.dependencies,
       react: {
@@ -36,9 +39,13 @@ export default (): TConfigWebpack => {
       },
       'react-router': {
         eager: true,
+        singleton: true,
+        requiredVersion: packageJson.dependencies['react-router']
       },
       'react-dom': {
         eager: true,
+        singleton: true,
+        requiredVersion: packageJson.dependencies['react-dom']
       }
     }
   }));

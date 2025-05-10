@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import { defineComponent } from 'vue';
+
+import { Sidebar } from '../shared';
+</script>
+
+
 <template>
-  <h1>Vue 3 + TypeScript + Webpack работает!</h1>
+  <Sidebar />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 export default defineComponent({ name: 'App' });
 </script>

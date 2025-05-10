@@ -12,14 +12,14 @@
         },
         "typeRoots": [
             "./node_modules/@types",
-            "./src/types",
         ]
     },
     "include": [
         "./src/**/*.ts",
         "./src/**/*.tsx",
         "./webpack.config.ts",
-        "./package.json"
+        "./package.json",
+        "./types/*.d.ts",
     ],
     "exclude": [
         "node_modules",
