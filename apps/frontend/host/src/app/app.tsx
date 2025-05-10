@@ -2,8 +2,8 @@ import { SidebarWrapper } from '@/widgets';
 import './styles/main.css';
 
 export const App = () => (
-  <div>
+  <div className='flex h-full'>
     <SidebarWrapper/>
-    <h1 className="text-red-500 text-2xl">Host</h1>
+    <div className='flex grow max-w-full'></div>
   </div>
 );
