@@ -1,4 +1,4 @@
-import { SidebarWrapper } from '@/shared';
+import { SidebarWrapper } from '@/widgets';
 import './styles/main.css';
 
 export const App = () => (
