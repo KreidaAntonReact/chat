@@ -7,7 +7,6 @@ import type { ModuleOptions } from 'webpack';
 export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions['rules'] => {
   const isDev = mode === 'development';
 
-
   const assetResource: TRule = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
@@ -36,6 +35,14 @@ export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions[
     ]
   };
 
+  const svgLoader: TRule = {
+    test: /\.svg$/i,
+    use: [
+      'vue-loader',
+      'vue-svg-loader',
+    ]
+  }
+
   const tsLoader: TRule =  {
     test: /\.tsx?$/,
     loader: 'ts-loader',
@@ -49,6 +56,7 @@ export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions[
     assetResource,
     vueLoader,
     tsLoader,
+    svgLoader,
     styleLoader,
   ];
 };
