@@ -62,8 +62,8 @@ export const loadersReactWebpackConfig = ({ mode }: TOptionsBuild): ModuleOption
           loader: 'css-loader',
           options: {
             importLoaders: 1,
-          }
-        },,
+          },
+        },
         'postcss-loader'
       ],
     },

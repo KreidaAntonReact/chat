@@ -32,6 +32,7 @@ export default (): TConfigWebpack => {
     exposes: {
       './sidebar': './src/widgets/sidebar/sidebar.vue',
       './vue': 'vue',
+      './styles': './src/app/styles/main.css'
     },
     shared: {
       ...packageJson.dependencies,
@@ -44,7 +45,22 @@ export default (): TConfigWebpack => {
         eager: true,
         singleton: true,
         requiredVersion: packageJson.dependencies['@vue/compiler-sfc'],
-      }
+      },
+      'tailwindcss': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['tailwindcss'],
+      },
+      'autoprefixer': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['autoprefixer'],
+      },
+      'postcss': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['postcss'],
+      },
     }
   }));
 

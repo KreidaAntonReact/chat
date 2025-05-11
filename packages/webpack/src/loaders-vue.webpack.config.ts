@@ -32,7 +32,7 @@ export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions[
         options: { importLoaders: 1 }
       },
       'postcss-loader',
-    ]
+    ],
   };
 
   const svgLoader: TRule = {

@@ -47,7 +47,22 @@ export default (): TConfigWebpack => {
         eager: true,
         singleton: true,
         requiredVersion: packageJson.dependencies['react-dom']
-      }
+      },
+      'tailwindcss': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['tailwindcss'],
+      },
+      'autoprefixer': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['autoprefixer'],
+      },
+      'postcss': {
+        eager: true,
+        singleton: true,
+        requiredVersion: packageJson.devDependencies['postcss'],
+      },
     }
   }));
 

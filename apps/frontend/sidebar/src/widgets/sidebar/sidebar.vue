@@ -4,9 +4,15 @@ import { LogoIcon } from '@/shared';
 
 
 <template>
-  <div class="w-full h-screen bg-dark">
-    <div class="w-full h-full px-3 py-6 flex justify-between">
+  <div class="sidebar:w-full sidebar:h-screen sidebar:bg-dark">
+    <div class="sidebar:w-full sidebar:h-full sidebar:px-3 sidebar:py-6 sidebar:flex sidebar:flex-col">
       <LogoIcon />
+      <div class="sidebar:flex-[1_0_auto] sidebar:mt-16 sidebar:text-white">
+        навигация
+      </div>
+      <div class="sidebar:text-white sidebar:m-[0_auto]">
+        footer
+      </div>
     </div>
   </div>
 </template>

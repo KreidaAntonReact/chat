@@ -6,7 +6,7 @@ import { Sidebar } from '@/widgets';
 
 
 <template>
-  <div class="min-w-20 w-16 h-full">
+  <div class="sidebar:min-w-20 sidebar:w-16 sidebar:h-full">
     <Sidebar />
   </div>
 </template>

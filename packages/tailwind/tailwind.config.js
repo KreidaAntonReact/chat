@@ -2,7 +2,8 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    './src/**/*.{vue,js,ts,jsx,tsx}',
+    '../../apps/frontend/sidebar/src**/*.{vue,js,ts,jsx,tsx}',
+    '../../apps/frontend/host/src**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},
