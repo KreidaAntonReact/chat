@@ -1,15 +1,25 @@
 <script setup lang="ts">
 import { LogoIcon } from '@/shared';
+import { links } from '@/widgets/sidebar/lib';
 </script>
 
 
 <template>
   <div class="sidebar:w-full sidebar:h-screen sidebar:bg-dark">
     <div class="sidebar:w-full sidebar:h-full sidebar:px-3 sidebar:py-6 sidebar:flex sidebar:flex-col">
-      <LogoIcon />
-      <div class="sidebar:flex-[1_0_auto] sidebar:mt-16 sidebar:text-white">
-        навигация
+      <div class="sidebar:flex sidebar:justify-center">
+        <LogoIcon />
       </div>
+
+      <nav class="sidebar:flex-[1_0_auto] sidebar:mt-24 sidebar:text-white">
+        <ul class="sidebar:w-full sidebar:h-full sidebar:flex sidebar:flex-col sidebar:gap-4">
+          <li v-for="(link, index) in links" :key="index" class="sidebar:flex sidebar:flex-col sidebar:gap-1 sidebar:text-center">
+            <component :is="link.icon" class="sidebar:w-8 sidebar:h-8 sidebar:m-[0_auto]" />
+            {{ link.name }}
+          </li>
+        </ul>
+      </nav>
+
       <div class="sidebar:text-white sidebar:m-[0_auto]">
         footer
       </div>

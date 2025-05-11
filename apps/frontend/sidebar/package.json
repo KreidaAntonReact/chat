@@ -9,10 +9,11 @@
     "dev": "webpack serve"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
     "@packages/eslint-config": "*",
+    "@packages/tailwind": "*",
     "@packages/types": "*",
     "@packages/webpack": "*",
-    "@packages/tailwind": "*",
     "@vue/compiler-sfc": "^3.5.13",
     "vue": "^3.5.13"
   },
