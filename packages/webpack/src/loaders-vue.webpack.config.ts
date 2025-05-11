@@ -19,6 +19,9 @@ export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions[
   const vueLoader: TRule = {
     test: /\.vue$/i,
     loader: 'vue-loader',
+    options: {
+      hotReload: isDev ? true : false
+    }
   };
 
   const styleLoader: TRule = {

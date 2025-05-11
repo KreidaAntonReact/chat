@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full h-screen text-primary">
-    Я сайдбар
-  </div>
+  <div class="w-full h-screen bg-dark" />
 </template>
 
 <script lang="ts">

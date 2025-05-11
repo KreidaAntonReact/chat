@@ -12,6 +12,7 @@ export const devServerWebpackConfig = ({ port, mode }: TOptionsBuild): Configura
       historyApiFallback: true,
       hot: true,
       compress: true,
+      watchFiles: ['src/**/*']
     }
     : undefined;
 };
