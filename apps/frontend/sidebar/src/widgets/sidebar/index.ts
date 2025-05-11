@@ -1,1 +1,1 @@
-export { default as Sidebar } from './sidebar.vue';
+export * from './ui';
