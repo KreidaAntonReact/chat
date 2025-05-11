@@ -1,0 +1,14 @@
+{
+  "name": "@packages/tailwind",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "git@github.com:AntonKreida/chat.git",
+  "author": "Anton Kreida <kreida.anton@yandex.ru>",
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "postcss-preset-env": "^10.1.6",
+    "tailwindcss": "^4.1.6"
+  }
+}
