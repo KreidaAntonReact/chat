@@ -10,13 +10,6 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     extraFileExtensions: ['.vue'],
   },
-  settings: {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".vue"]
-      },
-    },
-  },
   plugins: [
     "vue",
     "@typescript-eslint",

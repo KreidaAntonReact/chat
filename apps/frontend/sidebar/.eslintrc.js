@@ -7,6 +7,16 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
     },
+     settings: {
+        'import/resolver': {
+            alias: {
+                map: [
+                    ['@', './src'],
+                ],
+                extensions: ['.js', '.ts', '.vue'],
+            },
+        },
+    },
     env: {
         browser: true,
         amd: true,

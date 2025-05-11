@@ -20,7 +20,7 @@ export default (): TConfigWebpack => {
       eslintconfig: path.resolve(__dirname, '.eslintrc.ts')
     },
     alias: {
-      '@': path.resolve(__dirname, '.'),
+      '@': path.resolve(__dirname, 'src'),
       'vue': 'vue/dist/vue.esm-bundler.js',
     },
     framework: 'vue'
@@ -30,7 +30,7 @@ export default (): TConfigWebpack => {
     name: 'vue_sidebar',
     filename: 'remoteEntry.js',
     exposes: {
-      './sidebar': './src/app/app.vue',
+      './sidebar': './src/widgets/sidebar/sidebar.vue',
       './vue': 'vue',
     },
     shared: {

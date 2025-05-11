@@ -19,7 +19,7 @@ export const SidebarWrapper = () => {
 
   return (
     <div className='w-16 h-full min-w-20'>
-      <div ref={containerRef}/>
+      <div className='w-full h-full' ref={containerRef}/>
     </div>
   );
 };
