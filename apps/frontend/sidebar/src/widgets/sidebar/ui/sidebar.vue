@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LogoIcon } from '@/shared';
+import { LogoIcon, Toggle } from '@/shared';
 import { links } from '@/widgets/sidebar/lib';
 </script>
 
@@ -20,8 +20,8 @@ import { links } from '@/widgets/sidebar/lib';
         </ul>
       </nav>
 
-      <div class="sidebar:text-white sidebar:m-[0_auto]">
-        footer
+      <div class="sidebar:m-[0_auto] sidebar:flex sidebar:flex-col gap-3">
+        <Toggle />
       </div>
     </div>
   </div>
