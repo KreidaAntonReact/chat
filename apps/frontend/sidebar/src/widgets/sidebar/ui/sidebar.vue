@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { LogoIcon, Toggle } from '@/shared';
+import { SwitchTheme } from '@/features';
+import { LogoIcon } from '@/shared';
 import { links } from '@/widgets/sidebar/lib';
 </script>
 
@@ -21,7 +22,7 @@ import { links } from '@/widgets/sidebar/lib';
       </nav>
 
       <div class="sidebar:m-[0_auto] sidebar:flex sidebar:flex-col gap-3">
-        <Toggle />
+        <SwitchTheme :is-horizon-toggle="false" />
       </div>
     </div>
   </div>
