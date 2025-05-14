@@ -1,11 +1,19 @@
 <script lang="ts" setup>
+import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 import { ref, defineEmits, defineProps } from 'vue';
 
-const { isHorizon } = defineProps<{
-  isHorizon: boolean
-}>();
+const { isHorizon, defaultValue } = defineProps({
+  isHorizon: {
+    type: Boolean,
+    required: true,
+  },
+  defaultValue: {
+    type: Boolean,
+    default: false,
+  }
+});
 const emits = defineEmits(['toggle:update']);
-const isActive = ref(false);
+const isActive = ref(defaultValue ?? false);
 
 const handleOnClick = (value: boolean) => {
   isActive.value =  value;
@@ -16,21 +24,42 @@ const handleOnClick = (value: boolean) => {
 
 <template>
   <div
-    class="sidebar:flex sidebar:bg-gray-600 sidebar:rounded-full sidebar:p-1
-    sidebar:cursor-pointer"
+    class="sidebar:bg-gray-400 sidebar:rounded-full sidebar:p-1
+    sidebar:cursor-pointer sidebar:shadow sidebar:border sidebar:transition-colors"
     :class="{
-      'sidebar:w-18 sidebar:h-10 sidebar:justify-start': isHorizon,
-      'sidebar:w-10 sidebar:h-18 sidebar:items-end sidebar:justify-center': !isHorizon
+      'sidebar:bg-gray-200 sidebar:border sidebar:border-gray-100': isActive,
+      'sidebar:w-20 sidebar:h-10': isHorizon,
+      'sidebar:w-10 sidebar:h-20': !isHorizon
     }"
     @click="handleOnClick(!isActive)"
   >
     <div
+      class="sidebar:relative sidebar:h-full sidebar:w-full sidebar:flex"
       :class="{
-        'sidebar:-translate-y-8': isActive && !isHorizon,
-        'sidebar:translate-x-8': isActive && isHorizon
+        'sidebar:justify-start': isHorizon,
+        'flex-col sidebar:items-end': !isHorizon,
+        'sidebar:justify-end': isHorizon && isActive,
+        'sidebar:items-start': !isHorizon && isActive
       }"
-      class="sidebar:w-8 sidebar:transition-all sidebar:h-8 sidebar:bg-white sidebar:rounded-full"
-    />
+    >
+      <MoonIcon
+        class="sidebar:w-8 sidebar:h-8 sidebar:absolute
+      sidebar:top-0 sidebar:pointer-events-none
+      sidebar:z-10 sidebar:p-1"
+        :class="{'sidebar:fill-orange-200': isActive}"
+      />
+      <div
+        :class="{'sidebar:bg-gray-500': isActive}"
+        class="sidebar:w-8 sidebar:transition-all
+      sidebar:h-8 sidebar:bg-gray-200 sidebar:rounded-full sidebar:hover:h-10"
+      />
+      <SunIcon
+        class="sidebar:w-8 sidebar:h-8 sidebar:absolute
+      sidebar:top-full sidebar:pointer-events-none
+      sidebar:z-10 sidebar:p-1 sidebar:translate-y-[-100%]"
+        :class="{'sidebar:fill-orange-200': !isActive}"
+      />
+    </div>
   </div>
 </template>
 

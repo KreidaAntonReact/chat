@@ -27,6 +27,7 @@ export const useTheme = () => {
   };
 
   return {
-    handleChangeTheme
+    handleChangeTheme,
+    theme: storageValue,
   };
 };

@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import { AtSymbolIcon } from '@heroicons/vue/24/outline';
+
 import { SwitchTheme } from '@/features';
-import { LogoIcon } from '@/shared';
 import { links } from '@/widgets/sidebar/lib';
 </script>
 
 
 <template>
-  <div class="sidebar:w-full sidebar:h-screen sidebar:bg-dark">
+  <div class="sidebar:w-full sidebar:h-screen sidebar:dark:bg-dark sidebar:bg-black/80 sidebar:shadow-2xl">
     <div class="sidebar:w-full sidebar:h-full sidebar:px-3 sidebar:py-6 sidebar:flex sidebar:flex-col">
       <div class="sidebar:flex sidebar:justify-center">
-        <LogoIcon />
+        <AtSymbolIcon class="sidebar:w-8 sidebar:h-8 sidebar:text-white" />
       </div>
 
       <nav class="sidebar:flex-[1_0_auto] sidebar:mt-24 sidebar:text-white">
