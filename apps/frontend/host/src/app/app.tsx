@@ -1,5 +1,6 @@
 import { SidebarWrapper } from '@/widgets';
 import './styles/main.css';
+
 import 'vue_sidebar/styles';
 
 export const App = () => (

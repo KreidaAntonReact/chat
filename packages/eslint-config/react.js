@@ -6,16 +6,24 @@ module.exports = {
     sourceType: "module",
   },
   extends: [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended-legacy",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
   ],
   plugins: [
-    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "@typescript-eslint/eslint-plugin",
     "import",
-    "unused-imports"
+    "unused-imports",
   ],
   rules: {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": 'warn',
+    "react/react-in-jsx-scope": "off",
+
     // Базовые правила для typescript
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -128,6 +136,6 @@ module.exports = {
       {
         "allow": ["warn", "error"]
       }
-    ]
+    ],
   },
 }

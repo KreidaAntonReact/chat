@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue';
 
-import { Sidebar } from '@/widgets';
+import SidebarWrapper from '@/widgets/sidebar/ui/sidebar-async-wrapper.vue';
 </script>
 
 
 <template>
   <div class="sidebar:min-w-20 sidebar:w-16 sidebar:h-full">
-    <Sidebar />
+    <SidebarWrapper />
   </div>
 </template>
 

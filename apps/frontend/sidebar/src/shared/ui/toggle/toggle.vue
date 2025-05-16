@@ -18,6 +18,8 @@ const isActive = ref(defaultValue ?? false);
 const handleOnClick = (value: boolean) => {
   isActive.value =  value;
   emits('toggle:update', isActive.value);
+
+  console.log(isActive.value);
 };
 </script>
 
@@ -37,7 +39,7 @@ const handleOnClick = (value: boolean) => {
       class="sidebar:relative sidebar:h-full sidebar:w-full sidebar:flex"
       :class="{
         'sidebar:justify-start': isHorizon,
-        'flex-col sidebar:items-end': !isHorizon,
+        'sidebar:items-end': !isHorizon,
         'sidebar:justify-end': isHorizon && isActive,
         'sidebar:items-start': !isHorizon && isActive
       }"

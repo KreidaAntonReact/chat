@@ -6,13 +6,14 @@
   "repository": "git@github.com:AntonKreida/chat.git",
   "author": "Anton Kreida <kreida.anton@yandex.ru>",
   "scripts": {
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@packages/eslint-config": "*",
+    "@packages/tailwind": "*",
     "@packages/types": "*",
     "@packages/webpack": "*",
-    "@packages/tailwind": "*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.5.3"

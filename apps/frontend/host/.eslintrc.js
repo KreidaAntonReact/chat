@@ -6,6 +6,11 @@ module.exports = {
     parserOptions: {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
+        ecmaFeatures : {
+            "jsx" : true
+        },
+        ecmaVersion: "latest",
+        sourceType: "module"
     },
     settings: {
         'import/resolver': {
@@ -16,6 +21,9 @@ module.exports = {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'], // Аналогично Webpack
             },
         },
+        "react": {
+            "version": "detect"
+        }
     },
     env: {
         browser: true,
@@ -24,6 +32,6 @@ module.exports = {
     },
     ignorePatterns: ['node_modules', 'dist'],
     rules: {
-        'import/no-unresolved': ['error', { ignore: ['^vue_sidebar/'] }]
+        'import/no-unresolved': ['error', { ignore: ['^vue_sidebar/'] }],
     }
 }

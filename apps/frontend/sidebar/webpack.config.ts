@@ -30,7 +30,7 @@ export default (): TConfigWebpack => {
     name: 'vue_sidebar',
     filename: 'remoteEntry.js',
     exposes: {
-      './sidebar': './src/widgets/sidebar/ui/sidebar.vue',
+      './sidebar': './src/widgets/sidebar/ui/sidebar-async-wrapper.vue',
       './vue': 'vue',
       './styles': './src/app/styles/main.css'
     },
