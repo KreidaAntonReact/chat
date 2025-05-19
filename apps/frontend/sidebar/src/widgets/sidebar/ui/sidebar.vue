@@ -3,6 +3,19 @@ import { AtSymbolIcon } from '@heroicons/vue/24/outline';
 
 import { SwitchTheme } from '@/features';
 import { links } from '@/widgets/sidebar/lib';
+
+
+const onClickLink = (path: string) => {
+  window.history.pushState(null, '', path);
+
+  const event = new CustomEvent('routeChange', {
+    detail: { path },
+  });
+
+  window.dispatchEvent(event);
+
+};
+
 </script>
 
 
@@ -15,7 +28,12 @@ import { links } from '@/widgets/sidebar/lib';
 
       <nav class="sidebar:flex-[1_0_auto] sidebar:mt-24 sidebar:text-white">
         <ul class="sidebar:w-full sidebar:h-full sidebar:flex sidebar:flex-col sidebar:gap-4">
-          <li v-for="(link, index) in links" :key="index" class="sidebar:flex sidebar:flex-col sidebar:gap-1 sidebar:text-center">
+          <li
+            v-for="(link, index) in links"
+            :key="index"
+            class="sidebar:flex sidebar:flex-col sidebar:gap-1 sidebar:text-center sidebar:cursor-pointer"
+            @click="onClickLink(link.to)"
+          >
             <component :is="link.icon" class="sidebar:w-8 sidebar:h-8 sidebar:m-[0_auto]" />
             {{ link.name }}
           </li>

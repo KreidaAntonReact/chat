@@ -8,4 +8,10 @@ module.exports = {
         project: './tsconfig.json',
     },
     ignorePatterns: ['node_modules', 'dist'],
+    overrides: [
+    {
+      files: ["types/**/*"],
+      excludedFiles: "*.ts",
+    },
+  ],
 }

@@ -1,3 +1,5 @@
+import "@packages/event-bas";
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {

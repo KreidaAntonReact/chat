@@ -1,0 +1,36 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "composite": true,
+        "rootDir": "src",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+            "@types/*": [
+                "types/*"
+            ]
+        },
+        "outDir": "./dist",
+        "lib": [
+            "ESNext",
+            "DOM",
+        ],
+        "typeRoots": [
+            "./node_modules/@types",
+            "types"
+        ],
+        "moduleResolution": "node",
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "types/**/*.d.ts",
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+        }
+    },
+}
