@@ -10,3 +10,4 @@ export declare class EventBas implements IEventBas {
     emit<K extends keyof TEventMap>(event: K, data: TEventMap[K]): void;
     static getInstance(): EventBas;
 }
+//# sourceMappingURL=event-bas.d.ts.map

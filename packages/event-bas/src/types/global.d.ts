@@ -1,4 +1,4 @@
-import type { EventBas } from '../src/event-bas/event-bas';
+import type { EventBas } from '@/event-bas';
 
 declare global {
     interface Window {

@@ -1,4 +1,4 @@
-import type { IEventBas } from '../lib';
+import type { IEventBas } from '@/lib';
 import type { TEventMap } from '@packages/types';
 
 export class EventBas implements IEventBas {

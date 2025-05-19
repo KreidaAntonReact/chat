@@ -2,6 +2,8 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "composite": true,
+        "declaration": true,
+        "declarationMap": true,
         "rootDir": "src",
         "baseUrl": ".",
         "paths": {
@@ -9,7 +11,7 @@
                 "./src/*"
             ],
             "@types/*": [
-                "types/*"
+                "src/types/*"
             ]
         },
         "outDir": "./dist",
@@ -19,14 +21,14 @@
         ],
         "typeRoots": [
             "./node_modules/@types",
-            "types"
+            "./src/types/global.d.ts"
         ],
         "moduleResolution": "node",
     },
     "include": [
         "src/**/*.ts",
         "src/**/*.d.ts",
-        "types/**/*.d.ts",
+        "src/types/global.d.ts",
     ],
     "ts-node": {
         "compilerOptions": {
