@@ -5,11 +5,9 @@ import './styles/main.css';
 import 'vue_sidebar/styles';
 
 export const App = () => {
-  window.addEventListener('routeChange', (event) => {
-    console.log(event);
+  window.EventBas.on('change-router', (data) => {
+    console.log(data);
   });
-
-  console.log(window.EventBas);
 
   return (
     <div className='flex h-full'>

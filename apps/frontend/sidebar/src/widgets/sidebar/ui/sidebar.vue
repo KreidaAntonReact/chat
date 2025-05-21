@@ -1,20 +1,12 @@
 <script setup lang="ts">
+import '@packages/event-bas';
 import { AtSymbolIcon } from '@heroicons/vue/24/outline';
 
 import { SwitchTheme } from '@/features';
 import { links } from '@/widgets/sidebar/lib';
 
 
-const onClickLink = (path: string) => {
-  window.history.pushState(null, '', path);
-
-  const event = new CustomEvent('routeChange', {
-    detail: { path },
-  });
-
-  window.dispatchEvent(event);
-
-};
+const onClickLink = (path: string) => window.EventBas.emit('change-router', { to: path });
 
 </script>
 

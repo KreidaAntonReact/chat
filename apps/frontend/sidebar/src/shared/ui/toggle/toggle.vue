@@ -18,8 +18,6 @@ const isActive = ref(defaultValue ?? false);
 const handleOnClick = (value: boolean) => {
   isActive.value =  value;
   emits('toggle:update', isActive.value);
-
-  console.log(isActive.value);
 };
 </script>
 

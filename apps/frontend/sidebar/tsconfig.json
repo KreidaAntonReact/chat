@@ -11,6 +11,9 @@
             ]
         },
         "resolveJsonModule": true,
+        "types": [
+            "@packages/event-bas/src/types/global.d.ts"
+        ]
     },
     "include": [
         "src/**/*.ts",
@@ -26,5 +29,10 @@
     },
     "exclude": [
         "node_modules",
+    ],
+    "references": [
+        {
+            "path": "../../../packages/event-bas/tsconfig.json"
+        }
     ]
 }

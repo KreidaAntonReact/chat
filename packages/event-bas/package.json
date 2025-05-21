@@ -2,7 +2,7 @@
   "name": "@packages/event-bas",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
