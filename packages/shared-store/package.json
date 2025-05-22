@@ -1,0 +1,22 @@
+{
+  "name": "@packages/shared-store",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "repository": "git@github.com:AntonKreida/chat.git",
+  "author": "Anton Kreida <kreida.anton@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "devDependencies": {
+    "@packages/eslint-config": "*",
+    "@packages/types": "*",
+    "eslint": "~8.57.0",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "zustand": "^5.0.5"
+  }
+}

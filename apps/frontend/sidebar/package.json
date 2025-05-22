@@ -15,6 +15,7 @@
     "@packages/types": "*",
     "@packages/webpack": "*",
     "@packages/event-bas": "*",
+    "@packages/shared-store": "*",
     "@vue/compiler-sfc": "^3.5.13",
     "vue": "^3.5.13"
   },

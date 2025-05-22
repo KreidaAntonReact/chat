@@ -8,7 +8,6 @@ import { links } from '@/widgets/sidebar/lib';
 
 
 const onClickLink = (path: string) => window.EventBas.emit('change-router', { to: path });
-
 </script>
 
 
