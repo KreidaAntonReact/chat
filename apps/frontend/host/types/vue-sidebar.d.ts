@@ -1,9 +1,9 @@
-declare module "vue_sidebar/sidebar" {
+declare module "sidebar/sidebar" {
     import { DefineComponent } from "vue";
     const SidebarApp: DefineComponent<{}, {}, any>;
     export default SidebarApp;
 }
 
-declare module 'vue_sidebar/vue' {
+declare module 'sidebar/vue' {
     export {createApp} from 'vue';
 }

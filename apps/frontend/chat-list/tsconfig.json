@@ -10,6 +10,9 @@
                 "./src/*"
             ]
         },
+        "types": [
+            "@packages/event-bas/src/types/global.d.ts"
+        ]
     },
     "include": [
         "./src/**/*.ts",
@@ -26,4 +29,9 @@
             "module": "CommonJS"
         }
     },
+    "references": [
+        {
+            "path": "../../../packages/event-bas/tsconfig.json"
+        }
+    ]
 }

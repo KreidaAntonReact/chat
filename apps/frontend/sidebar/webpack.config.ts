@@ -27,7 +27,7 @@ export default (): TConfigWebpack => {
   });
 
   config.plugins?.push(new container.ModuleFederationPlugin({
-    name: 'vue_sidebar',
+    name: 'sidebar',
     filename: 'remoteEntry.js',
     exposes: {
       './sidebar': './src/widgets/sidebar/ui/sidebar-async-wrapper.vue',

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import Sidebar from  'vue_sidebar/sidebar';
-import { createApp } from 'vue_sidebar/vue';
+import Sidebar from  'sidebar/sidebar';
+import { createApp } from 'sidebar/vue';
 
 export const SidebarWrapper = () => {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -21,8 +21,8 @@ module.exports = {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'], // Аналогично Webpack
             },
         },
-        react: {
-            version: "detect"
+        "react": {
+            "version": "detect"
         }
     },
     env: {
@@ -32,6 +32,6 @@ module.exports = {
     },
     ignorePatterns: ['node_modules', 'dist'],
     rules: {
-        'import/no-unresolved': ['error', { ignore: ['^sidebar/', '^list/'] }],
+        'import/no-unresolved': ['error', { ignore: ['^vue_sidebar/'] }],
     }
 }

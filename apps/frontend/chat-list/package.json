@@ -1,7 +1,7 @@
 {
-  "name": "@apps/host",
+  "name": "@apps/chat-list",
   "version": "1.0.0",
-  "main": "./src/index.tsx",
+  "main": "index.js",
   "license": "MIT",
   "repository": "git@github.com:AntonKreida/chat.git",
   "author": "Anton Kreida <kreida.anton@yandex.ru>",
