@@ -3,6 +3,7 @@ import '@packages/event-bas';
 import { AtSymbolIcon } from '@heroicons/vue/24/outline';
 
 import { SwitchTheme } from '@/features';
+import { Avatar } from '@/shared';
 import { links } from '@/widgets/sidebar/lib';
 
 
@@ -32,8 +33,9 @@ const onClickLink = (path: string) => window.EventBas.emit('change-router', { to
         </ul>
       </nav>
 
-      <div class="sidebar:m-[0_auto] sidebar:flex sidebar:flex-col gap-3">
+      <div class="sidebar:m-[0_auto] sidebar:flex sidebar:flex-col sidebar:gap-3">
         <SwitchTheme :is-horizon-toggle="false" />
+        <Avatar />
       </div>
     </div>
   </div>
