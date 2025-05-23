@@ -1,5 +1,6 @@
+import { ChatList } from '@/widgets';
 import './styles/main.css';
 
 export const App = () => (
-  <div>Привет мир!</div>
+  <ChatList/>
 );

@@ -4,8 +4,9 @@ import './styles/main.css';
 import 'sidebar/styles';
 import 'list/styles';
 
+import { ChatList } from 'list/chat-list';
+
 import { SidebarWrapper } from '@/widgets';
-import { ChatList } from 'list/chat-list'
 
 
 export const App = () => (
