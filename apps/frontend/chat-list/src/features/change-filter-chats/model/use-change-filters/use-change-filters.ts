@@ -1,4 +1,6 @@
-import { type ChangeEvent, useCallback, useState } from 'react';
+import { type ChangeEvent, useCallback } from 'react';
+
+import { useLocalStorage } from '@/shared/';
 
 import type { ListOptionsFilters } from '@/features/change-filter-chats/lib';
 
@@ -11,16 +13,19 @@ interface IUseChangeFiltersArgs<T extends string> {
 }
 
 export const useChangeFilters = ({ defaultValue }: IUseChangeFiltersArgs<TOptionsValue>) => {
-  const [currentOption, setCurrentOption] = useState(defaultValue);
+  const { setValueStorage, valueStorage } = useLocalStorage({
+    key: 'change-filters',
+    initialValue: defaultValue
+  });
 
   const handleOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value as TOptionsValue;
-    setCurrentOption(value);
-  }, []);
+    setValueStorage(value);
+  }, [setValueStorage]);
 
 
   return [
-    currentOption,
+    valueStorage,
     handleOnChange
   ] as const;
 };
