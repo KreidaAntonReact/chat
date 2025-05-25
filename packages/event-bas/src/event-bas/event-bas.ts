@@ -5,12 +5,14 @@ export class EventBas implements IEventBas {
   static instance: EventBas;
 
   constructor(private readonly events: {[K in keyof TEventMap]: Array<(data: TEventMap[K]) => void>} = {
-    'change-router': []
+    'change-router': [],
+    'change-filter-chats': [],
+    'change-chats': []
   }) {}
 
   public on<K extends keyof TEventMap>(event: K, callback: (data: TEventMap[K]) => void){
     if(!this.events[event]) {
-      this.events[event] = [callback];
+      (this.events[event] as Array<(data: TEventMap[K]) => void>) = [callback];
       return;
     }
 

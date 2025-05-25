@@ -1,3 +1,4 @@
+import '@packages/event-bas';
 import { ChatList } from '@/widgets';
 import './styles/main.css';
 

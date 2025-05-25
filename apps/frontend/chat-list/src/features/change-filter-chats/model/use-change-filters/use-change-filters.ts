@@ -20,6 +20,7 @@ export const useChangeFilters = ({ defaultValue }: IUseChangeFiltersArgs<TOption
 
   const handleOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value as TOptionsValue;
+    window.EventBas.emit('change-filter-chats', { filter: value });
     setValueStorage(value);
   }, [setValueStorage]);
 
