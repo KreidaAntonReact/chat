@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 import { ChangeFiltersChats } from '@/features';
-import { Input } from '@/shared';
+import { Card, Input } from '@/shared';
 
 export const ChatList = () => (
   <div
@@ -16,6 +16,13 @@ export const ChatList = () => (
       <div className='list:flex list:gap-3 list:flex-col list:justify-center list:w-full'>
         <h1 className='list:text-2xl list:text-white/80'>Chats</h1>
         <ChangeFiltersChats/>
+      </div>
+
+      <div className='list:flex list:flex-col list:gap-3
+        list:h-full list:w-full list:items-center
+        list:overflow-y-auto list:py-1'
+      >
+        <Card />
       </div>
     </div>
   </div>
