@@ -28,7 +28,7 @@ export const ChangeFiltersChats = () => {
           value={option.value}
           isChecked={currentOption === option.value}
           onChange={handleOnChange}
-          className={`list:grow list:w-[calc(100%/${ListOptionsFilters.length})]`}
+          className="list:grow list:basis-0"
         />
       ))}
     </div>
