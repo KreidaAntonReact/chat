@@ -1,1 +1,1 @@
-export * from './ui';
+export { ChatListLazy as ChatList } from './ui';
