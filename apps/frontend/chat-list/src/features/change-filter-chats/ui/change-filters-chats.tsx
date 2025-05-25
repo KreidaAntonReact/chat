@@ -17,7 +17,8 @@ export const ChangeFiltersChats = () => {
         list:flex list:items-center
         list:justify-around list:gap-5
         list:bg-black list:rounded-2xl
-        list:px-2 list:py-1
+        list:px-2 list:py-1 list:w-full
+        list:dark:bg-dark
     '>
       { ListOptionsFilters.map((option) => (
         <MemoRadio

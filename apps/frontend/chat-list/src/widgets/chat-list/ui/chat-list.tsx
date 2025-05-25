@@ -10,12 +10,11 @@ export const ChatList = () => (
       list:w-full list:h-screen list:rounded-t-[0px]
       list:overflow-hidden"
   >
-    <div className="list:px-3 list:py-[20px] list:h-full list:w-full list:flex list:flex-col list:gap-3">
+    <div className="list:px-3 list:py-[20px] list:h-full list:w-full list:flex list:flex-col list:gap-6">
       <Input prefix={<MagnifyingGlassIcon className="list:w-6 list:h-6 list:stroke-white/80" />} />
 
-      <h1 className='list:text-2xl list:text-white/80'>Chats</h1>
-
-      <div>
+      <div className='list:flex list:gap-3 list:flex-col list:justify-center list:w-full'>
+        <h1 className='list:text-2xl list:text-white/80'>Chats</h1>
         <ChangeFiltersChats/>
       </div>
     </div>
