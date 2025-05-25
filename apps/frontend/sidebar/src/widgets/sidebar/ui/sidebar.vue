@@ -12,10 +12,10 @@ const onClickLink = (path: string) => window.EventBas.emit('change-router', { to
 
 
 <template>
-  <div class="sidebar:pr-1 sidebar:bg-dark/80 sidebar:dark:bg-black sidebar:shadow-2xl">
-    <div class="sidebar:w-full sidebar:h-screen sidebar:dark:bg-dark sidebar:bg-black">
-      <div class="sidebar:w-full sidebar:h-full sidebar:px-3 sidebar:py-6 sidebar:flex sidebar:flex-col">
-        <div class="sidebar:flex sidebar:justify-center">
+  <div class="sidebar:pr-1 sidebar:bg-dark/80 sidebar:h-screen sidebar:dark:bg-dark/50 sidebar:shadow-2xl">
+    <div class="sidebar:w-full sidebar:h-full sidebar:dark:bg-black sidebar:bg-dark">
+      <div class="sidebar:w-full sidebar:h-full sidebar:px-3 sidebar:py-[20px] sidebar:flex sidebar:flex-col">
+        <div class="sidebar:flex sidebar:justify-center sidebar:items-center">
           <AtSymbolIcon class="sidebar:w-8 sidebar:h-8 sidebar:text-white" />
         </div>
 
