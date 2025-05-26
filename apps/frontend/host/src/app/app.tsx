@@ -4,7 +4,7 @@ import './styles/main.css';
 import 'sidebar/styles';
 import 'list/styles';
 
-import { ChatList } from 'list/chat-list';
+import { ChatList } from 'list/list';
 
 import { SidebarWrapper } from '@/widgets';
 

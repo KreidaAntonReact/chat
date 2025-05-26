@@ -1,5 +1,5 @@
 {
-  "name": "@apps/chat-list",
+  "name": "@apps/list",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

@@ -1,4 +1,4 @@
-declare module "list/chat-list" {
+declare module "list/list" {
     import { FunctionComponent } from "react";
     const ChatList: FunctionComponent;
     export {
