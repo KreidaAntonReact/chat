@@ -17,19 +17,19 @@ export const Input: FC<InputProps> = ({ prefix, ...props }) => {
   const onClickFocus = () => inputRef.current?.focus();
 
   return (
-    <div className={cn('list:w-full list:h-9 list:relative list:flex list:items-center')}>
+    <div className={cn('chat:w-full chat:h-9 chat:relative chat:flex chat:items-center')}>
       <div
-        className={cn('list:hidden list:cursor-pointer',{
-          ['list:block list:absolute list:top-1/2 list:left-3 list:-translate-y-1/2']: !!prefix
+        className={cn('chat:hidden chat:cursor-pointer',{
+          ['chat:block chat:absolute chat:top-1/2 chat:left-3 chat:-translate-y-1/2']: !!prefix
         })}
         onClick={onClickFocus}
       >
         {prefix}
       </div>
       <input
-        className={cn(`list:bg-brown/80 list:dark:bg-brown list:h-full list:px-2 list:text-white/80
-      list:w-full h-full list:rounded-2xl list:text-sm`, {
-          ['list:pl-10']: !!prefix
+        className={cn(`chat:bg-brown/80 chat:dark:bg-brown chat:h-full chat:px-2 chat:text-white/80
+      chat:w-full h-full chat:rounded-2xl chat:text-sm`, {
+          ['chat:pl-10']: !!prefix
         })}
         ref={inputRef}
         {...props}

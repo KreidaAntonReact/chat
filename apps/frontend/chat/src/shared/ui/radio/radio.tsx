@@ -22,20 +22,20 @@ export const Radio: FC<IRadioProps> = ({
 }) => (
   <label
     htmlFor={name}
-    className={cn(`list:cursor-pointer list:text-sm
-        list:text-white/80 list:rounded-2xl
-        list:p-2 list:flex list:items-center
-        list:justify-center list:overflow-hidden
-        list:hover:bg-brown/80 list:transition-colors
+    className={cn(`chat:cursor-pointer chat:text-sm
+        chat:text-white/80 chat:rounded-2xl
+        chat:p-2 chat:flex chat:items-center
+        chat:justify-center chat:overflow-hidden
+        chat:hover:bg-brown/80 chat:transition-colors
     `, {
-      ['list:!bg-brown']: isChecked
+      ['chat:!bg-brown']: isChecked
     }, className)}>
     <input
       type="radio"
       id={name}
       name={name}
       value={value}
-      className='list:hidden'
+      className='chat:hidden'
       onChange={onChange}
       checked={isChecked}
     />

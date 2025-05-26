@@ -26,7 +26,7 @@ export default (): TConfigWebpack => {
   });
 
   config.plugins?.push(new container.ModuleFederationPlugin({
-    name: 'list',
+    name: 'chat',
     filename: 'remoteEntry.js',
     exposes: {
       './list': './src/widgets/chat-list/index.ts',

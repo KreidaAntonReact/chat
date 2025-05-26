@@ -2,9 +2,9 @@ import '@packages/event-bas';
 
 import './styles/main.css';
 import 'sidebar/styles';
-import 'list/styles';
+import 'chat/styles';
 
-import { ChatList } from 'list/list';
+import { ChatList } from 'chat/list';
 
 import { SidebarWrapper } from '@/widgets';
 

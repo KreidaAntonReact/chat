@@ -14,11 +14,11 @@ export const ChangeFiltersChats = () => {
 
   return (
     <div className='
-        list:flex list:items-center
-        list:justify-around list:gap-5
-        list:bg-black list:rounded-2xl
-        list:px-2 list:py-1 list:w-full
-        list:dark:bg-dark
+        chat:flex chat:items-center
+        chat:justify-around chat:gap-5
+        chat:bg-black chat:rounded-2xl
+        chat:px-2 chat:py-1 chat:w-full
+        chat:dark:bg-dark
     '>
       { ListOptionsFilters.map((option) => (
         <MemoRadio
@@ -28,7 +28,7 @@ export const ChangeFiltersChats = () => {
           value={option.value}
           isChecked={currentOption === option.value}
           onChange={handleOnChange}
-          className="list:grow list:basis-0"
+          className="chat:grow chat:basis-0"
         />
       ))}
     </div>
