@@ -4,18 +4,11 @@ import './styles/main.css';
 import 'sidebar/styles';
 import 'chat/styles';
 
-import { ChatList } from 'chat/list';
+import { RouterProvider } from 'react-router';
 
-import { SidebarWrapper } from '@/widgets';
+import { router } from './routers';
 
 
 export const App = () => (
-  <div className='flex h-full w-full'>
-    <div className='flex w-fit items-center flex-[1_1_0]'>
-      <SidebarWrapper/>
-      <ChatList/>
-    </div>
-    <div className='flex grow max-w-full'>
-    </div>
-  </div>
+  <RouterProvider router={router}/>
 );

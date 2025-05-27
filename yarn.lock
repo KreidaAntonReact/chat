@@ -6181,6 +6181,14 @@ react-router@^7.5.3:
     set-cookie-parser "^2.6.0"
     turbo-stream "2.4.0"
 
+react-router@^7.6.1:
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.6.1.tgz#a54f9b980b94594bcb4b7f26611612a9f6e17461"
+  integrity sha512-hPJXXxHJZEsPFNVbtATH7+MMX43UDeOauz+EAU4cgqTn7ojdI9qQORqS8Z0qmDlL1TclO/6jLRYUEtbWidtdHQ==
+  dependencies:
+    cookie "^1.0.1"
+    set-cookie-parser "^2.6.0"
+
 react@^19.1.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"

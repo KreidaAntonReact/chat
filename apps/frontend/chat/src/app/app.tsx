@@ -1,7 +1,7 @@
 import '@packages/event-bas';
-import { ChatList } from '@/widgets';
 import './styles/main.css';
+import { RouterProvider } from 'react-router';
 
-export const App = () => (
-  <ChatList/>
-);
+import { router } from './routers';
+
+export const App = () => <RouterProvider router={router}/>;

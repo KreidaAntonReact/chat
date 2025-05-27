@@ -29,7 +29,7 @@ export default (): TConfigWebpack => {
     name: 'chat',
     filename: 'remoteEntry.js',
     exposes: {
-      './list': './src/widgets/chat-list/index.ts',
+      './routers': './src/app/routers/router.tsx',
       './styles': './src/app/styles/main.css'
     },
     shared: {
