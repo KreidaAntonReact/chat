@@ -41,7 +41,7 @@ export const loadersVueWebpackConfig = ({ mode }: TOptionsBuild): ModuleOptions[
       'vue-loader',
       'vue-svg-loader',
     ]
-  }
+  };
 
   const tsLoader: TRule =  {
     test: /\.tsx?$/,
