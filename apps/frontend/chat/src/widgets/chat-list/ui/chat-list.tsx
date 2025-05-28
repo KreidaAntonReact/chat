@@ -11,7 +11,7 @@ export const ChatList = () => {
   return (
     <div
       className="chat:bg-dark chat:max-w-[320px] chat:w-full chat:dark:bg-black
-      chat:text-2xl chat:dark:text-white chat:rounded-br-[5px]
+      chat:text-2xl chat:dark:text-white
       chat:h-screen chat:rounded-t-[0px]
       chat:overflow-hidden"
     >

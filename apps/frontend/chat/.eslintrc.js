@@ -18,7 +18,7 @@ module.exports = {
                 map: [
                     ['@', './src'],
                 ],
-                extensions: ['.js', '.jsx', '.ts', '.tsx'], // Аналогично Webpack
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
         },
         "react": {
