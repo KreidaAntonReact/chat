@@ -1,6 +1,6 @@
 import { useLayoutEffect, type RefObject } from 'react';
 
-export const useResize = (ref: RefObject<HTMLDivElement | null>, callback: (width: number, height: number) => void) => {
+export const useResize = (ref: RefObject<HTMLDivElement | HTMLCanvasElement | null>, callback: (width: number, height: number) => void) => {
   useLayoutEffect(() => {
     const currentRef = ref.current;
 
@@ -15,7 +15,7 @@ export const useResize = (ref: RefObject<HTMLDivElement | null>, callback: (widt
       if(!entry) return;
 
       clearTimeout(timer);
-      
+
       timer = setTimeout(() => {
         cancelAnimationFrame(rafId);
         rafId = requestAnimationFrame(() => {
