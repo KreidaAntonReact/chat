@@ -18,7 +18,6 @@ export const CanvasPattern: FC<ICanvasBackgroundProps> = ({ children }) => {
     patternImg
   });
 
-
   return (
     <div
       className='chat:relative chat:left-0
