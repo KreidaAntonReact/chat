@@ -23,13 +23,13 @@ export const CanvasPattern: FC<ICanvasBackgroundProps> = ({ children }) => {
     <div
       className='chat:relative chat:left-0
         chat:top-0 chat:overflow-hidden
-        chat:w-full chat:h-full'
+        chat:w-full chat:h-full chat:dark:bg-dark chat:bg-brown/80'
     >
       <canvas
         ref={canvasRef}
         width={canvasSize.width}
         height={canvasSize.height}
-        className={cn('chat:dark:bg-dark chat:bg-brown/80 chat:w-full chat:h-full chat:absolute chat:left-0 chat:top-0')}
+        className={cn('chat:w-full chat:h-full chat:absolute chat:left-0 chat:top-0')}
       />
       {children}
     </div>

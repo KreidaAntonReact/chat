@@ -39,14 +39,18 @@ export const useCanvasPattern = ({ patternImg }: IUseCanvasPatternArgs) => {
         type: 'module'
       });
 
+      const floorWidth = Math.floor(canvas.width);
+      const floorHeight = Math.floor(canvas.height);
+
       workerRef.current.postMessage({
         offscreen: ctxRef.current,
         imageBitmap: pattern,
-        width: canvasRef.current?.width,
-        height: canvasRef.current?.height,
+        width: floorWidth,
+        height: floorHeight,
         type: 'init'
       } as ICanvasWorkerEvent,
       [pattern, ctxRef.current]);
+
     };
 
     initWorker();
@@ -54,15 +58,18 @@ export const useCanvasPattern = ({ patternImg }: IUseCanvasPatternArgs) => {
     const resizeObserver = new ResizeObserver((entries) => {
       const { width, height } = entries[0].contentRect;
 
+      const floorWidth = Math.floor(width);
+      const floorHeight = Math.floor(height);
+
       workerRef.current?.postMessage({
         type: 'resize',
-        width: width,
-        height: height,
+        width: floorWidth,
+        height: floorHeight,
       });
-      
+
       setCanvasSize({
-        width,
-        height,
+        width: floorWidth,
+        height: floorHeight,
       });
     });
 
