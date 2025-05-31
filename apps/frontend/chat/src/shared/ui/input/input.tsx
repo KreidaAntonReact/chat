@@ -1,39 +1,49 @@
 import { cn } from '@packages/utils';
 import {
-  useRef,
   type FC,
   type ComponentProps,
-  type ReactNode
+  type ReactNode,
+  useRef
 } from 'react';
 
 
-interface InputProps extends Omit<ComponentProps<'input'>, 'prefix'> {
-  prefix?: ReactNode
+interface InputProps extends Omit<ComponentProps<'input'>, 'prefix' | 'suffix'> {
+  prefix?: ReactNode;
+  suffix?: ReactNode;
 }
 
-export const Input: FC<InputProps> = ({ prefix, ...props }) => {
-  const inputRef = useRef<HTMLInputElement| null>(null);
-
-  const onClickFocus = () => inputRef.current?.focus();
+export const Input: FC<InputProps> = ({ prefix, suffix, ...props }) => {
+  const refInput = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className={cn('chat:w-full chat:h-9 chat:relative chat:flex chat:items-center')}>
+    <div
+      className={cn(`chat:w-full chat:h-9 chat:flex
+        chat:items-center chat:bg-brown/80
+       chat:dark:bg-brown chat:rounded-2xl
+        chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
+        chat:has-[input:focus]:outline-blue-300`)}
+      onClick={() => refInput.current?.focus()}
+    >
       <div
-        className={cn('chat:hidden chat:cursor-pointer',{
-          ['chat:block chat:absolute chat:top-1/2 chat:left-3 chat:-translate-y-1/2']: !!prefix
+        className={cn('chat:hidden',{
+          ['chat:block']: !!prefix
         })}
-        onClick={onClickFocus}
       >
         {prefix}
       </div>
       <input
-        className={cn(`chat:bg-brown/80 chat:dark:bg-brown chat:h-full chat:px-2 chat:text-white/80
-      chat:w-full h-full chat:rounded-2xl chat:text-sm`, {
-          ['chat:pl-10']: !!prefix
-        })}
-        ref={inputRef}
+        className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:border-none
+      chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`)}
         {...props}
+        ref={refInput}
       />
+      <div
+        className={cn('chat:hidden',{
+          ['chat:block']: !!suffix
+        })}
+      >
+        {suffix}
+      </div>
     </div>
   );
 };
