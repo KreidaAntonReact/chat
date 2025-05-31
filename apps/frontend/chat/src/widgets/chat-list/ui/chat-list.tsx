@@ -1,7 +1,6 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ChangeFiltersChats, ChatSearch } from '@/features';
 
-import { ChangeFiltersChats } from '@/features';
-import { Card, Input } from '@/shared';
+import { ChatItem } from './chat-item';
 
 export const ChatList = () => {
   const handleOnClickChat = () => {
@@ -16,7 +15,7 @@ export const ChatList = () => {
       chat:overflow-hidden"
     >
       <div className="chat:px-3 chat:py-[20px] chat:h-full chat:w-full chat:flex chat:flex-col chat:gap-6">
-        <Input prefix={<MagnifyingGlassIcon className="chat:w-6 chat:h-6 chat:stroke-white/80" />} />
+        <ChatSearch/>
 
         <div className='chat:flex chat:gap-3 chat:flex-col chat:justify-center chat:w-full'>
           <h1 className='chat:text-2xl chat:text-white/80'>Chats</h1>
@@ -27,7 +26,7 @@ export const ChatList = () => {
         chat:h-full chat:w-full chat:items-center
         chat:overflow-y-auto chat:py-1'
         >
-          <Card
+          <ChatItem
             onClick={handleOnClickChat}
           />
         </div>

@@ -1,14 +1,15 @@
-import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { Avatar } from '@/shared';
 
 import type { FC } from 'react';
 
-interface ICardProps {
+
+interface IChatItemProps {
     onClick?: () => void
-    avatar?: string
+    avatarSrc?: string
 }
 
 
-export const Card: FC<ICardProps> = ({ onClick, avatar }) => (
+export const ChatItem: FC<IChatItemProps> = ({ onClick, avatarSrc }) => (
   <div
     className="chat:w-full chat:h-18
     chat:bg-darksLateGray chat:rounded-lg
@@ -17,12 +18,7 @@ export const Card: FC<ICardProps> = ({ onClick, avatar }) => (
     onClick={onClick}
   >
     <div className='chat:flex chat:items-center chat:gap-2'>
-      <div className='chat:rounded-full chat:w-15 chat:h-15 chat:overflow-hidden chat:bg-brown'>
-        {!avatar ?
-          <UserCircleIcon className='chat:w-full chat:h-full' />
-          : <img src={avatar} className='chat:w-full chat:h-full' alt='avatar'/>
-        }
-      </div>
+      <Avatar imageSrc={avatarSrc} />
       <div className='chat:flex chat:flex-col chat:gap-1.5'>
         <div className='chat:text-white/80 chat:text-sm'>Name</div>
         <div className='chat:text-white/80 chat:text-sm'>Last message</div>
