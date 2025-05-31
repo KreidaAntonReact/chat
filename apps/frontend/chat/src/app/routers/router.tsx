@@ -1,6 +1,6 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 
-import { Layout } from '@/pages';
+import { Layout } from '@/app/layout';
 
 export const routers: RouteObject[] = [
   {
