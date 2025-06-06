@@ -1,12 +1,18 @@
 import {
-  useEffect, useRef,
+  useEffect,
+  useRef,
   useState
 } from 'react';
 
-
 import { loadImageBitmap } from '@/shared/util';
 
-import type { ICanvasWorkerEvent } from '../../lib';
+import type { ICanvasWorkerEvent } from '@/shared/ui/canvas-pattern/lib';
+
+const loadWebWorker = async (): Promise<Blob> => {
+  const workerCode = await fetch(new URL('../../workers/canvas.worker.ts', import.meta.url))
+    .then((res) => res.text());
+  return new Blob([workerCode], { type: 'application/javascript' });
+};
 
 interface IUseCanvasPatternArgs {
     patternImg: string
@@ -36,9 +42,7 @@ export const useCanvasPattern = ({ patternImg }: IUseCanvasPatternArgs) => {
 
       const pattern  = await loadImageBitmap(patternImg);
 
-      const workerCode = await fetch(new URL('../../workers/canvas.worker.ts', import.meta.url))
-        .then((res) => res.text());
-      const blob = new Blob([workerCode], { type: 'application/javascript' });
+      const blob =  await loadWebWorker();
       const url = URL.createObjectURL(blob);
 
       workerRef.current = new Worker(url, {
