@@ -3,9 +3,10 @@ import {
   useState
 } from 'react';
 
+
 import { loadImageBitmap } from '@/shared/util';
 
-import type { ICanvasWorkerEvent } from '@/shared/ui/canvas-pattern/lib';
+import type { ICanvasWorkerEvent } from '../../lib';
 
 interface IUseCanvasPatternArgs {
     patternImg: string
@@ -35,7 +36,12 @@ export const useCanvasPattern = ({ patternImg }: IUseCanvasPatternArgs) => {
 
       const pattern  = await loadImageBitmap(patternImg);
 
-      workerRef.current = new Worker(new URL('../../workers/canvas.worker.ts', import.meta.url), {
+      const workerCode = await fetch(new URL('../../workers/canvas.worker.ts', import.meta.url))
+        .then((res) => res.text());
+      const blob = new Blob([workerCode], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+
+      workerRef.current = new Worker(url, {
         type: 'module'
       });
 

@@ -49,7 +49,7 @@ export const pluginsWebpackConfig = ({ mode, paths, framework }: TOptionsBuild):
       '__VUE_OPTIONS_API__': JSON.stringify(true),
       '__VUE_PROD_DEVTOOLS__': JSON.stringify(isDev ? true : false),
       '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': JSON.stringify(false)
-    }))
+    }));
     plugins.push(new VueLoaderPlugin());
   }
 

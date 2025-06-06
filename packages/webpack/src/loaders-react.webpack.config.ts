@@ -86,10 +86,19 @@ export const loadersReactWebpackConfig = ({ mode }: TOptionsBuild): ModuleOption
     exclude: /node_modules/,
   };
 
+  const workerLoader: TRule = {
+    test: /worker\.js$/i,
+    loader: 'worker-loader',
+    options: {
+      inline:'no-fallback'
+    },
+  };
+
   return [
     assetResource,
     ...styleLoaders,
     tsLoader,
+    workerLoader,
     svgLoader,
   ];
 };

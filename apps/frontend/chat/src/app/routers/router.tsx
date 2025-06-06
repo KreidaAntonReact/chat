@@ -1,6 +1,7 @@
-import { createBrowserRouter, type RouteObject } from 'react-router';
+import { createHashRouter, type RouteObject } from 'react-router';
 
 import { Layout } from '@/app/layout';
+import { ChatMemberId } from '@/pages/';
 
 export const routers: RouteObject[] = [
   {
@@ -8,11 +9,11 @@ export const routers: RouteObject[] = [
     path: '/',
     children: [
       {
-        index: true,
-        element: <div>Home</div>,
+        path: ':id',
+        element: <ChatMemberId/>,
       },
       {
-        path: '/home',
+        path: 'home',
         element: <div>Chat</div>,
       }
     ]
@@ -20,6 +21,6 @@ export const routers: RouteObject[] = [
 ];
 
 
-export const router = createBrowserRouter(routers);
+export const router = createHashRouter(routers);
 
 export default routers;

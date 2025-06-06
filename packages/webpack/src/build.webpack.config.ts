@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { devServerWebpackConfig } from './dev-server.webpack.config';
 import { loadersReactWebpackConfig } from './loaders-react.webpack.config';
 import { loadersVueWebpackConfig } from './loaders-vue.webpack.config';
@@ -21,8 +23,9 @@ export const buildWebpackConfig = (options: TOptionsBuild): TConfigWebpack => {
     },
     resolve: resolveWebpackConfig(options),
     output: {
-      path: paths.output,
+      path: path.resolve(__dirname, paths.output),
       clean: true,
+      publicPath: 'auto',
     },
     devtool: isDev && 'inline-source-map',
     devServer: devServerWebpackConfig(options),

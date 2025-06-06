@@ -12,7 +12,12 @@ export const devServerWebpackConfig = ({ port, mode }: TOptionsBuild): Configura
       historyApiFallback: true,
       hot: true,
       compress: true,
-      watchFiles: ['src/**/*']
+      watchFiles: ['src/**/*'],
+      allowedHosts: 'all',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      },
     }
     : undefined;
 };
