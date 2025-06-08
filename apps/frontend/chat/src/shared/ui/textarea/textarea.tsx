@@ -28,8 +28,9 @@ export const Textarea: FC<ITextareaProps> = ({
       })}>
         {prefix}
       </div>
-      <div className={cn(`chat:flex-[1_1_auto] chat:h-fit chat:p-3 chat:w-full chat:max-h-[${mHeight}px]
-        chat:flex chat:items-center chat:overflow-y-auto`)}>
+      <div className={cn(`chat:flex-[1_1_auto] chat:h-fit chat:p-3 chat:w-full
+        chat:flex chat:items-center chat:overflow-y-auto`)}
+      style={{ maxHeight: mHeight }}>
         <textarea
           className={cn(`chat:w-full chat:h-full chat:border-none chat:resize-none
         chat:text-sm chat:outline-none chat:overflow-hidden chat:field-sizing-content chat:text-white/80`,

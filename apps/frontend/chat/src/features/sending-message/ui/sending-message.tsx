@@ -9,7 +9,6 @@ export const SendingMessage = () => (
       classNameRoot='chat:max-w-[796px]'
       placeholder='Type a message...'
       mHeight={300}
-      rows={4}
       suffix={<Button icon={PaperAirplaneIcon}/>}
     />
   </div>
