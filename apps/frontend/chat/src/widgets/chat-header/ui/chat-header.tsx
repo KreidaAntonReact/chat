@@ -3,7 +3,7 @@ import { Avatar } from '@/shared';
 export const ChatHeder = () => (
   <div className="chat:w-full chat:h-20 chat:bg-dark
     chat:dark:bg-black chat:flex chat:items-center
-    chat:relative chat:px-3 chat:py-[20px]"
+    chat:px-3 chat:py-[20px]"
   >
     <div className='chat:flex chat:items-center chat:gap-2'>
       <Avatar/>

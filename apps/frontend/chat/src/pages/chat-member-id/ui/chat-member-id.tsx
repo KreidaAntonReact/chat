@@ -1,10 +1,10 @@
 import { SendingMessage } from '@/features';
-import { ChatHeder } from '@/widgets';
+import { ChatHeder, ChatMessages } from '@/widgets';
 
 export const ChatMemberId = () => (
-  <div className="chat:w-full chat:h-full chat:flex chat:flex-col">
+  <div className="chat:w-full chat:h-full chat:flex chat:flex-col chat:relative chat:left-0 chat:top-0">
     <ChatHeder/>
-    <div className='chat:flex-[1_1_0]'/>
+    <ChatMessages/>
     <SendingMessage/>
   </div>
 );
