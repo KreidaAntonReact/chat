@@ -18,8 +18,8 @@ export const Input: FC<InputProps> = ({ prefix, suffix, ...props }) => {
   return (
     <div
       className={cn(`chat:w-full chat:h-9 chat:flex
-        chat:items-center chat:bg-brown/80
-       chat:dark:bg-brown chat:rounded-2xl chat:transition-colors
+        chat:items-center chat:bg-brown/30
+       chat:dark:bg-dark chat:rounded-2xl chat:transition-colors
         chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
         chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2 chat:hover:outline-blue-200`)}
       onClick={() => refInput.current?.focus()}
@@ -32,7 +32,7 @@ export const Input: FC<InputProps> = ({ prefix, suffix, ...props }) => {
         {prefix}
       </div>
       <input
-        className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:border-none
+        className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
       chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`)}
         {...props}
         ref={refInput}

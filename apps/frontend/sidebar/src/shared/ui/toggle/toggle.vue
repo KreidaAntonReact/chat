@@ -24,10 +24,10 @@ const handleOnClick = (value: boolean) => {
 
 <template>
   <div
-    class="sidebar:bg-gray-400 sidebar:rounded-full sidebar:p-1
+    class="sidebar:bg-brown/30 sidebar:rounded-full sidebar:p-1
     sidebar:cursor-pointer sidebar:shadow sidebar:border sidebar:transition-colors"
     :class="{
-      'sidebar:bg-gray-200 sidebar:border sidebar:border-gray-100': isActive,
+      'sidebar:bg-dark sidebar:border': isActive,
       'sidebar:w-20 sidebar:h-10': isHorizon,
       'sidebar:w-10 sidebar:h-20': !isHorizon
     }"
@@ -45,8 +45,9 @@ const handleOnClick = (value: boolean) => {
       <MoonIcon
         class="sidebar:w-8 sidebar:h-8 sidebar:absolute
       sidebar:top-0 sidebar:pointer-events-none
-      sidebar:z-10 sidebar:p-1"
-        :class="{'sidebar:fill-orange-200': isActive}"
+      sidebar:z-10 sidebar:p-1 sidebar:stroke-white/80
+      sidebar:dark:stroke-white"
+        :class="{'sidebar:fill-orange-200 sidebar:!stroke-black': isActive}"
       />
       <div
         :class="{'sidebar:bg-gray-500': isActive}"
@@ -55,9 +56,9 @@ const handleOnClick = (value: boolean) => {
       />
       <SunIcon
         class="sidebar:w-8 sidebar:h-8 sidebar:absolute
-      sidebar:top-full sidebar:pointer-events-none
+      sidebar:top-full sidebar:pointer-events-none sidebar:stroke-white
       sidebar:z-10 sidebar:p-1 sidebar:translate-y-[-100%]"
-        :class="{'sidebar:fill-orange-200': !isActive}"
+        :class="{'sidebar:fill-orange-200 sidebar:!stroke-black': !isActive}"
       />
     </div>
   </div>

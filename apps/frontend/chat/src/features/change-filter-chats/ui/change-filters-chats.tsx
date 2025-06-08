@@ -16,7 +16,7 @@ export const ChangeFiltersChats = () => {
     <div className='
         chat:flex chat:items-center
         chat:justify-around chat:gap-5
-        chat:bg-black chat:rounded-2xl
+        chat:bg-brown/30 chat:rounded-2xl
         chat:px-2 chat:py-1 chat:w-full
         chat:dark:bg-dark
     '>

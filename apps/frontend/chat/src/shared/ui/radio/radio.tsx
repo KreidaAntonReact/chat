@@ -27,8 +27,10 @@ export const Radio: FC<IRadioProps> = ({
         chat:p-2 chat:flex chat:items-center
         chat:justify-center chat:overflow-hidden
         chat:hover:bg-brown/80 chat:transition-colors
+        chat:dark:text-white chat:dark:bg-dark
+        chat:dark:hover:bg-darksLateGray/50
     `, {
-      ['chat:!bg-brown']: isChecked
+      ['chat:!bg-brown chat:dark:!bg-darksLateGray']: isChecked
     }, className)}>
     <input
       type="radio"

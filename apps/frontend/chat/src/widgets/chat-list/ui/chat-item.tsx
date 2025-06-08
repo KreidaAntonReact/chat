@@ -15,9 +15,10 @@ interface IChatItemProps {
 export const ChatItem: FC<IChatItemProps> = ({ onClick, avatarSrc, to }) => (
   <Link
     className="chat:w-full chat:h-18
-    chat:bg-darksLateGray chat:rounded-lg
+    chat:bg-brown/30 chat:rounded-lg
     chat:px-3 chat:py-2 chat:cursor-pointer
-    chat:flex chat:items-center chat:justify-between"
+    chat:flex chat:items-center chat:justify-between
+    chat:dark:bg-dark"
     onClick={onClick}
     to={to}
   >
