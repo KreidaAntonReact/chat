@@ -5,7 +5,7 @@ export const SkeletonChatList = () => (
     chat:flex chat:flex-col
     chat:px-3 chat:py-[20px] chat:gap-6"
   >
-    <div className="chat:w-full chat:h-7 chat:bg-brown/80 chat:animate-pulse chat:rounded-2xl"/>
+    <div className="chat:w-full chat:h-7 chat:bg-brown/80 chat:dark:bg-darksLateGray chat:animate-pulse chat:rounded-2xl"/>
 
     <div className="chat:flex chat:flex-col chat:gap-3">
       <h1 className="chat:text-2xl chat:text-white/80">Chats</h1>
@@ -16,13 +16,13 @@ export const SkeletonChatList = () => (
         chat:dark:bg-dark chat:animate-pulse"
       >
         <div className="chat:rounded-2xl chat:grow chat:basis-0 chat:h-9
-        chat:p-2 chat:overflow-hidden chat:bg-brown chat:animate-pulse"/>
+        chat:p-2 chat:overflow-hidden chat:bg-brown chat:dark:bg-darksLateGray chat:animate-pulse"/>
 
         <div className="chat:rounded-2xl chat:grow chat:basis-0 chat:h-9
-        chat:p-2 chat:overflow-hidden chat:bg-brown chat:animate-pulse"/>
+        chat:p-2 chat:overflow-hidden chat:bg-brown chat:dark:bg-darksLateGray  chat:animate-pulse"/>
 
         <div className="chat:rounded-2xl chat:grow chat:basis-0 chat:h-9
-        chat:p-2 chat:overflow-hidden chat:bg-brown chat:animate-pulse"/>
+        chat:p-2 chat:overflow-hidden chat:bg-brown chat:dark:bg-darksLateGray  chat:animate-pulse"/>
       </div>
     </div>
 
