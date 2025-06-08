@@ -28,6 +28,7 @@ export const ChatList = () => {
         >
           <ChatItem
             onClick={handleOnClickChat}
+            to='/1'
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { createHashRouter, type RouteObject } from 'react-router';
+import { createBrowserRouter, type RouteObject } from 'react-router';
 
 import { Layout } from '@/app/layout';
 import { ChatMemberId } from '@/pages/';
@@ -12,15 +12,11 @@ export const routers: RouteObject[] = [
         path: ':id',
         element: <ChatMemberId/>,
       },
-      {
-        path: 'home',
-        element: <div>Chat</div>,
-      }
     ]
   }
 ];
 
 
-export const router = createHashRouter(routers);
+export const router = createBrowserRouter(routers);
 
 export default routers;

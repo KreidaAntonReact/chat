@@ -1,21 +1,25 @@
+import { Link } from 'react-router';
+
 import { Avatar } from '@/shared';
 
 import type { FC } from 'react';
 
 
 interface IChatItemProps {
+    to: string
     onClick?: () => void
     avatarSrc?: string
 }
 
 
-export const ChatItem: FC<IChatItemProps> = ({ onClick, avatarSrc }) => (
-  <div
+export const ChatItem: FC<IChatItemProps> = ({ onClick, avatarSrc, to }) => (
+  <Link
     className="chat:w-full chat:h-18
     chat:bg-darksLateGray chat:rounded-lg
     chat:px-3 chat:py-2 chat:cursor-pointer
     chat:flex chat:items-center chat:justify-between"
     onClick={onClick}
+    to={to}
   >
     <div className='chat:flex chat:items-center chat:gap-2'>
       <Avatar imageSrc={avatarSrc} />
@@ -28,5 +32,5 @@ export const ChatItem: FC<IChatItemProps> = ({ onClick, avatarSrc }) => (
     <div className='chat:w-5 chat:h-5 chat:bg-green-400 chat:rounded-full chat:text-center'>
       <div className='chat:text-sm chat:text-white/80'>1</div>
     </div>
-  </div>
+  </Link>
 );
