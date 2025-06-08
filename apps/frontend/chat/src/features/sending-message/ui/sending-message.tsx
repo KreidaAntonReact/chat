@@ -1,3 +1,5 @@
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+
 import { Textarea } from '@/shared';
 
 export const SendingMessage = () => (
@@ -6,7 +8,13 @@ export const SendingMessage = () => (
     <Textarea
       classNameRoot='chat:max-w-[796px]'
       placeholder='Type a message...'
+      mHeight={300}
       rows={4}
+      suffix={
+        <button className='chat:text-white/80 chat:bg-brown chat:rounded-full chat:p-2 chat:cursor-pointer'>
+          <PaperAirplaneIcon className='chat:w-6 chat:h-6 '/>
+        </button>
+      }
     />
   </div>
 );
