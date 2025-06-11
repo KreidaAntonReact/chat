@@ -6,11 +6,6 @@ export const ChatMessages = () => (
     chat:overflow-y-auto chat:px-3 chat:flex chat:flex-col chat:items-center chat:justify-start">
     <div className="chat:w-full chat:max-w-[796px] chat:py-5">
       <ChatMessagesBlock/>
-      <ChatMessagesBlock/>
-      <ChatMessagesBlock/>
-      <ChatMessagesBlock/>
-      <ChatMessagesBlock/>
-      <ChatMessagesBlock/>
     </div>
   </div>
 );
