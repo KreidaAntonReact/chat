@@ -8,8 +8,8 @@ export const ChatHeder = () => (
     <div className='chat:flex chat:items-center chat:gap-2'>
       <Avatar/>
       <div className='chat:flex chat:gap-1.5 chat:flex-col'>
-        <div className='chat:text-white/80 chat:text-sm'>User name</div>
-        <div className='chat:text-white/80 chat:text-sm'>Status</div>
+        <div className='chat:text-white/80 chat:text-sm chat:dark:text-white'>User name</div>
+        <div className='chat:text-white/80 chat:text-sm chat:dark:text-white'>Status</div>
       </div>
     </div>
   </div>

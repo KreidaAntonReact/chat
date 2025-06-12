@@ -32,7 +32,7 @@ export const Textarea: FC<ITextareaProps> = ({
         chat:flex chat:items-center chat:overflow-y-auto`)}
       style={{ maxHeight: mHeight }}>
         <textarea
-          className={cn(`chat:w-full chat:h-full chat:border-none chat:resize-none
+          className={cn(`chat:w-full chat:h-full chat:border-none chat:resize-none chat:dark:text-white
         chat:text-sm chat:outline-none chat:overflow-hidden chat:field-sizing-content chat:text-white/80`,
           className)}
           {...props}
