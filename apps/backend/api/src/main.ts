@@ -33,6 +33,6 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.API_PORT ?? 5001);
+  await app.listen(configService.getOrThrow<number>('API_PORT') ?? 5001);
 }
 bootstrap();
