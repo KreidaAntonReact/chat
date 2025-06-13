@@ -19,7 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@prisma/generated": [
-        "prisma/generated"
+        "prisma/generated",
+      ],
+      "@/*": [
+        "src/*",
       ]
     }
   }

@@ -1,8 +1,19 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from './prisma/prisma.module';
+import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from './prisma';
+import { RedisModule } from './redis';
+
+import { IS_DEV } from '@/shared';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      ignoreEnvFile: IS_DEV,
+    }),
+    PrismaModule,
+    RedisModule,
+  ],
   controllers: [],
   providers: [],
 })
