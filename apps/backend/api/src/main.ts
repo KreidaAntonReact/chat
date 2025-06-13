@@ -4,6 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import { RedisStore } from 'connect-redis';
 import { CoreModule, RedisService } from './core';
+
 import { IS_DEV } from './shared';
 
 async function bootstrap() {
@@ -13,6 +14,12 @@ async function bootstrap() {
 
   app.use(cookieParser(configService.getOrThrow<string>('COOKIE_SECRET')));
 
+  app.enableCors({
+    origin: IS_DEV ? '*' : configService.getOrThrow<string>('ALLOWED_ORIGIN'),
+    credentials: true,
+    exposedHeaders: ['set-cookie'],
+  });
+
   app.use(
     session({
       secret: configService.getOrThrow<string>('SESSION_SECRET'),
@@ -21,7 +28,7 @@ async function bootstrap() {
       name: configService.getOrThrow<string>('SESSION_NAME'),
       cookie: {
         domain: configService.getOrThrow<string>('SESSION_DOMAIN'),
-        maxAge: 86400000,
+        maxAge: Number(configService.getOrThrow<string>('SESSION_MAX_AGE')),
         secure: IS_DEV ? false : true,
         httpOnly: IS_DEV ? false : true,
         sameSite: 'lax',
