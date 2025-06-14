@@ -1,16 +1,28 @@
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import { RedisStore } from 'connect-redis';
 import { CoreModule, RedisService } from './core';
 
-import { IS_DEV } from './shared';
+import { configPipeValidation, IS_DEV } from './shared';
 
 async function bootstrap() {
   const app = await NestFactory.create(CoreModule);
   const configService = app.get(ConfigService);
   const redisService = app.get(RedisService);
+
+  const config = new DocumentBuilder()
+    .setTitle('Chat example')
+    .setDescription('The chat API description')
+    .setVersion('1.0')
+    .build();
+    
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
+
+  app.useGlobalPipes(configPipeValidation);
 
   app.use(cookieParser(configService.getOrThrow<string>('COOKIE_SECRET')));
 

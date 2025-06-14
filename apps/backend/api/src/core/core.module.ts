@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma';
 import { RedisModule } from './redis';
 
+import { UserModule } from '@/modules';
+
 import { IS_DEV } from '@/shared';
 
 @Module({
@@ -13,6 +15,7 @@ import { IS_DEV } from '@/shared';
     }),
     PrismaModule,
     RedisModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],
