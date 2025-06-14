@@ -11,7 +11,7 @@ export class UserController {
 
   @ApiOperation({ summary: 'Create user' })
   @ApiBody({ type: CreateUserDto })
-  @ApiResponse({ status: 409, description: 'User already exists.', })
+  @ApiResponse({ status: 409, description: 'User already exists.' })
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @ApiResponse({ status: 200, description: 'The user has been successfully created.', type: UserEntity })
   @Post()

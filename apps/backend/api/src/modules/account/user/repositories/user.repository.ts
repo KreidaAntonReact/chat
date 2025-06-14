@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { User as UserModel, Prisma } from '@prisma/generated';
-import { DefaultArgs } from 'prisma/generated/runtime/library';
+import type { User as UserModel, Prisma } from '@prisma/generated';
+import type { DefaultArgs } from 'prisma/generated/runtime/library';
 
 import { PrismaService } from '@/core/prisma';
 
