@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@/core/prisma/prisma.service';
+import { User as UserModel, Prisma } from '@prisma/generated';
+import { DefaultArgs } from 'prisma/generated/runtime/library';
+
+import { PrismaService } from '@/core/prisma';
+
 import { UserEntity } from '@/modules/account/user/entities';
-import { User as UserModel } from '@prisma/generated';
 
 @Injectable()
 export class UserRepository {
@@ -9,5 +12,27 @@ export class UserRepository {
 
   async create(user: UserEntity): Promise<UserModel> {
     return await this.prismaService.user.create({ data: user });
+  }
+
+  async findById(userId: string): Promise<UserModel | null> {
+    return await this.prismaService.user.findFirst({
+      where: {
+        id: {
+          equals: userId,
+        },
+      },
+    });
+  }
+
+  async findAll(params?: Prisma.UserFindManyArgs<DefaultArgs>): Promise<UserModel[]> {
+    return await this.prismaService.user.findMany(params);
+  }
+
+  async deleteById(userId: string): Promise<UserModel> {
+    return await this.prismaService.user.delete({
+      where: {
+        id: userId,
+      },
+    });
   }
 }
