@@ -1,6 +1,6 @@
 import { IsString, IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
-import type { IUserCreate } from '@/modules/user/lib';
+import type { IUserCreate } from '@/modules/account/user/lib';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto implements IUserCreate {

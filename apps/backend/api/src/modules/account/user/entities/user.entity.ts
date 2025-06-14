@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import type { IUserEntity } from '@/modules/user/lib';
+import type { IUserEntity } from '@/modules/account/user/lib';
 
 export class UserEntity implements IUserEntity {
   @ApiProperty({ example: '111-111-1', description: 'User id' })
