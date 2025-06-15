@@ -1,15 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import type { User as UserModel } from '@prisma/generated';
 
-type TUserEntity = Partial<UserModel> & Pick<UserModel, 'firsName' | 'lastName' | 'username' | 'email'>;
+type TUserEntity = Partial<UserModel> & Pick<UserModel, 'firstName' | 'lastName' | 'username' | 'email'>;
 
 export class UserEntity implements TUserEntity {
   @ApiProperty({ example: '111-111-1', description: 'User id', required: false })
   id: string;
 
   @ApiProperty({ example: 'Владимир', description: 'User first name' })
-  firsName: string;
+  firstName: string;
 
   @ApiProperty({ example: 'Кранштейн', description: 'User last name' })
   lastName: string;
@@ -30,7 +30,7 @@ export class UserEntity implements TUserEntity {
   passwordHash: string;
 
   constructor(user: TUserEntity) {
-    this.firsName = user.firsName;
+    this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.username = user.username;
     this.email = user.email;
@@ -58,7 +58,7 @@ export class UserEntity implements TUserEntity {
 
     const saltRandomRound = Math.floor(Math.random() * (MAX_SALT - MIN_SALT + 1) + MIN_SALT);
 
-    this.passwordHash = bcrypt.hashSync(password, saltRandomRound);
+    this.passwordHash = await bcrypt.hash(password, saltRandomRound);
   }
 
   async checkPassword(password: string): Promise<boolean> {
@@ -66,6 +66,6 @@ export class UserEntity implements TUserEntity {
       return false;
     }
 
-    return bcrypt.compare(password, this.passwordHash);
+    return await bcrypt.compare(password, this.passwordHash);
   }
 }

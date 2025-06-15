@@ -2,10 +2,11 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 
 import { SessionService } from '@/modules/account/session';
-import { UserRepository } from '@/modules/account/user/repositories';
-import { UserEntity } from '@/modules/account/user/entities';
+import { UserEntity, UserRepository } from '@/modules/account/user';
 
 import { SignInDto } from './dto';
+
+import { SuccessResponse } from '@/shared';
 
 @Injectable()
 export class AuthService {
@@ -14,11 +15,11 @@ export class AuthService {
     private readonly sessionService: SessionService,
   ) {}
 
-  async signUp({ username, email, firsName, lastName }: SignInDto, req: Request): Promise<boolean> {
+  async signUp({ username, email, firstName, lastName, password }: SignInDto): Promise<SuccessResponse> {
     const user = new UserEntity({
       username,
       email,
-      firsName,
+      firstName,
       lastName,
     });
 
@@ -38,18 +39,10 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
-    await user.generatePassword(user.username);
+    await user.generatePassword(password);
 
-    await this.userRepository.create({
-      firsName: user.firsName,
-      lastName: user.lastName,
-      username: user.username,
-      email: user.email,
-      passwordHash: user.passwordHash,
-    });
+    const createdUser = await this.userRepository.create(user);
 
-    await this.sessionService.createSession(req, user);
-
-    return true;
+    return new SuccessResponse(201);
   }
 }

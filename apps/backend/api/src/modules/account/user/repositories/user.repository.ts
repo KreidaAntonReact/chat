@@ -13,7 +13,7 @@ export class UserRepository {
   async create(user: ICreateUser): Promise<UserModel> {
     return await this.prismaService.user.create({
       data: {
-        firsName: user.firsName,
+        firstName: user.firstName,
         lastName: user.lastName,
         username: user.username,
         email: user.email,

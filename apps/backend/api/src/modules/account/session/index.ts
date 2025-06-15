@@ -1,2 +1,2 @@
-export * from './session.module';
-export * from './session.service';
+export { SessionModule } from './session.module';
+export { SessionService } from './session.service';

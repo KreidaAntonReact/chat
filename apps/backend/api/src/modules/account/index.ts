@@ -1,3 +1,3 @@
-export * from './user';
-export * from './auth';
-export * from './session';
+export { UserModule } from './user';
+export { AuthModule } from './auth';
+export { SessionModule } from './session';

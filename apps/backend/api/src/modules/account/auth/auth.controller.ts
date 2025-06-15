@@ -4,6 +4,7 @@ import { Request } from 'express';
 
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto';
+import { BadRequestError, SuccessResponse } from '@/shared';
 
 @Controller('auth')
 export class AuthController {
@@ -12,10 +13,14 @@ export class AuthController {
   @ApiOperation({ summary: 'Sign-up user' })
   @ApiBody({ type: SignInDto })
   @ApiResponse({ status: 409, description: 'User already exists.' })
-  @ApiResponse({ status: 400, description: 'Bad request.' })
-  @ApiResponse({ status: 200, description: 'The user has been successfully created.', type: Boolean })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request.',
+    type: BadRequestError,
+  })
+  @ApiResponse({ status: 201, description: 'The user has been successfully created.', type: SuccessResponse })
   @Post('/sign-up')
-  async signUp(@Req() req: Request, @Body() signInDto: SignInDto): Promise<boolean> {
-    return await this.authService.signUp(signInDto, req);
+  async signUp( @Body() signInDto: SignInDto): Promise<SuccessResponse> {
+    return await this.authService.signUp(signInDto);
   }
 }

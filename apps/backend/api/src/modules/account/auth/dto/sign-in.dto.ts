@@ -15,12 +15,12 @@ export class SignInDto implements ISignIn {
     message: 'firsName must be a string',
   })
   @IsNotEmpty({
-    message: 'firsName must not be empty',
+    message: 'firstName must not be empty',
   })
   @MinLength(1, {
-    message: 'firsName must be at least 1 character long',
+    message: 'firstName must be at least 1 character long',
   })
-  firsName: string;
+  firstName: string;
 
   @ApiProperty({
     example: 'Кранштейн',
