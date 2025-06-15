@@ -12,7 +12,9 @@ export class AuthorizationGuard implements CanActivate {
       throw new UnauthorizedException('User not logged in');
     }
 
-    const user = await this.userRepository.findById(request.session.userId);
+    const user = await this.userRepository.findUser({
+      userId: request.session.userId,
+    });
 
     if (!user) {
       throw new UnauthorizedException('User not logged in');

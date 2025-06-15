@@ -1,4 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
+import { Request } from 'express';
+
+import { SessionService } from '@/modules/account/session';
 import { UserRepository } from '@/modules/account/user/repositories';
 import { UserEntity } from '@/modules/account/user/entities';
 
@@ -6,9 +9,12 @@ import { SignInDto } from './dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly sessionService: SessionService,
+  ) {}
 
-  async signUp({ username, email, firsName, lastName }: SignInDto): Promise<boolean> {
+  async signUp({ username, email, firsName, lastName }: SignInDto, req: Request): Promise<boolean> {
     const user = new UserEntity({
       username,
       email,
@@ -41,6 +47,8 @@ export class AuthService {
       email: user.email,
       passwordHash: user.passwordHash,
     });
+
+    await this.sessionService.createSession(req, user);
 
     return true;
   }

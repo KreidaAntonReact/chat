@@ -18,7 +18,7 @@ async function bootstrap() {
     .setDescription('The chat API description')
     .setVersion('1.0')
     .build();
-    
+
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
@@ -51,6 +51,8 @@ async function bootstrap() {
       }),
     }),
   );
+
+  app.setGlobalPrefix('api/v1');
 
   await app.listen(configService.getOrThrow<number>('API_PORT') ?? 5001);
 }
