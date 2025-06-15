@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { Request } from 'express';
+import type { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
 import { SignUpDto, SignInDto } from './dto';
+
 import { BadRequestError, SuccessResponse } from '@/shared';
 
 @Controller('auth')
@@ -41,7 +42,7 @@ export class AuthController {
   @ApiOperation({ summary: 'Sign-out user' })
   @ApiResponse({ status: 200, description: 'The user has been successfully signed out.', type: SuccessResponse })
   @Get('/sign-out')
-  async signOut(@Req() req: Request): Promise<SuccessResponse> {
-    return await this.authService.signOut(req);
+  async signOut(@Req() req: Request, @Res() res: Response): Promise<SuccessResponse> {
+    return await this.authService.signOut(req, res);
   }
 }

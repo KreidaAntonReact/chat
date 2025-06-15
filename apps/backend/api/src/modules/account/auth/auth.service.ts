@@ -1,5 +1,5 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { Request } from 'express';
+import type { Request, Response } from 'express';
 
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
@@ -66,8 +66,8 @@ export class AuthService {
     return new SuccessResponse(200);
   }
 
-  async signOut(req: Request): Promise<SuccessResponse> {
-    await this.sessionService.destroySession(req);
+  async signOut(req: Request, res: Response): Promise<SuccessResponse> {
+    await this.sessionService.destroySession(req, res);
 
     return new SuccessResponse(200);
   }
