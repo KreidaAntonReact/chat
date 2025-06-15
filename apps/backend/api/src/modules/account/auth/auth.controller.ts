@@ -13,7 +13,7 @@ export class AuthController {
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @ApiResponse({ status: 200, description: 'The user has been successfully created.', type: Boolean })
   @Post()
-  async create(@Body() signInDto: SignInDto): Promise<boolean> {
+  async signUp(@Body() signInDto: SignInDto): Promise<boolean> {
     return await this.authService.signUp(signInDto);
   }
 }
