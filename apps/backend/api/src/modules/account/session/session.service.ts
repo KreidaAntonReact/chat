@@ -22,4 +22,16 @@ export class SessionService {
       });
     });
   }
+
+  async destroySession(req: Request): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      req.session.destroy((error) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve();
+      });
+    });
+  }
 }

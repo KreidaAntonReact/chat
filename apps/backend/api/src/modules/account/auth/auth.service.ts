@@ -65,4 +65,10 @@ export class AuthService {
 
     return new SuccessResponse(200);
   }
+
+  async signOut(req: Request): Promise<SuccessResponse> {
+    await this.sessionService.destroySession(req);
+
+    return new SuccessResponse(200);
+  }
 }
