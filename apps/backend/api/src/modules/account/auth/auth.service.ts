@@ -8,7 +8,7 @@ import { SignInDto } from './dto';
 export class AuthService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async signIn({ username, email, firsName, lastName }: SignInDto): Promise<boolean> {
+  async signUp({ username, email, firsName, lastName }: SignInDto): Promise<boolean> {
     const user = new UserEntity({
       username,
       email,
