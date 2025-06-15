@@ -14,7 +14,7 @@ async function bootstrap() {
   const redisService = app.get(RedisService);
 
   const config = new DocumentBuilder()
-    .setTitle('Chat example')
+    .setTitle('Chat API example')
     .setDescription('The chat API description')
     .setVersion('1.0')
     .build();

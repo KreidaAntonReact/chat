@@ -1,10 +1,10 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
 
-import { SignInDto } from './dto';
+import { SignUpDto, SignInDto } from './dto';
 
 import { SuccessResponse } from '@/shared';
 
@@ -15,7 +15,7 @@ export class AuthService {
     private readonly sessionService: SessionService,
   ) {}
 
-  async signUp({ username, email, firstName, lastName, password }: SignInDto): Promise<SuccessResponse> {
+  async signUp({ username, email, firstName, lastName, password }: SignUpDto): Promise<SuccessResponse> {
     const user = new UserEntity({
       username,
       email,
@@ -41,8 +41,28 @@ export class AuthService {
 
     await user.generatePassword(password);
 
-    const createdUser = await this.userRepository.create(user);
+    await this.userRepository.create(user);
 
     return new SuccessResponse(201);
+  }
+
+  async signIn(req: Request, { username, password }: SignInDto): Promise<SuccessResponse> {
+    const user = await this.userRepository.findUser({ username });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const userEntity = new UserEntity(user);
+
+    const isCheckPassword = await userEntity.checkPassword(password);
+
+    if (!isCheckPassword) {
+      throw new UnauthorizedException('Invalid password');
+    }
+
+    await this.sessionService.createSession(req, userEntity);
+
+    return new SuccessResponse(200);
   }
 }
