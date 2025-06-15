@@ -5,6 +5,8 @@ import type { User as UserModel } from '@prisma/generated';
 
 import { RedisService } from '@/core/redis';
 
+import { ISessionRedis } from './lib';
+
 @Injectable()
 export class SessionService {
   constructor(
@@ -18,10 +20,8 @@ export class SessionService {
         if (error) {
           reject(error);
         }
-
         req.session.userId = user.id;
         req.session.username = user.username;
-
         resolve(user);
       });
     });
@@ -41,5 +41,34 @@ export class SessionService {
     });
   }
 
-  async findSession(req: Request) {}
+  async findSession(req: Request): Promise<ISessionRedis> {
+    try {
+      const valueJson = await this.redisService.client.get(
+        this.configService.getOrThrow<string>('SESSION_PREFIX') + req.session.id,
+      );
+
+      const value: Pick<ISessionRedis, 'session'> | null = valueJson ? await JSON.parse(valueJson) : null;
+
+      if (!value) {
+        throw new Error('Session not found');
+      }
+
+      return {
+        ...value,
+        id: req.session.id,
+      };
+    } catch {
+      throw new Error('Find session error');
+    }
+  }
+
+  async removeSession(req: Request): Promise<boolean> {
+    try {
+      await this.redisService.client.del(this.configService.getOrThrow<string>('SESSION_PREFIX') + req.session.id);
+
+      return true;
+    } catch {
+      throw new Error('Remove session error');
+    }
+  }
 }

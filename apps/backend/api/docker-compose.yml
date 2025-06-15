@@ -41,7 +41,7 @@ services:
       - redis-server
       - --requirepass "${REDIS_PASSWORD}"
       - --user default on >"${REDIS_PASSWORD}"
-      - --user "${REDIS_USERNAME}" on >"${REDIS_PASSWORD}" +@all -@dangerous +info ~*
+      - --user "${REDIS_USERNAME}" on >"${REDIS_PASSWORD}" +@all +@dangerous +info ~*
     volumes:
       - redis_data:/data
     networks:
