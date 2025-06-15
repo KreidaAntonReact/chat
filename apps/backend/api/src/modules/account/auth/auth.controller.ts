@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiProperty, ApiResponse } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
 import { SignUpDto, SignInDto } from './dto';
 
-import { BadRequestError, SuccessResponse } from '@/shared';
+import { Authorization, BadRequestError, SuccessResponse } from '@/shared';
 
 @Controller('auth')
 export class AuthController {
@@ -41,6 +41,16 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Sign-out user' })
   @ApiResponse({ status: 200, description: 'The user has been successfully signed out.', type: SuccessResponse })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+    example: {
+      statusCode: 401,
+      error: 'Unauthorized',
+      message: 'Unauthorized',
+    },
+  })
+  @Authorization()
   @Get('/sign-out')
   async signOut(@Req() req: Request, @Res() res: Response): Promise<SuccessResponse> {
     return await this.authService.signOut(req, res);
