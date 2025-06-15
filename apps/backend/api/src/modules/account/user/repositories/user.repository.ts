@@ -4,22 +4,44 @@ import type { DefaultArgs } from 'prisma/generated/runtime/library';
 
 import { PrismaService } from '@/core/prisma';
 
-import { UserEntity } from '@/modules/account/user/entities';
+import { ICreateUser, IParamsFindUser } from '@/modules/account/user/lib/interfaces/';
 
 @Injectable()
 export class UserRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(user: UserEntity): Promise<UserModel> {
-    return await this.prismaService.user.create({ data: user });
+  async create(user: ICreateUser): Promise<UserModel> {
+    return await this.prismaService.user.create({
+      data: {
+        firsName: user.firsName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        passwordHash: user.passwordHash,
+      },
+    });
   }
 
-  async findById(userId: string): Promise<UserModel | null> {
+  async findUser({ username, email, userId }: Partial<IParamsFindUser>): Promise<UserModel | null> {
     return await this.prismaService.user.findFirst({
       where: {
-        id: {
-          equals: userId,
-        },
+        OR: [
+          {
+            username: {
+              equals: username,
+            },
+          },
+          {
+            email: {
+              equals: email,
+            },
+          },
+          {
+            id: {
+              equals: userId,
+            },
+          },
+        ],
       },
     });
   }

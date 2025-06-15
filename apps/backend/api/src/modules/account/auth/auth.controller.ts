@@ -1,0 +1,19 @@
+import { Body, Controller, Post } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+
+import { AuthService } from './auth.service';
+import { SignInDto } from './dto';
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @ApiOperation({ summary: 'Sign-in user' })
+  @ApiBody({ type: SignInDto })
+  @ApiResponse({ status: 409, description: 'User already exists.' })
+  @ApiResponse({ status: 400, description: 'Bad request.' })
+  @ApiResponse({ status: 200, description: 'The user has been successfully created.', type: Boolean })
+  @Post()
+  async create(@Body() signInDto: SignInDto): Promise<boolean> {
+    return await this.authService.signIn(signInDto);
+  }
+}

@@ -1,9 +1,9 @@
-import { IsString, IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-
-import type { IUserCreate } from '@/modules/account/user/lib';
+import { IsEmail, IsNotEmpty, IsString, MinLength, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto implements IUserCreate {
+import type { ISignIn } from '@/modules/account/user/lib';
+
+export class SignInDto implements ISignIn {
   @ApiProperty({
     example: 'Владимир',
     description: 'User first name',
@@ -80,4 +80,25 @@ export class CreateUserDto implements IUserCreate {
     message: 'email must be at least 1 character long',
   })
   email: string;
+
+  @ApiProperty({
+    example: 'password',
+    description: 'User password',
+    required: true,
+    type: String,
+    minLength: 7,
+  })
+  @IsString({
+    message: 'password must be a string',
+  })
+  @IsNotEmpty({
+    message: 'password must not be empty',
+  })
+  @MinLength(7, {
+    message: 'password must be at least 7 character long',
+  })
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/, {
+    message: 'password must contain at least one letter and one number',
+  })
+  password: string;
 }

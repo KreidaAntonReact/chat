@@ -125,7 +125,10 @@ exports.Prisma.UserScalarFieldEnum = {
   firsName: 'firsName',
   lastName: 'lastName',
   username: 'username',
-  email: 'email'
+  email: 'email',
+  passwordHash: 'passwordHash',
+  createAt: 'createAt',
+  updateAt: 'updateAt'
 };
 
 exports.Prisma.SortOrder = {
