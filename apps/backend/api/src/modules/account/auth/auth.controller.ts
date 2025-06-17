@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { SignUpDto, SignInDto } from './dto';
 
 import { Authorization, BadRequestError, SuccessResponse } from '@/shared';
+import { clear } from 'console';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +14,11 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Sign-up user' })
   @ApiBody({ type: SignUpDto })
-  @ApiResponse({ status: 409, description: 'User already exists.' })
+  @ApiResponse({
+    status: 409,
+    description: 'User already exists.',
+    example: { message: 'User with this email already exists', statusCode: 409, error: 'Conflict' },
+  })
   @ApiResponse({
     status: 400,
     description: 'Bad request.',
@@ -27,13 +32,17 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Sign-in user' })
   @ApiBody({ type: SignInDto })
-  @ApiResponse({ status: 404, description: 'User not found.' })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found.',
+    example: { message: 'User not found', statusCode: 404, error: 'Not Found' },
+  })
   @ApiResponse({
     status: 400,
     description: 'Bad request.',
     type: BadRequestError,
   })
-  @ApiResponse({ status: 200, description: 'The user has been successfully signed in.', type: SuccessResponse })
+  @ApiResponse({ status: 201, description: 'The user has been successfully signed in.', type: SuccessResponse })
   @Post('/sign-in')
   async signIn(@Req() req: Request, @Body() signInDto: SignInDto): Promise<SuccessResponse> {
     return await this.authService.signIn(req, signInDto);

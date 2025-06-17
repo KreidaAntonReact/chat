@@ -57,4 +57,15 @@ export class UserRepository {
       },
     });
   }
+
+  async updateUser(userId, userUpdate: Partial<UserModel>): Promise<UserModel> {
+    return await this.prismaService.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        ...userUpdate,
+      },
+    });
+  }
 }
