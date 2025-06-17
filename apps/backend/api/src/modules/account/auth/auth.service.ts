@@ -39,9 +39,13 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
-    await user.generatePassword(password);
-
-    await this.userRepository.create(user);
+    await this.userRepository.create({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      email: user.email,
+      passwordHash: await user.generatePassword(password),
+    });
 
     return new SuccessResponse(201);
   }

@@ -5,6 +5,8 @@ import type { User as UserModel } from '@prisma/generated';
 
 import { RedisService } from '@/core/redis';
 
+import type { UserEntity } from '@/modules/account/user/entities';
+
 import { ISessionRedis } from './lib';
 
 @Injectable()
@@ -14,12 +16,19 @@ export class SessionService {
     private readonly configService: ConfigService,
   ) {}
 
-  async createSession(req: Request, user: UserModel): Promise<UserModel> {
+  async createSession(req: Request, user: UserEntity): Promise<UserEntity> {
     return new Promise(async (resolve, reject) => {
       req.session.save((error) => {
         if (error) {
           reject(error);
+          return;
         }
+
+        if (!user?.id) {
+          reject(new Error('User not found'));
+          return;
+        }
+
         req.session.userId = user.id;
         req.session.username = user.username;
         resolve(user);
