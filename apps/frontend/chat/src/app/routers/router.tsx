@@ -1,11 +1,24 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 
-import { Layout } from '@/app/layout';
-import { ChatMemberId } from '@/pages/';
+import { AuthLayout, ChatLayout } from '@/app/layout';
+import { ChatMemberId, SignIn, SignUp } from '@/pages';
 
 export const routers: RouteObject[] = [
   {
-    Component: Layout,
+    Component: AuthLayout,
+    children: [
+      {
+        path: 'sign-up',
+        element: <SignUp/>,
+      },
+      {
+        path: 'sign-in',
+        element: <SignIn/>,
+      }
+    ]
+  },
+  {
+    Component: ChatLayout,
     path: '/',
     children: [
       {
