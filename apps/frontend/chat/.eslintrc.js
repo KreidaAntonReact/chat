@@ -2,7 +2,10 @@ require('@packages/eslint-config/patch');
 
 module.exports = {
     root: true,
-    extends: ['@packages/eslint-config/react.js'],
+    extends: [
+        '@packages/eslint-config/react.js',
+        "plugin:@tanstack/query/recommended"
+    ],
     parserOptions: {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
