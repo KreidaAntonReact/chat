@@ -1,29 +1,42 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 
-import { AuthLayout, ChatLayout } from '@/app/layout';
+import { AuthLayout, ChatLayout, PageLayout } from '@/app/layout';
+import { InitGlobalProvider } from '@/app/providers';
 import { ChatMemberId, SignIn, SignUp } from '@/pages';
+
 
 export const routers: RouteObject[] = [
   {
-    Component: AuthLayout,
+    Component: InitGlobalProvider,
     children: [
       {
-        path: 'sign-up',
-        element: <SignUp/>,
+        path: '/',
+        Component: PageLayout,
+        children: [
+          {
+            Component: ChatLayout,
+            path: 'chats',
+            children: [
+              {
+                path: ':id',
+                element: <ChatMemberId/>
+              }
+            ]
+          }
+        ]
       },
       {
-        path: 'sign-in',
-        element: <SignIn/>,
-      }
-    ]
-  },
-  {
-    Component: ChatLayout,
-    path: '/',
-    children: [
-      {
-        path: ':id',
-        element: <ChatMemberId/>,
+        Component: AuthLayout,
+        children: [
+          {
+            path: 'sign-up',
+            element: <SignUp/>,
+          },
+          {
+            path: 'sign-in',
+            element: <SignIn/>,
+          }
+        ]
       },
     ]
   }

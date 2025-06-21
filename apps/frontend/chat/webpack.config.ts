@@ -25,12 +25,17 @@ export default (): TConfigWebpack => {
     framework: 'react'
   });
 
+  const SIDEBAR_URL = 'http://localhost:3001';
+
   config.plugins?.push(new container.ModuleFederationPlugin({
     name: 'chat',
     filename: 'remoteEntry.js',
     exposes: {
       './routers': './src/app/routers/router.tsx',
       './styles': './src/app/styles/main.css'
+    },
+    remotes: {
+      'sidebar': `sidebar@${SIDEBAR_URL}/remoteEntry.js`,
     },
     shared: {
       ...packageJson.dependencies,

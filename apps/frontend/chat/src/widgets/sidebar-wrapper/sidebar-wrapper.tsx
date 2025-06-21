@@ -18,6 +18,6 @@ export const SidebarWrapper = () => {
   }, []);
 
   return (
-    <div className='w-20 h-full' ref={containerRef}/>
+    <div className='chat:w-20 h-full' ref={containerRef}/>
   );
 };
