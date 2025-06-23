@@ -1,12 +1,12 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import type { Request, Response } from 'express';
 
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
+import { SuccessResponse } from '@/shared';
 
 import { SignUpDto, SignInDto } from './dto';
 
-import { SuccessResponse } from '@/shared';
+import type { Request, Response } from 'express';
 
 @Injectable()
 export class AuthService {

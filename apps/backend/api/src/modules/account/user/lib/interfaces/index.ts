@@ -1,3 +1,2 @@
-export * from './sign-in.interface';
-export * from './create-user.interface';
-export * from './params-find-user.interface';
+export type * from './sign-in.interface';
+export type * from './params-find-user.interface';

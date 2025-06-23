@@ -1,1 +1,1 @@
-export * from './session-redis.interface';
+export type * from './session-redis.interface';

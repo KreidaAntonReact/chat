@@ -1,6 +1,6 @@
 import 'express';
-import { User as UserModel } from '@prisma/generated';
-import { Session, SessionData } from 'express-session';
+import type { User as UserModel } from '@prisma/generated';
+import type { Session, SessionData } from 'express-session';
 
 declare module 'express' {
   interface IUserSessionData {

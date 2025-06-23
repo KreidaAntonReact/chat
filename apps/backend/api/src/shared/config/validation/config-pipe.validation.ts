@@ -1,4 +1,6 @@
-import { ArgumentMetadata, BadRequestException, ValidationError, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
+
+import type { ValidationError } from '@nestjs/common';
 
 class ConfigPipeValidation extends ValidationPipe {
   constructor() {

@@ -1,11 +1,11 @@
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
+import { RedisStore } from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import { RedisStore } from 'connect-redis';
-import { CoreModule, RedisService } from './core';
 
+import { CoreModule, RedisService } from './core';
 import { configPipeValidation, IS_DEV } from './shared';
 
 async function bootstrap() {
@@ -56,4 +56,4 @@ async function bootstrap() {
 
   await app.listen(configService.getOrThrow<number>('API_PORT') ?? 5001);
 }
-bootstrap();
+bootstrap().catch((error) => console.error('Error bootstrapping application:', error));

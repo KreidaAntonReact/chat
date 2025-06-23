@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { UserService } from './user.service';
-import { UserEntity } from './entities';
+import { Authorization, User } from '@/shared';
 
 import { UserUpdateDto } from './dto';
-import { Authorization, User } from '@/shared';
+import { UserEntity } from './entities';
+import { UserService } from './user.service';
 
 @ApiTags('user')
 @Controller('user')

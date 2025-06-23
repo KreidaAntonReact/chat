@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import type { Request, Response } from 'express';
+
+import { Authorization, BadRequestError, SuccessResponse } from '@/shared';
 
 import { AuthService } from './auth.service';
 import { SignUpDto, SignInDto } from './dto';
 
-import { Authorization, BadRequestError, SuccessResponse } from '@/shared';
-import { clear } from 'console';
+import type { Request, Response } from 'express';
 
 @Controller('auth')
 export class AuthController {

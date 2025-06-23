@@ -11,7 +11,7 @@ export const ChatLayout = () => (
         chat:top-0 chat:overflow-hidden
         chat:w-full chat:h-full'
     >
-        <Outlet/>
+      <Outlet/>
     </div>
   </div>
 );
