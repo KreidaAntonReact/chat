@@ -75,4 +75,10 @@ export class AuthService {
 
     return new SuccessResponse(200);
   }
+
+  async checkSession(req: Request): Promise<boolean> {
+    const session = await this.sessionService.findSession(req);
+
+    return session.id === req.session.id;
+  }
 }

@@ -3,8 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/core/prisma';
 import { IParamsFindUser } from '@/modules/account/user/lib/interfaces/';
 
-import { UserEntity } from '../entities';
-
 import type { User as UserModel, Prisma } from '@prisma/generated';
 import type { DefaultArgs } from 'prisma/generated/runtime/library';
 
@@ -12,7 +10,7 @@ import type { DefaultArgs } from 'prisma/generated/runtime/library';
 export class UserRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(user: UserEntity): Promise<UserModel> {
+  async create(user: Omit<UserModel, 'id' | 'createAt' | 'updateAt'>): Promise<UserModel> {
     return await this.prismaService.user.create({
       data: {
         firstName: user.firstName,

@@ -64,4 +64,21 @@ export class AuthController {
   async signOut(@Req() req: Request, @Res() res: Response): Promise<SuccessResponse> {
     return await this.authService.signOut(req, res);
   }
+
+  @ApiOperation({ summary: 'Check auth' })
+  @ApiResponse({ status: 200, description: 'The user has been successfully signed out.', example: true })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+    example: {
+      statusCode: 401,
+      error: 'Unauthorized',
+      message: 'Unauthorized',
+    },
+  })
+  @Authorization()
+  @Get('/check')
+  async checkAuth(@Req() req: Request): Promise<boolean> {
+    return await this.authService.checkSession(req);
+  }
 }
