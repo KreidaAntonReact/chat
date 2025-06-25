@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { globalRouter } from '@/shared/util';
+import { globalRouter } from '@/shared/lib/util';
 
 import type {
   AxiosError,
@@ -12,7 +12,7 @@ import type {
 
 const instancePrivate = axios.create({
   baseURL: process.env.API_URL,
-  withCredentials: true
+  withCredentials: true,
 });
 
 const onRequest = (config: InternalAxiosRequestConfig<unknown>):InternalAxiosRequestConfig<unknown> => config;

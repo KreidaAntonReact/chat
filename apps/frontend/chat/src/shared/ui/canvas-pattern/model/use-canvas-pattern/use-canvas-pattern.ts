@@ -4,7 +4,7 @@ import {
   useState
 } from 'react';
 
-import { loadImageBitmap } from '@/shared/util';
+import { loadImageBitmap } from '@/shared/lib/util';
 
 import type { ICanvasWorkerEvent } from '@/shared/ui/canvas-pattern/lib';
 

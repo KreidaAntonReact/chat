@@ -66,7 +66,11 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Check auth' })
-  @ApiResponse({ status: 200, description: 'The user has been successfully signed out.', example: true })
+  @ApiResponse({
+    status: 200,
+    description: 'The user has been successfully signed out.',
+    example: true,
+  })
   @ApiResponse({
     status: 401,
     description: 'Unauthorized.',
