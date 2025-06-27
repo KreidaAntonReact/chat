@@ -4,7 +4,7 @@ export const SignInRequestSchema = z.object({
   username: z.string({
     invalid_type_error: 'Username must be a string',
     required_error: 'Username is required',
-  }).min(3, {
+  }).min(1, {
     message: 'Username must be at least 3 characters long',
   }),
   password: z.string({

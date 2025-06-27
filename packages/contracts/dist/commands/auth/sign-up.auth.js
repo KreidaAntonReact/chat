@@ -1,5 +1,17 @@
 import { z } from 'zod';
-export const SignInRequestSchema = z.object({
+export const SignUpRequestSchema = z.object({
+    firstName: z.string({
+        invalid_type_error: 'First name must be a string',
+        required_error: 'First name is required',
+    }).min(1, {
+        message: 'First name must be at least 1 character long',
+    }),
+    lastName: z.string({
+        invalid_type_error: 'Last name must be a string',
+        required_error: 'Last name is required',
+    }).min(1, {
+        message: 'Last name must be at least 1 character long',
+    }),
     username: z.string({
         invalid_type_error: 'Username must be a string',
         required_error: 'Username is required',
@@ -15,8 +27,14 @@ export const SignInRequestSchema = z.object({
         .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/, {
         message: 'Username must be at least 7 characters long and contain at least one letter and one number',
     }),
+    email: z.string({
+        invalid_type_error: 'Email must be a string',
+        required_error: 'Email is required',
+    }).email({
+        message: 'Email is invalid',
+    }),
 });
-export const SignInResponseSchema = z.object({
+export const SignUpResponseSchema = z.object({
     message: z.boolean({
         invalid_type_error: 'Message must be a boolean',
         required_error: 'Message is required',

@@ -22,6 +22,17 @@ export class AuthController {
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
     description: 'Bad request.',
+    example: {
+      message: {
+        username: 'username must be a string',
+        email: 'email must be a string',
+        firstName: 'firstName must be a string',
+        lastName: 'lastName must be a string',
+        password: 'password must be a string',
+      },
+      statusCode: HttpStatus.BAD_REQUEST,
+      error: 'Bad Request',
+    },
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
