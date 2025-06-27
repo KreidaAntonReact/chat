@@ -1,10 +1,9 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
+import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
+import { AuthService } from '@/modules/account/auth/services';
 import { Authorization, SuccessResponse } from '@/shared';
-
-import { AuthService } from './auth.service';
-import { SignUpDto, SignInDto } from './dto';
 
 import type { Request, Response } from 'express';
 

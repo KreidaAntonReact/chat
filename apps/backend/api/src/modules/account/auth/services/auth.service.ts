@@ -1,10 +1,9 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 
+import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
 import { SuccessResponse } from '@/shared';
-
-import { SignUpDto, SignInDto } from './dto';
 
 import type { Request, Response } from 'express';
 
