@@ -1,0 +1,42 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "./dist",
+        "rootDir": "src",
+        "baseUrl": ".",
+        "target": "es2022",
+        "module": "ESNext",
+        "resolveJsonModule": true,
+        "preserveSymlinks": true,
+        "lib": [
+            "ESNext",
+            "DOM",
+            "ES2022",
+        ],
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+        },
+        "typeRoots": [
+            "./node_modules/@types",
+        ],
+        "moduleResolution": "node",
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+        },
+    },
+    "tsc-alias": {
+        "verbose": false,
+        "resolveFullPaths": true,
+    }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@packages/contracts",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "repository": "git@github.com:AntonKreida/chat.git",
+  "author": "Anton Kreida <kreida.anton@yandex.ru>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+     ".": "./dist/index.js",
+    "./commands": "./dist/commands/index.js",
+    "./dist/*": "./dist/*.js",
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
+  },
+  "dependencies": {
+    "@packages/eslint-config": "*",
+    "eslint": "^9.29.0",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3",
+    "zod": "^3.25.67"
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "replacers": {
+      "extensions": {
+        "enabled": true,
+        "extMapping": {
+          ".js": ".js",
+          ".cjs": ".cjs",
+          ".mjs": ".mjs",
+          ".ts": ".js",
+          "": ""
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router';
 
 export const AuthLayout = () => (
-  <>
-    Обертка авторизации
+  <div className='chat:w-full chat:h-fill'>
     <Outlet/>
-  </>
+  </div>
 );

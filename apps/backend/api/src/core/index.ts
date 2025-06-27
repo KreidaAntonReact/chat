@@ -1,2 +1,2 @@
-export * from './core.module';
+export * from './entrypoints';
 export * from './redis';
