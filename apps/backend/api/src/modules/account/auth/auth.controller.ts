@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 import { Authorization, SuccessResponse } from '@/shared';
@@ -98,7 +98,7 @@ export class AuthController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'The user has been successfully signed out.',
-    example: true,
+    type: SuccessResponse,
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
@@ -111,7 +111,13 @@ export class AuthController {
   })
   @Authorization()
   @Get('/check')
-  async checkAuth(@Req() req: Request): Promise<boolean> {
-    return await this.authService.checkSession(req);
+  async checkAuth(@Req() req: Request): Promise<SuccessResponse> {
+    const isAuth = await this.authService.checkSession(req);
+
+    if (!isAuth) {
+      throw new UnauthorizedException('Unauthorized');
+    }
+
+    return new SuccessResponse(200);
   }
 }
