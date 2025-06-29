@@ -15,6 +15,7 @@
     "@heroicons/react": "^2.2.0",
     "@packages/eslint-config": "*",
     "@packages/event-bas": "*",
+    "@packages/shared-store": "*",
     "@packages/tailwind": "*",
     "@packages/types": "*",
     "@packages/utils": "*",

@@ -1,8 +1,10 @@
-import { onMounted, watch } from 'vue';
+import { useThemeStore } from '@packages/shared-store';
+import { onMounted, watch, ref } from 'vue';
 
-import { useLocalStorage } from '@/shared';
+import type { TTheme } from '@packages/types';
 
-type TTheme = 'dark' | 'light';
+const { getInitialState } = useThemeStore;
+
 
 const updateAttrDocument = (value: TTheme) => {
   document.documentElement.classList.remove('dark', 'light');
@@ -11,23 +13,25 @@ const updateAttrDocument = (value: TTheme) => {
 
 
 export const useTheme = () => {
-  const {storageValue, setStorageValue} = useLocalStorage<TTheme>('theme', 'dark');
+  const { initTheme, setTheme } = getInitialState();
+  const theme = ref(initTheme());
 
   onMounted(() => {
-    updateAttrDocument(storageValue.value);
+    updateAttrDocument(theme.value);
   });
 
 
-  watch(storageValue, () => {
-    updateAttrDocument(storageValue.value);
+  watch(theme, () => {
+    updateAttrDocument(theme.value);
   });
 
-  const handleChangeTheme = (enabled: boolean,) => {
-    setStorageValue(enabled ? 'dark' : 'light');
+  const handleChangeTheme = (enabled: boolean) => {
+    setTheme(enabled ? 'dark' : 'light');
+    theme.value = enabled ? 'dark' : 'light';
   };
 
   return {
     handleChangeTheme,
-    theme: storageValue,
+    theme: theme.value,
   };
 };

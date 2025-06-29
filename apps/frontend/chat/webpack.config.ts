@@ -42,6 +42,11 @@ export default (): TConfigWebpack => {
       react: {
         eager: true,
       },
+      zod: {
+        singleton: true,
+        eager: true,
+        version: packageJson.dependencies.zod,
+      },
       'react-router': {
         eager: true,
         singleton: true,
