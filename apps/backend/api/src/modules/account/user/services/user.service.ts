@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { UserUpdateDto } from '../dto';
 import { UserEntity } from '../entities';
@@ -31,6 +31,22 @@ export class UserService {
 
     if (!findUser) {
       throw new NotFoundException('User not found');
+    }
+
+    const isFindUsernameUser = await this.userRepository.findUser({
+      username: userUpdateData?.username,
+    });
+
+    if (isFindUsernameUser) {
+      throw new ConflictException('User with this username already exists');
+    }
+
+    const isFindEmailUser = await this.userRepository.findUser({
+      email: userUpdateData?.email,
+    });
+
+    if (isFindEmailUser) {
+      throw new ConflictException('User with this email already exists');
     }
 
     const updatedUser = await this.userRepository.updateUser(userId, userUpdateData);

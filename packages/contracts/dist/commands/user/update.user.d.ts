@@ -2,18 +2,18 @@ import { z } from 'zod';
 export declare const updateUserRequestSchema: z.ZodObject<{
     firsName: z.ZodOptional<z.ZodString>;
     lastName: z.ZodOptional<z.ZodString>;
-    password: z.ZodOptional<z.ZodString>;
     email: z.ZodOptional<z.ZodString>;
+    username: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     lastName?: string | undefined;
+    username?: string | undefined;
     email?: string | undefined;
     firsName?: string | undefined;
-    password?: string | undefined;
 }, {
     lastName?: string | undefined;
+    username?: string | undefined;
     email?: string | undefined;
     firsName?: string | undefined;
-    password?: string | undefined;
 }>;
 export declare const updateUserResponseSchema: z.ZodObject<{
     id: z.ZodString;

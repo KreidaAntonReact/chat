@@ -9,20 +9,17 @@ export const updateUserRequestSchema = z.object({
         invalid_type_error: 'Last name must be a string',
         required_error: 'Last name is required',
     }).optional(),
-    password: z.string({
-        invalid_type_error: 'Password must be a string',
-        required_error: 'Password is required',
-    }).min(7, {
-        message: 'Password must be at least 7 characters long',
-    })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/, {
-        message: 'Username must be at least 7 characters long and contain at least one letter and one number',
-    }).optional(),
     email: z.string({
         invalid_type_error: 'Email must be a string',
         required_error: 'Email is required',
     }).email({
         message: 'Email is invalid',
+    }).optional(),
+    username: z.string({
+        invalid_type_error: 'Username must be a string',
+        required_error: 'Username is required',
+    }).regex(/^[a-zA-Z0-9]+$/, {
+        message: 'Username is invalid',
     }).optional(),
 });
 

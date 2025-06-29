@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { meResponseSchema, TmeResponse, TUpdateUserResponse, updateUserResponseSchema } from '@packages/contracts';
 
@@ -13,21 +13,21 @@ export class UserController {
 
   @ApiOperation({ summary: 'Get current user' })
   @ApiResponse({
-    status: 401,
+    status: HttpStatus.UNAUTHORIZED,
     description: 'Unauthorized',
     example: {
       message: 'User not logged in',
       error: 'Unauthorized',
-      statusCode: 401,
+      statusCode: HttpStatus.UNAUTHORIZED,
     },
   })
   @ApiResponse({
-    status: 404,
+    status: HttpStatus.NOT_FOUND,
     description: 'User not found.',
-    example: { message: 'User not found', statusCode: 404, error: 'Not Found' },
+    example: { message: 'User not found', statusCode: HttpStatus.NOT_FOUND, error: 'Not Found' },
   })
   @ApiResponse({
-    status: 200,
+    status: HttpStatus.OK,
     description: 'Success',
     example: {
       id: '111-111-1',
@@ -45,17 +45,36 @@ export class UserController {
 
   @ApiOperation({ summary: 'Update current user' })
   @ApiResponse({
-    status: 401,
+    status: HttpStatus.UNAUTHORIZED,
     description: 'Unauthorized',
-    example: { message: 'User not logged in', error: 'Unauthorized', statusCode: 401 },
+    example: { message: 'User not logged in', error: 'Unauthorized', statusCode: HttpStatus.UNAUTHORIZED },
   })
   @ApiResponse({
-    status: 404,
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad request.',
+    example: {
+      message: {
+        username: 'username must be a string',
+        email: 'email must be a string',
+        firstName: 'firstName must be a string',
+        lastName: 'lastName must be a string',
+      },
+      statusCode: HttpStatus.BAD_REQUEST,
+      error: 'Bad Request',
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.CONFLICT,
+    description: 'User already exists.',
+    example: { message: 'User with this email already exists', statusCode: HttpStatus.CONFLICT, error: 'Conflict' },
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
     description: 'User not found.',
-    example: { message: 'User not found', statusCode: 404, error: 'Not Found' },
+    example: { message: 'User not found', statusCode: HttpStatus.NOT_FOUND, error: 'Not Found' },
   })
   @ApiResponse({
-    status: 200,
+    status: HttpStatus.OK,
     description: 'Success',
     example: {
       id: '111-111-1',
