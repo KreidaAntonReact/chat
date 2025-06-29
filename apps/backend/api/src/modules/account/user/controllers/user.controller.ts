@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { meResponseSchema, TmeResponse, TUpdateUserResponse, updateUserResponseSchema } from '@packages/contracts';
 
+import { UserUpdateDto } from '@/modules/account/user/dto';
+import { UserService } from '@/modules/account/user/services';
 import { Authorization, User } from '@/shared';
-
-import { UserUpdateDto } from './dto';
-import { UserEntity } from './entities';
-import { UserService } from './user.service';
 
 @ApiTags('User')
 @Controller('user')
@@ -31,19 +30,17 @@ export class UserController {
     status: 200,
     description: 'Success',
     example: {
-      data: {
-        id: '111-111-1',
-        firstName: 'Владимир',
-        lastName: 'Кранштейн',
-        username: 'vladimir',
-        email: 'example@email.com',
-      },
+      id: '111-111-1',
+      firstName: 'Владимир',
+      lastName: 'Кранштейн',
+      username: 'vladimir',
+      email: 'example@email.com',
     },
   })
   @Authorization()
   @Get('me')
-  async getMe(@User('id') userId: string): Promise<UserEntity> {
-    return await this.userService.getUser(userId);
+  async getMe(@User('id') userId: string): Promise<TmeResponse> {
+    return meResponseSchema.parse(await this.userService.getUser(userId));
   }
 
   @ApiOperation({ summary: 'Update current user' })
@@ -61,18 +58,16 @@ export class UserController {
     status: 200,
     description: 'Success',
     example: {
-      data: {
-        id: '111-111-1',
-        firstName: 'Владимир',
-        lastName: 'Кранштейн',
-        username: 'vladimir',
-        email: 'example@email.com',
-      },
+      id: '111-111-1',
+      firstName: 'Владимир',
+      lastName: 'Кранштейн',
+      username: 'vladimir',
+      email: 'example@email.com',
     },
   })
   @Authorization()
   @Patch('update')
-  async updateUser(@User('id') userId: string, @Body() userUpdateData: UserUpdateDto): Promise<UserEntity> {
-    return await this.userService.updateUser(userId, userUpdateData);
+  async updateUser(@User('id') userId: string, @Body() userUpdateData: UserUpdateDto): Promise<TUpdateUserResponse> {
+    return updateUserResponseSchema.parse(await this.userService.updateUser(userId, userUpdateData));
   }
 }

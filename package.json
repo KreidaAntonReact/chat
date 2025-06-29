@@ -8,5 +8,9 @@
   "workspaces": [
     "packages/**/*",
     "apps/**/*"
-  ]
+  ],
+  "scripts": {
+    "prestart:back": "cd apps/backend/api && docker compose up postgres redis -d",
+    "start:back": "yarn workspace @apps/api start:dev"
+  }
 }
