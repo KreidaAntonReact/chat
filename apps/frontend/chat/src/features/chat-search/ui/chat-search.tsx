@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-import { Input } from '@/shared';
+import { Input } from '@/shared/ui';
 
 export const ChatSearch = () =>  (
   <Input

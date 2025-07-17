@@ -1,6 +1,6 @@
 import { type ChangeEvent, useCallback } from 'react';
 
-import { useLocalStorage } from '@/shared/';
+import { useLocalStorage } from '@/shared/hooks';
 
 import type { ListOptionsFilters } from '@/features/change-filter-chats/lib';
 

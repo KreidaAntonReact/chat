@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-import { Avatar } from '@/shared';
+import { Avatar } from '@/shared/ui';
 
 import type { FC } from 'react';
 

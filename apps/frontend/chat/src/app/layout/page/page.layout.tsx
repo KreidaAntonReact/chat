@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { CanvasPattern } from '@/shared';
+import { CanvasPattern } from '@/shared/ui';
 import { SidebarWrapper } from '@/widgets';
 
 export const PageLayout = () => (
