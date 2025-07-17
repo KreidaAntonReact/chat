@@ -1,4 +1,4 @@
-export * from './query-client.provider';
-export * from './init-global-router.provider';
-export * from './check-session-provider';
-export * from './theme.provider';
+export { QueryClientProvider } from './query-client.provider';
+export { InitGlobalProvider } from './init-global-router.provider';
+export { CheckSessionProvider } from './check-session-provider';
+export { ThemeProvider } from './theme.provider';

@@ -26,12 +26,14 @@ export default (): TConfigWebpack => {
   });
 
   const CHAT_URL = 'http://localhost:3002';
+  const SIDEBAR_URL = 'http://localhost:3001';
 
   config.plugins?.push(new container.ModuleFederationPlugin({
     name: 'host',
     filename: 'remoteEntry.js',
     remotes: {
       'chat': `chat@${CHAT_URL}/remoteEntry.js`,
+      'sidebar': `sidebar@${SIDEBAR_URL}/remoteEntry.js`,
     },
     shared: {
       ...packageJson.dependencies,

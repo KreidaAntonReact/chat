@@ -1,1 +1,1 @@
-export type * from './worker.interface';
+export type { ICanvasWorkerEvent } from './worker.interface';

@@ -1,6 +1,8 @@
 import { isAxiosError } from 'axios';
 
-import { type IAxiosErrorData, instancePrivateWithInterceptors } from '@/shared';
+import { instancePrivateWithInterceptors } from '@/shared/api';
+
+import type { IAxiosErrorData } from '@/shared/lib';
 
 
 export const getCheckSession = async () => {

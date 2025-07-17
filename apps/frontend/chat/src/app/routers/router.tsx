@@ -3,7 +3,7 @@ import { createBrowserRouter, type RouteObject } from 'react-router';
 import { AuthLayout, ChatLayout, PageLayout } from '@/app/layout';
 import { CheckSessionProvider, InitGlobalProvider } from '@/app/providers';
 import { ChatMemberId, SignIn, SignUp } from '@/pages';
-import { ROUTERS } from '@/shared';
+import { ROUTERS } from '@/shared/lib';
 
 
 export const routers: RouteObject[] = [
@@ -20,10 +20,10 @@ export const routers: RouteObject[] = [
         children: [
           {
             Component: ChatLayout,
-            path: ROUTERS.CHATS,
+            path: ROUTERS.CHATS.INDEX,
             children: [
               {
-                path: ROUTERS.CHAT_MEMBER_ID,
+                path: ROUTERS.CHATS.CHAT_MEMBER_ID(':id'),
                 element: (
                   <CheckSessionProvider>
                     <ChatMemberId/>

@@ -1,2 +1,2 @@
-export * from './load-image-bitmap.util';
-export * from './global-router.util';
+export { loadImageBitmap } from './load-image-bitmap.util';
+export { globalRouter } from './global-router.util';

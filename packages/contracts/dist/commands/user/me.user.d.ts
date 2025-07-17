@@ -15,5 +15,5 @@ export declare const meResponseSchema: z.ZodObject<{
     username: string;
     email: string;
 }>;
-export type TmeResponse = z.infer<typeof meResponseSchema>;
+export type TMeResponse = z.infer<typeof meResponseSchema>;
 //# sourceMappingURL=me.user.d.ts.map

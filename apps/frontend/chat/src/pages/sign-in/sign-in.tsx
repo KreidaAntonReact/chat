@@ -1,5 +1,5 @@
 export const SignIn = () => (
-  <div>
+  <div className="chat:w-full chat:h-full">
     Страница авторизации
   </div>
 );

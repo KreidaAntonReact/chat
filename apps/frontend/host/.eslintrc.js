@@ -32,6 +32,6 @@ module.exports = {
     },
     ignorePatterns: ['node_modules', 'dist'],
     rules: {
-        'import/no-unresolved': ['error', { ignore: ['^chat/'] }],
+        'import/no-unresolved': ['error', { ignore: ['^chat/', "^sidebar/"] }],
     }
 }

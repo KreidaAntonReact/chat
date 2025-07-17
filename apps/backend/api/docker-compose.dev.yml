@@ -5,7 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: api
-    restart: always
     ports:
       - ${API_PORT}:${API_PORT}
     environment:
@@ -18,7 +17,6 @@ services:
 
   postgres:
     image: postgres:17.0-alpine
-    restart: always
     container_name: postgres
     environment:
       POSTGRES_USER: '${POSTGRES_USER}'
@@ -33,7 +31,6 @@ services:
 
   redis:
     image: redis:8.0-alpine
-    restart: always
     container_name: redis_db
     ports:
       - ${REDIS_PORT}:${REDIS_PORT}

@@ -1,1 +1,1 @@
-export * from './chat-member-id';
+export { ChatMemberId } from './chat-member-id';

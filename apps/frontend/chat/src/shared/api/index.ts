@@ -1,2 +1,2 @@
-export * from './instance-private.api';
-export * from './instance.api';
+export { instancePrivateWithInterceptors } from './instance-private.api';
+export { instance } from './instance.api';

@@ -17,7 +17,8 @@ export const CheckSessionProvider: FC<ICheckSessionProviderProps> = ({ children 
         navigate('/sign-in');
       }
     })
-      .catch(() => {
+      .catch((error) => {
+        console.error(error);
         navigate('/sign-in');
       });
   }, [fetchCheckSession, navigate]);

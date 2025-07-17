@@ -19,4 +19,4 @@ export const meResponseSchema = z.object({
     })
 })
 
-export type TmeResponse = z.infer<typeof meResponseSchema>;
+export type TMeResponse = z.infer<typeof meResponseSchema>;

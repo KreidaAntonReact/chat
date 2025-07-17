@@ -1,1 +1,1 @@
-export type * from './axios-error-data.interface';
+export type { IAxiosErrorData } from './axios-error-data.interface';

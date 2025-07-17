@@ -1,3 +1,3 @@
-export * from './chat.layout';
-export * from './auth.layout';
-export * from './page.layout';
+export { ChatLayout } from './chat';
+export { AuthLayout } from './auth';
+export { PageLayout } from './page';

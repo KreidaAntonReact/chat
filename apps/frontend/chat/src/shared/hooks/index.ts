@@ -1,2 +1,2 @@
-export * from './use-local-storage';
-export * from './use-resize';
+export { useLocalStorage } from './use-local-storage';
+export { useResize } from './use-resize';

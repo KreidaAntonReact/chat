@@ -5,7 +5,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { getCheckSession } from '@/entities/session/api';
 
-import type { IAxiosErrorData } from '@/shared';
+import type { IAxiosErrorData } from '@/shared/lib';
 import type { StateCreator } from 'zustand';
 
 
@@ -39,10 +39,8 @@ export const useSessionStore = create<TSessionStore>()(middlewaresSessionStore((
         return get().isSession;
       }
 
-      console.error(error);
       set({ isSession: false });
-
-      return get().isSession;
+      throw new Error('Something went wrong!!!');
     } finally {
       set({ isLoading: false });
     }
