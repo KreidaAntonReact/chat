@@ -6,9 +6,12 @@ import 'sidebar/styles';
 
 import { RouterProvider } from 'react-router';
 
+import { QueryClientProvider } from './providers';
 import { router } from './routers';
 
 
 export const App = () => (
-  <RouterProvider router={router}/>
+  <QueryClientProvider>
+    <RouterProvider router={router}/>
+  </QueryClientProvider>
 );

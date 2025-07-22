@@ -10,40 +10,46 @@ import {
 interface InputProps extends Omit<ComponentProps<'input'>, 'prefix' | 'suffix'> {
   prefix?: ReactNode;
   suffix?: ReactNode;
+  error?: string;
 }
 
-export const Input: FC<InputProps> = ({ prefix, suffix, ...props }) => {
+export const Input: FC<InputProps> = ({
+  prefix, suffix, error, ...props
+}) => {
   const refInput = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div
-      className={cn(`chat:w-full chat:h-9 chat:flex
+    <div className='chat:flex chat:flex-col chat:gap-2'>
+      <div
+        className={cn(`chat:w-full chat:h-9 chat:flex
         chat:items-center chat:bg-brown/30
-       chat:dark:bg-dark chat:rounded-2xl chat:transition-colors
+       chat:dark:bg-dark chat:rounded-sm chat:transition-colors
         chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
         chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2 chat:hover:outline-blue-200`)}
-      onClick={() => refInput.current?.focus()}
-    >
-      <div
-        className={cn('chat:hidden',{
-          ['chat:block']: !!prefix
-        })}
+        onClick={() => refInput.current?.focus()}
       >
-        {prefix}
-      </div>
-      <input
-        className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
+        <div
+          className={cn('chat:hidden',{
+            ['chat:block']: !!prefix
+          })}
+        >
+          {prefix}
+        </div>
+        <input
+          className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
       chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`)}
-        {...props}
-        ref={refInput}
-      />
-      <div
-        className={cn('chat:hidden',{
-          ['chat:block']: !!suffix
-        })}
-      >
-        {suffix}
+          {...props}
+          ref={refInput}
+        />
+        <div
+          className={cn('chat:hidden',{
+            ['chat:block']: !!suffix
+          })}
+        >
+          {suffix}
+        </div>
       </div>
+      {error && <span className='chat:text-red-500'>{error}</span> }
     </div>
   );
 };

@@ -1,1 +1,1 @@
-export { useSignIn } from './model';
+export { SignIn } from './ui';

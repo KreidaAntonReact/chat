@@ -10,14 +10,23 @@ export declare const SignInRequestSchema: z.ZodObject<{
     password: string;
 }>;
 export declare const SignInResponseSchema: z.ZodObject<{
-    message: z.ZodBoolean;
-    statusCode: z.ZodNumber;
+    id: z.ZodString;
+    firstName: z.ZodString;
+    lastName: z.ZodString;
+    username: z.ZodString;
+    email: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    message: boolean;
-    statusCode: number;
+    username: string;
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
 }, {
-    message: boolean;
-    statusCode: number;
+    username: string;
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
 }>;
 export type TSignInRequestSchema = z.infer<typeof SignInRequestSchema>;
 export type TSignInResponseSchema = z.infer<typeof SignInResponseSchema>;

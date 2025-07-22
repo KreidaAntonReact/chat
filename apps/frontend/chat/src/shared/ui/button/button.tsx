@@ -24,10 +24,12 @@ export const Button: FC<IButtonProps> = ({
   ...props
 }) => (
   <button
-    className={cn(`chat:text-white/80 chat:bg-brown/30 chat:flex chat:items-center chat:gap-2 chat:text-sm
-        chat:rounded-full chat:p-2 chat:cursor-pointer chat:duration-[0.2s] chat:active:scale-95
-        chat:transition-colors chat:hover:bg-brown/70 chat:active:bg-brown chat:text-center
-        chat:dark:bg-dark chat:dark:text-white`, className)}
+    className={cn(`chat:text-white/80 chat:bg-brown/30
+      chat:flex chat:items-center chat:gap-2 chat:text-sm
+      chat:rounded-sm chat:p-2 chat:cursor-pointer
+      chat:duration-[0.2s] chat:active:scale-95
+      chat:transition-colors chat:hover:bg-brown/70 chat:active:bg-brown
+      chat:dark:text-white chat:justify-center`, className)}
     type={type}
     onMouseDown={onClick}
     {...props}

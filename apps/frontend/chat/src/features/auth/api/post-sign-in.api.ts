@@ -8,10 +8,10 @@ import type { TSignInRequestSchema, TSignInResponseSchema } from '@packages/cont
 import type { AxiosResponse } from 'axios';
 
 
-export const postSignIn = async (data: TSignInRequestSchema): Promise<TSignInResponseSchema> => {
+export const postSignIn = async (body: TSignInRequestSchema): Promise<TSignInResponseSchema> => {
   try {
     const response = await SignInResponseSchema.parseAsync(instance.post
-      <TSignInResponseSchema, AxiosResponse<TSignInResponseSchema>, TSignInRequestSchema>('/auth/sign-in', data));
+      <TSignInResponseSchema, AxiosResponse<TSignInResponseSchema>, TSignInRequestSchema>('/auth/sign-in', body));
     return response;
   } catch (error) {
     if (isAxiosError(error)) {

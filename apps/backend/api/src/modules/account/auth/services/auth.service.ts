@@ -1,4 +1,5 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { SignInResponseSchema, TSignInResponseSchema } from '@packages/contracts';
 
 import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
 import { SessionService } from '@/modules/account/session';
@@ -49,7 +50,7 @@ export class AuthService {
     return new SuccessResponse(201);
   }
 
-  async signIn(req: Request, { username, password }: SignInDto): Promise<SuccessResponse> {
+  async signIn(req: Request, { username, password }: SignInDto): Promise<TSignInResponseSchema> {
     const user = await this.userRepository.findUser({ username });
 
     if (!user) {
@@ -64,9 +65,15 @@ export class AuthService {
       throw new UnauthorizedException('Invalid password');
     }
 
-    await this.sessionService.createSession(req, userEntity);
+    const userSession = await this.sessionService.createSession(req, userEntity);
 
-    return new SuccessResponse(200);
+    return SignInResponseSchema.parse({
+      id: userSession.id,
+      username: userSession.username,
+      email: userSession.email,
+      firstName: userSession.firstName,
+      lastName: userSession.lastName,
+    });
   }
 
   async signOut(req: Request, res: Response): Promise<SuccessResponse> {
