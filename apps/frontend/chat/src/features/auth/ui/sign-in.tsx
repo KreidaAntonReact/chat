@@ -1,10 +1,7 @@
-import { SignInRequestSchema } from '@packages/contracts';
 import { useActionState } from 'react';
-import { ZodError } from 'zod';
 
-import { postSignIn } from '@/features/auth/api';
+import { authHandle, type IFormState } from '@/features/auth/lib';
 import { ROUTERS } from '@/shared/lib';
-import { parseZodErrors } from '@/shared/lib/util';
 import {
   Button,
   Input,
@@ -13,45 +10,11 @@ import {
 } from '@/shared/ui';
 
 
-import type { IFormState } from '@/features/auth/lib';
-
 export const SignIn = () => {
-  const authHandle = async (prevState: IFormState, formData: FormData) => {
-    try {
-      const data = Object.fromEntries(formData.entries());
-      const checkedData = SignInRequestSchema.parse(data);
-
-      await postSignIn(checkedData);
-
-      return {
-        data: null,
-        errors: null
-      };
-    } catch (error) {
-      if(error instanceof ZodError) {
-        console.log(error.issues);
-
-        const errorsParse = parseZodErrors(error.issues);
-
-        return {
-          data: {
-            username: formData.get('username') as string,
-            password: formData.get('password') as string
-          },
-          errors: errorsParse
-        };
-      }
-
-      return {
-        ...prevState,
-        errors: null
-      };
-    }
-  };
-
   const [state, submitAction] = useActionState<IFormState, FormData>(authHandle, {
     data: null,
-    errors: null
+    errors: null,
+    isSuccess: false
   });
 
 
@@ -65,24 +28,33 @@ export const SignIn = () => {
         </div>
 
         <form
-          className='chat:w-full chat:h-full chat:flex chat:flex-col chat:gap-5 chat:justify-end'
+          className='chat:w-full chat:h-full chat:flex chat:flex-col chat:gap-5 chat:justify-between'
           action={submitAction}
         >
-          <div className='chat:flex chat:flex-col chat:gap-2 chat:w-full chat:h-full'>
-            <Input
-              placeholder='Username'
-              name='username'
-              type='text'
-              defaultValue={state.data?.username}
-              error={state.errors?.username}
-            />
-            <InputPassword
-              placeholder='Password'
-              name='password'
-              defaultValue={state.data?.password}
-              error={state.errors?.password}
-            />
+          <div className='chat:flex chat:flex-col chat:gap-3'>
+            <div className='chat:flex chat:flex-col chat:gap-2 chat:w-full chat:h-full'>
+              <Input
+                placeholder='Username'
+                name='username'
+                type='text'
+                defaultValue={state.data?.username}
+                error={state.errors?.username}
+              />
+              <InputPassword
+                placeholder='Password'
+                name='password'
+                defaultValue={state.data?.password}
+                error={state.errors?.password}
+              />
+            </div>
+            {state.errors?.message && (
+              <span className='chat:text-red-600 chat:text-sm chat:relative chat:z-0
+                  chat:animate-show chat:transform-[translateY(-50%)]'
+              >
+                {state.errors?.message}
+              </span>)}
           </div>
+
           <Button type='submit'>Login</Button>
         </form>
       </div>

@@ -4,7 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { RedisStore } from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import { patchNestJsSwagger, ZodValidationPipe } from 'nestjs-zod';
+import { patchNestJsSwagger } from 'nestjs-zod';
 
 import { CoreModule, RedisService } from './core';
 import { IS_DEV } from './shared';

@@ -10,8 +10,8 @@ export const SignInRequestSchema = z.object({
   password: z.string({
     invalid_type_error: 'Password must be a string',
     required_error: 'Password is required',
-  }).regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/, {
-    message: 'Password must be at least 7 characters long and contain at least one letter and one number',
+  }).regex(/(?=.*[A-Za-z])(?=.*[!@#$%^&*?_-])(?=.*\d)[A-Za-z\d!@#$%^&*?_-]{7,}/g, {
+    message: 'Password must be at least 7 characters long and contain at least one letter and one number, and one special character: !@#$%^&*?_-',
   }),
 });
 

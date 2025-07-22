@@ -1,6 +1,11 @@
 import { Body, Controller, Get, HttpStatus, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { meResponseSchema, TmeResponse, TUpdateUserResponse, updateUserResponseSchema } from '@packages/contracts';
+import {
+  meResponseSchema,
+  type TUpdateUserResponse,
+  updateUserResponseSchema,
+  type TMeResponse,
+} from '@packages/contracts';
 
 import { UserUpdateDto } from '@/modules/account/user/dto';
 import { UserService } from '@/modules/account/user/services';
@@ -39,7 +44,7 @@ export class UserController {
   })
   @Authorization()
   @Get('me')
-  async getMe(@User('id') userId: string): Promise<TmeResponse> {
+  async getMe(@User('id') userId: string): Promise<TMeResponse> {
     return meResponseSchema.parse(await this.userService.getUser(userId));
   }
 

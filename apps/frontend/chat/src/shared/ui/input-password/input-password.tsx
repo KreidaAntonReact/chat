@@ -24,7 +24,10 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
             chat:items-center chat:bg-brown/30
            chat:dark:bg-dark chat:rounded-sm chat:transition-colors
             chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
-            chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2 chat:hover:outline-blue-200`)}
+            chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2
+            chat:hover:outline-blue-200`, {
+          ['chat:!outline-red-500']: !!error
+        })}
         onClick={() => refInput.current?.focus()}
       >
         <div
