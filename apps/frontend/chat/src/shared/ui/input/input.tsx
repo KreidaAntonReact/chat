@@ -14,7 +14,10 @@ interface InputProps extends Omit<ComponentProps<'input'>, 'prefix' | 'suffix'> 
 }
 
 export const Input: FC<InputProps> = ({
-  prefix, suffix, error, ...props
+  prefix,
+  suffix,
+  error,
+  ...props
 }) => {
   const refInput = useRef<HTMLInputElement | null>(null);
 
@@ -22,7 +25,7 @@ export const Input: FC<InputProps> = ({
     <div className='chat:flex chat:flex-col chat:gap-2'>
       <div
         className={cn(`chat:w-full chat:h-9 chat:flex
-        chat:items-center chat:bg-brown/30
+        chat:items-center chat:bg-brown/30 chat:relative chat:z-10
        chat:dark:bg-dark chat:rounded-sm chat:transition-colors
         chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
         chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2 chat:hover:outline-blue-200`)}
@@ -49,7 +52,18 @@ export const Input: FC<InputProps> = ({
           {suffix}
         </div>
       </div>
-      {error && <span className='chat:text-red-500'>{error}</span> }
+      {error && (
+        <span
+          className={`chat:text-red-600
+          chat:text-sm chat:animate-show
+          chat:transform-[translateY(-50%)]
+          chat:relative chat:z-0 chat:opacity-0
+          `}
+        >
+          {error}
+        </span>
+      )
+      }
     </div>
   );
 };

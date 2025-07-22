@@ -36,10 +36,11 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
         </div>
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
-          chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`)}
-          {...props}
+          chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent
+          chat:dark:bg-transparent chat:relative chat:z-10`)}
           ref={refInput}
           type={isShowPassword ? 'password' : 'text'}
+          {...props}
         />
         <button
           className='chat:p-0 chat:border-0 chat:bg-none chat:cursor-pointer'
@@ -56,7 +57,14 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
         </button>
       </div>
 
-      {error && <span className='chat:text-red-600 chat:text-sm'>{error}</span>}
+      {error && (
+        <span
+          className='chat:text-red-600 chat:text-sm chat:relative chat:z-0
+          chat:animate-show chat:transform-[translateY(-50%)]'
+        >
+          {error}
+        </span>
+      )}
     </div>
   );
 };
