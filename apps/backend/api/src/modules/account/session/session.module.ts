@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { RedisModule } from '@/core/redis';
 
-import { SessionService } from './session.service';
+import { SessionService } from './services';
 
 @Module({
   imports: [RedisModule],

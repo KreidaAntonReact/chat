@@ -1,2 +1,2 @@
-export * from './entrypoints';
-export * from './redis';
+export { CoreModule } from './entrypoints';
+export { RedisService } from './redis';

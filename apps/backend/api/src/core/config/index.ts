@@ -1,1 +1,1 @@
-export * from './zod-validation.config';
+export { zodValidationConfig } from './zod-validation';

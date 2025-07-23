@@ -5,12 +5,11 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { UserModule, AuthModule, SessionModule } from '@/modules';
+import { zodValidationConfig } from '@/core/config';
+import { PrismaModule } from '@/core/prisma';
+import { RedisModule } from '@/core/redis';
+import { UserModule, AuthModule, SessionModule, UploadsModule } from '@/modules';
 import { IS_DEV } from '@/shared';
-
-import { zodValidationConfig } from '../config';
-import { PrismaModule } from '../prisma';
-import { RedisModule } from '../redis';
 
 @Module({
   imports: [
@@ -27,8 +26,8 @@ import { RedisModule } from '../redis';
     UserModule,
     AuthModule,
     SessionModule,
+    UploadsModule,
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_PIPE,

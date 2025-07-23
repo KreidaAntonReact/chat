@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { RedisService } from '@/core/redis/';
 
-import { ISessionRedis } from './lib';
+import { ISessionRedis } from '../lib';
 
 import type { UserEntity } from '@/modules/account/user/entities';
 import type { Request, Response } from 'express';
