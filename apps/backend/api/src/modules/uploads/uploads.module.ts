@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
+import { MulterModule } from '@nestjs/platform-express';
 
-import { UploadsController } from './controllers';
 import { UploadsService } from './services';
 
 @Module({
-  controllers: [UploadsController],
+  imports: [
+    MulterModule.register({
+      dest: `${process.cwd()}/${process.env.UPLOADS_DIR ?? 'uploads'}`,
+    }),
+  ],
   providers: [UploadsService],
 })
 export class UploadsModule {}

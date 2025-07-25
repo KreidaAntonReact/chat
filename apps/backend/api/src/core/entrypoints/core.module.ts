@@ -19,7 +19,7 @@ import { IS_DEV } from '@/shared';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../../', 'uploads'),
-      serveRoot: '/api/upload',
+      serveRoot: '/api/uploads',
     }),
     PrismaModule,
     RedisModule,

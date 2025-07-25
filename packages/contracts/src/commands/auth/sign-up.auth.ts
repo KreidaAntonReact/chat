@@ -1,3 +1,4 @@
+import { ACCEPTED_IMAGE_TYPES, formatBytes, MAX_DIMENSIONS, MAX_FILE_SIZE, MIN_DIMENSIONS } from '@packages/utils';
 import { z } from 'zod';
 
 export const SignUpRequestSchema = z.object({
@@ -30,8 +31,8 @@ export const SignUpRequestSchema = z.object({
     }).min(7, {
         message: 'Password must be at least 7 characters long',
     })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/, {
-        message: 'Username must be at least 7 characters long and contain at least one letter and one number',
+   .regex(/(?=.*[A-Za-z])(?=.*[!@#$%^&*?_-])(?=.*\d)[A-Za-z\d!@#$%^&*?_-]{7,}/g, {
+    message: 'Password must be at least 7 characters long and contain at least one letter and one number, and one special character: !@#$%^&*?_-',
     }),
 
     email: z.string({
@@ -40,6 +41,38 @@ export const SignUpRequestSchema = z.object({
     }).email({
         message: 'Email is invalid',
     }),
+    avatar: z.instanceof(File, {
+      message: 'Avatar is invalid',
+    }).refine(file => file.size <= MAX_FILE_SIZE, {
+        message: `Avatar size must be less than ${formatBytes(MAX_FILE_SIZE)}`,
+    }).refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+        message: 'Avatar type is invalid',
+    }).refine(file => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const image = new Image();
+
+                image.onload = () => {
+                    const meetsDimensions =
+                        image.width >= MIN_DIMENSIONS.width &&
+                        image.height >= MIN_DIMENSIONS.height &&
+                        image.width <= MAX_DIMENSIONS.width &&
+                        image.height <= MAX_DIMENSIONS.height;
+
+                    resolve(meetsDimensions);
+                }
+                image.src = e.target?.result as string;
+            }
+            reader.readAsDataURL(file);
+        })
+    }, {
+        message: `The image dimensions are invalid.
+        Please upload an image between ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height}
+        and ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`,
+    })
+    .optional(),
 })
 
 export const SignUpResponseSchema = z.object({

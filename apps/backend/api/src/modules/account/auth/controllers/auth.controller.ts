@@ -1,8 +1,21 @@
-import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  Req,
+  Res,
+  UnauthorizedException,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { TSignInResponseSchema } from '@packages/contracts';
+import { memoryStorage } from 'multer';
 
-import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
+import { SignInDto, SignUpDto } from '@/modules/account/auth/dto';
 import { AuthService } from '@/modules/account/auth/services';
 import { Authorization, SuccessResponse } from '@/shared';
 
@@ -39,9 +52,15 @@ export class AuthController {
     description: 'The user has been successfully created.',
     type: SuccessResponse,
   })
+  @UseInterceptors(
+    FileInterceptor('avatar', {
+      storage: memoryStorage(),
+    }),
+  )
   @Post('/sign-up')
-  async signUp(@Body() signInDto: SignUpDto): Promise<SuccessResponse> {
-    return await this.authService.signUp(signInDto);
+  async signUp(@UploadedFile() avatar: Express.Multer.File, @Body() signUpDto: SignUpDto): Promise<SuccessResponse> {
+    console.log(avatar.buffer);
+    return await this.authService.signUp(signUpDto);
   }
 
   @ApiOperation({ summary: 'Sign-in user' })

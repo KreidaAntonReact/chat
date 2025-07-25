@@ -1,2 +1,2 @@
-export * from './constants';
-export * from './utils';
+export { IS_DEV } from './constants';
+export { isDev, isFunction } from './utils';

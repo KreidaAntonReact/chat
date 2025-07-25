@@ -1,2 +1,2 @@
-export * from './bad-request.class';
-export * from './success-response.class';
+export { BadRequestError } from './bad-request.class';
+export { SuccessResponse } from './success-response.class';

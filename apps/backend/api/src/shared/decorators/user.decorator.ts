@@ -4,7 +4,7 @@ import type { User as UserModel } from '@prisma/generated';
 import type { Request } from 'express';
 
 export const User = createParamDecorator(
-  (data: keyof UserModel | undefined, ctx: ExecutionContext): UserModel | string | Date => {
+  (data: keyof UserModel | undefined, ctx: ExecutionContext): UserModel | string | Date | null => {
     const request = ctx.switchToHttp().getRequest<Request>();
 
     if (!request.user) {

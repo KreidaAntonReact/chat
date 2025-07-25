@@ -1,1 +1,1 @@
-export * from './is-dev.constants';
+export { IS_DEV } from './is-dev.constants';

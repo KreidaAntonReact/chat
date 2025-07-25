@@ -5,9 +5,16 @@
   "repository": "git@github.com:AntonKreida/chat.git",
   "author": "Anton Kreida <kreida.anton@yandex.ru>",
   "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./dist/*": "./dist/*.js",
+    "./*": "./dist/*.js"
+  },
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "devDependencies": {
     "@packages/eslint-config": "*",

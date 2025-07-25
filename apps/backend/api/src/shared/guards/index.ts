@@ -1,1 +1,1 @@
-export * from './authorization.guard';
+export { AuthorizationGuard } from './authorization.guard';
