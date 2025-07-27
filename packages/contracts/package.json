@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-     ".": "./dist/index.js",
+    ".": "./dist/index.js",
     "./commands": "./dist/commands/index.js",
     "./dist/*": "./dist/*.js",
     "./*": "./dist/*.js"
@@ -22,20 +22,5 @@
     "tsc-alias": "^1.8.16",
     "typescript": "^5.8.3",
     "zod": "^3.25.67"
-  },
-  "tsc-alias": {
-    "resolveFullPaths": true,
-    "replacers": {
-      "extensions": {
-        "enabled": true,
-        "extMapping": {
-          ".js": ".js",
-          ".cjs": ".cjs",
-          ".mjs": ".mjs",
-          ".ts": ".js",
-          "": ""
-        }
-      }
-    }
   }
 }

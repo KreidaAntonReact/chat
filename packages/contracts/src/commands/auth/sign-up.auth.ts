@@ -41,9 +41,7 @@ export const SignUpRequestSchema = z.object({
     }).email({
         message: 'Email is invalid',
     }),
-    avatar: z.instanceof(File, {
-      message: 'Avatar is invalid',
-    }).refine(file => file.size <= MAX_FILE_SIZE, {
+    avatar: z.instanceof(File).refine(file => file.size <= MAX_FILE_SIZE, {
         message: `Avatar size must be less than ${formatBytes(MAX_FILE_SIZE)}`,
     }).refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
         message: 'Avatar type is invalid',
