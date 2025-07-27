@@ -1,5 +1,4 @@
-import { ACCEPTED_IMAGE_TYPES, MAX_DIMENSIONS, MAX_FILE_SIZE, MIN_DIMENSIONS } from '@packages/utils';
-import sharp from 'sharp';
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@packages/utils';
 
 import type { FileInterceptor } from '@nestjs/platform-express';
 
@@ -14,22 +13,5 @@ export const filtersFileImage = (...rest: TArgsFileFilter): void => {
     return callback(new Error('Image size or type is invalid'), false);
   }
 
-  sharp(file.buffer)
-    .metadata()
-    .then((metadata) => {
-      const isAccept =
-        metadata.width >= MIN_DIMENSIONS.width &&
-        metadata.height >= MIN_DIMENSIONS.height &&
-        metadata.width <= MAX_DIMENSIONS.width &&
-        metadata.height <= MAX_DIMENSIONS.height;
-
-      if (!isAccept) {
-        return callback(new Error('Image dimensions are invalid'), false);
-      }
-
-      callback(null, true);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  callback(null, true);
 };

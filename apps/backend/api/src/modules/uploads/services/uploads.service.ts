@@ -1,34 +1,45 @@
+import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import sharp, { FormatEnum } from 'sharp';
+import * as sharp from 'sharp';
+
+const DEFAULT_SETTINGS_RESIZE: sharp.ResizeOptions = {
+  width: 512,
+  height: 512,
+  fit: 'contain',
+};
 
 @Injectable()
 export class UploadsService {
   constructor(private readonly configService: ConfigService) {}
   async uploadFile(file: Express.Multer.File, option?: sharp.ResizeOptions): Promise<string> {
     try {
-      const FILE_PATH = join(
-        process.cwd(),
-        this.configService.getOrThrow<string>('UPLOADS_DIR') ?? 'uploads',
-        file.originalname,
-      );
+      const UPLOADS_DIR = this.configService.getOrThrow<string>('UPLOADS_DIR') ?? 'uploads';
+      const FILE_PATH = join(UPLOADS_DIR, file.originalname);
 
-      const FORMAT_FILE = file.mimetype.split('/')[1] as keyof FormatEnum;
+      const FORMAT_FILE = file.mimetype.split('/')[1] as keyof sharp.FormatEnum;
+
+      const IS_EXISTS = existsSync(UPLOADS_DIR);
+
+      if (!IS_EXISTS) {
+        mkdirSync(UPLOADS_DIR);
+      }
 
       await sharp(file.buffer)
         .resize({
           ...option,
-          width: option?.width ?? 512,
-          height: option?.height ?? 512,
-          fit: option?.fit ?? 'contain',
+          width: option?.width ?? DEFAULT_SETTINGS_RESIZE.width,
+          height: option?.height ?? DEFAULT_SETTINGS_RESIZE.height,
+          fit: option?.fit ?? DEFAULT_SETTINGS_RESIZE.fit,
         })
         .toFormat(FORMAT_FILE)
         .toFile(FILE_PATH);
 
       return FILE_PATH;
-    } catch {
+    } catch (error) {
+      console.log(error);
       throw Error('Upload file error');
     }
   }

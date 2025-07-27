@@ -10,5 +10,6 @@ import { UploadsService } from './services';
     }),
   ],
   providers: [UploadsService],
+  exports: [UploadsService],
 })
 export class UploadsModule {}

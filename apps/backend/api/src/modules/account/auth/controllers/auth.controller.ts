@@ -1,7 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException, UploadedFile } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { TSignInResponseSchema } from '@packages/contracts';
-import { memoryStorage } from 'multer';
 
 import { SignInDto, SignUpDto } from '@/modules/account/auth/dto';
 import { AuthService } from '@/modules/account/auth/services';
@@ -43,11 +42,10 @@ export class AuthController {
   })
   @Post('/sign-up')
   @FileUpload('avatar', {
-    storage: memoryStorage(),
     fileFilter: filtersFileImage,
   })
-  async signUp(@Body() signUpDto: SignUpDto, @UploadedFile() _avatar: Express.Multer.File): Promise<SuccessResponse> {
-    return await this.authService.signUp(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto, @UploadedFile() avatar: Express.Multer.File): Promise<SuccessResponse> {
+    return await this.authService.signUp(signUpDto, avatar);
   }
 
   @ApiOperation({ summary: 'Sign-in user' })

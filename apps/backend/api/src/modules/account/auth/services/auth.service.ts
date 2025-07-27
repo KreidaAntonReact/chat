@@ -4,6 +4,7 @@ import { SignInResponseSchema, TSignInResponseSchema } from '@packages/contracts
 import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
+import { UploadsService } from '@/modules/uploads/services';
 import { SuccessResponse } from '@/shared';
 
 import type { Request, Response } from 'express';
@@ -13,9 +14,13 @@ export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly sessionService: SessionService,
+    private readonly uploadsService: UploadsService,
   ) {}
 
-  async signUp({ username, email, firstName, lastName, password }: SignUpDto): Promise<SuccessResponse> {
+  async signUp(
+    { username, email, firstName, lastName, password }: SignUpDto,
+    avatar?: Express.Multer.File,
+  ): Promise<SuccessResponse> {
     const user = new UserEntity({
       username,
       email,
@@ -39,12 +44,14 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
+    const pathAvatar = avatar ? await this.uploadsService.uploadFile(avatar) : null;
+
     await this.userRepository.create({
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
       email: user.email,
-      avatar: null,
+      avatar: pathAvatar,
       passwordHash: await user.generatePassword(password),
     });
 

@@ -18,6 +18,7 @@ export class UserRepository {
         username: user.username,
         email: user.email,
         passwordHash: user.passwordHash ?? '',
+        avatar: user.avatar ?? null,
       },
     });
   }

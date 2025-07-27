@@ -10,6 +10,7 @@ export class UserEntity implements TUserEntity {
   lastName: string;
   username: string;
   email: string;
+  avatar: string;
   createAt?: Date;
   updateAt?: Date;
   passwordHash?: string;
@@ -34,6 +35,10 @@ export class UserEntity implements TUserEntity {
 
     if (user?.updateAt) {
       this.updateAt = user.updateAt;
+    }
+
+    if (user?.avatar) {
+      this.avatar = user.avatar;
     }
   }
 
