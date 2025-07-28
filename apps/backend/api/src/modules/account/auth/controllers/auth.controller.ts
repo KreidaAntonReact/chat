@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException, UploadedFile } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { TSignInResponseSchema } from '@packages/contracts';
+import { SignInResponseSchema, TSignInResponseSchema } from '@packages/contracts';
 
 import { SignInDto, SignUpDto } from '@/modules/account/auth/dto';
 import { AuthService } from '@/modules/account/auth/services';
@@ -80,7 +80,7 @@ export class AuthController {
   })
   @Post('/sign-in')
   async signIn(@Req() req: Request, @Body() signInDto: SignInDto): Promise<TSignInResponseSchema> {
-    return await this.authService.signIn(req, signInDto);
+    return SignInResponseSchema.parse(await this.authService.signIn(req, signInDto));
   }
 
   @ApiOperation({ summary: 'Sign-out user' })
