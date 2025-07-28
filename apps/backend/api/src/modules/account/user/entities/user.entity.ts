@@ -10,7 +10,7 @@ export class UserEntity implements TUserEntity {
   lastName: string;
   username: string;
   email: string;
-  avatar: string;
+  avatar?: string;
   createAt?: Date;
   updateAt?: Date;
   passwordHash?: string;

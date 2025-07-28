@@ -44,14 +44,24 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
-    const pathAvatar = avatar ? await this.uploadsService.uploadFile(avatar) : null;
+    if (avatar) {
+      const FILE_NAME = `avatar.${user.username}`;
+
+      const filePath = await this.uploadsService.uploadFile(avatar, FILE_NAME, {
+        fit: 'contain',
+        width: 300,
+        height: 300,
+      });
+
+      user.avatar = filePath;
+    }
 
     await this.userRepository.create({
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
       email: user.email,
-      avatar: pathAvatar,
+      avatar: user.avatar ?? null,
       passwordHash: await user.generatePassword(password),
     });
 
@@ -81,6 +91,7 @@ export class AuthService {
       email: userSession.email,
       firstName: userSession.firstName,
       lastName: userSession.lastName,
+      avatar: userSession.avatar,
     });
   }
 

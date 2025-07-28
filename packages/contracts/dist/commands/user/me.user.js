@@ -15,5 +15,9 @@ export const meResponseSchema = z.object({
     email: z.string({
         invalid_type_error: 'Email must be a string',
         required_error: 'Email is required',
-    })
+    }),
+    avatar: z.string({
+        invalid_type_error: 'Avatar must be a string',
+        required_error: 'Avatar is required',
+    }).optional(),
 });

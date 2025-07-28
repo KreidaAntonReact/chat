@@ -40,4 +40,8 @@ export const SignInResponseSchema = z.object({
     }).email({
         message: 'Email is invalid',
     }),
+    avatar: z.string({
+        invalid_type_error: 'Avatar must be a string',
+        required_error: 'Avatar is required',
+    }).optional(),
 });

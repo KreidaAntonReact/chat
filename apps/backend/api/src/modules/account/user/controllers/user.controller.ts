@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Patch } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Patch, UploadedFile } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   meResponseSchema,
@@ -6,10 +6,11 @@ import {
   updateUserResponseSchema,
   type TMeResponse,
 } from '@packages/contracts';
+import { memoryStorage } from 'multer';
 
 import { UserUpdateDto } from '@/modules/account/user/dto';
 import { UserService } from '@/modules/account/user/services';
-import { Authorization, User } from '@/shared';
+import { Authorization, FileUpload, User } from '@/shared';
 
 @ApiTags('User')
 @Controller('user')
@@ -90,8 +91,15 @@ export class UserController {
     },
   })
   @Authorization()
+  @FileUpload('avatar', {
+    storage: memoryStorage(),
+  })
   @Patch('update')
-  async updateUser(@User('id') userId: string, @Body() userUpdateData: UserUpdateDto): Promise<TUpdateUserResponse> {
+  async updateUser(
+    @User('id') userId: string,
+    @Body() userUpdateData: UserUpdateDto,
+    @UploadedFile() avatar: Express.Multer.File,
+  ): Promise<TUpdateUserResponse> {
     return updateUserResponseSchema.parse(await this.userService.updateUser(userId, userUpdateData));
   }
 }
