@@ -2,7 +2,7 @@ import { createBrowserRouter, type RouteObject } from 'react-router';
 
 import { AuthLayout, ChatLayout, PageLayout } from '@/app/layout';
 import { CheckSessionProvider, InitGlobalProvider } from '@/app/providers';
-import { ChatMemberId, SignInPage, SignUp } from '@/pages';
+import { ChatMemberId, SignInPage, SignUpPage } from '@/pages';
 import { ROUTERS } from '@/shared/lib';
 
 
@@ -39,7 +39,7 @@ export const routers: RouteObject[] = [
         children: [
           {
             path: ROUTERS.SIGN_UP,
-            element: <SignUp/>,
+            element: <SignUpPage/>,
           },
           {
             path: ROUTERS.SIGN_IN,
