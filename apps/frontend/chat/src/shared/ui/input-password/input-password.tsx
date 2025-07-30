@@ -5,7 +5,8 @@ import {
   useState,
   type FC,
   type InputHTMLAttributes,
-  type ReactNode
+  type ReactNode,
+  useLayoutEffect
 } from 'react';
 
 interface IInputPasswordProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'prefix'>  {
@@ -17,6 +18,18 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
   const refInput = useRef<HTMLInputElement | null>(null);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(true);
 
+  const handleOnClickButtonGlass = () => setIsShowPassword(!isShowPassword);
+
+  useLayoutEffect(() => {
+    if(!refInput.current) return;
+
+    const startLetter = refInput.current.selectionStart;
+    const endLetter = refInput.current.selectionEnd;
+
+    refInput.current.focus();
+    refInput.current.setSelectionRange(startLetter, endLetter);
+  }, [isShowPassword]);
+
   return (
     <div className='chat:flex chat:flex-col chat:gap-2'>
       <div
@@ -26,9 +39,8 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
             chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
             chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2
             chat:hover:outline-blue-200`, {
-          ['chat:!outline-red-500']: !!error
+          ['chat:!outline-red-500 chat:outline-2']: !!error
         })}
-        onClick={() => refInput.current?.focus()}
       >
         <div
           className={cn('chat:hidden',{
@@ -47,7 +59,7 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
         />
         <button
           className='chat:p-0 chat:border-0 chat:bg-none chat:cursor-pointer'
-          onClick={() => setIsShowPassword(!isShowPassword)}
+          onClick={handleOnClickButtonGlass}
           type='button'
         >
           {isShowPassword

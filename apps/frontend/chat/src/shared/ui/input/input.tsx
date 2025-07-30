@@ -30,15 +30,14 @@ export const Input: FC<InputProps> = ({
         chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
         chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2
         chat:hover:outline-blue-200`, {
-          ['chat:!outline-red-500']: !!error
+          ['chat:!outline-red-500 chat:outline-2']: !!error
         })}
-        onClick={() => refInput.current?.focus()}
       >
         <div
           className={cn('chat:hidden',{
             ['chat:block']: !!prefix
           })}
-        > 
+        >
           {prefix}
         </div>
         <input

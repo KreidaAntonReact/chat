@@ -11,7 +11,7 @@ import { HeaderForm } from './header-form';
 
 
 export const SignIn = () => {
-  const [state, submitAction] = useActionState<IFormState, FormData>(authHandle, {
+  const [state, submitAction, isPending] = useActionState<IFormState, FormData>(authHandle, {
     data: null,
     errors: null,
     isSuccess: false
@@ -50,7 +50,7 @@ export const SignIn = () => {
               </span>)}
           </div>
 
-          <Button type='submit'>Login</Button>
+          <Button type='submit' disabled={isPending}>Login</Button>
         </form>
       </div>
     </div>
