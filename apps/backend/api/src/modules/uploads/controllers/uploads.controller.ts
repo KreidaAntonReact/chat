@@ -1,5 +1,6 @@
 import { Controller, HttpStatus, Post, UploadedFile } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { TAvatarUploadResponse } from '@packages/contracts';
 import { memoryStorage } from 'multer';
 
 import { Authorization, FileUpload, User } from '@/shared';
@@ -44,8 +45,9 @@ export class UploadsController {
   async uploadAvatar(
     @UploadedFile('file') file: Express.Multer.File,
     @User('username') username: string,
-  ): Promise<string> {
-    const pathFile = await this.uploadsService.uploadImage(file, `${username}-${file.originalname}`);
-    return pathFile;
+  ): Promise<TAvatarUploadResponse> {
+    return {
+      dir: await this.uploadsService.uploadImage(file, `${username}.${file.filename}`),
+    };
   }
 }
