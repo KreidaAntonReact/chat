@@ -10,6 +10,7 @@
     "apps/**/*"
   ],
   "scripts": {
-    "start:back": "yarn workspace @apps/api start:dev"
+    "start:back": "yarn workspace @apps/api start:dev",
+    "start:front": "yarn workspace @apps/sidebar dev & yarn workspace @apps/chat dev & yarn workspace @apps/host dev"
   }
 }

@@ -3,14 +3,10 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { UserUpdateDto } from '@/modules/account/user/dto';
 import { UserEntity } from '@/modules/account/user/entities';
 import { UserRepository } from '@/modules/account/user/repositories';
-import { UploadsService } from '@/modules/uploads/services';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly userRepository: UserRepository,
-    private readonly uploadsService: UploadsService,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async getUser(userId: string): Promise<UserEntity> {
     const findUser = await this.userRepository.findUser({ userId });
@@ -30,7 +26,7 @@ export class UserService {
     return user;
   }
 
-  async updateUser(userId: string, userUpdateData: UserUpdateDto, avatar?: Express.Multer.File): Promise<UserEntity> {
+  async updateUser(userId: string, userUpdateData: UserUpdateDto): Promise<UserEntity> {
     const findUser = await this.userRepository.findUser({ userId });
 
     if (!findUser) {
@@ -53,23 +49,8 @@ export class UserService {
       throw new ConflictException('User with this email already exists');
     }
 
-    let filePath: null | string = null;
-
-    if (avatar) {
-      const FILE_NAME = `avatar.${userUpdateData?.username ?? findUser.username}`;
-
-      filePath = await this.uploadsService.uploadFile(avatar, FILE_NAME, {
-        fit: 'contain',
-        width: 300,
-        height: 300,
-      });
-
-      await this.uploadsService.deleteFile(findUser.avatar);
-    }
-
     const updatedUser = await this.userRepository.updateUser(userId, {
       ...userUpdateData,
-      avatar: filePath,
     });
 
     const user = new UserEntity({

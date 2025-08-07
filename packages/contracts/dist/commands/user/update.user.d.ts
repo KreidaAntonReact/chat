@@ -4,19 +4,19 @@ export declare const updateUserRequestSchema: z.ZodObject<{
     lastName: z.ZodOptional<z.ZodString>;
     email: z.ZodOptional<z.ZodString>;
     username: z.ZodOptional<z.ZodString>;
-    avatar: z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodEffects<z.ZodType<File, z.ZodTypeDef, File>, File, File>, File, File>, File, File>>;
+    avatar: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     firstName?: string | undefined;
     lastName?: string | undefined;
     email?: string | undefined;
     username?: string | undefined;
-    avatar?: File | undefined;
+    avatar?: string | undefined;
 }, {
     firstName?: string | undefined;
     lastName?: string | undefined;
     email?: string | undefined;
     username?: string | undefined;
-    avatar?: File | undefined;
+    avatar?: string | undefined;
 }>;
 export declare const updateUserResponseSchema: z.ZodObject<{
     id: z.ZodString;

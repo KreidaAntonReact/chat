@@ -15,7 +15,7 @@ const DEFAULT_SETTINGS_RESIZE: sharp.ResizeOptions = {
 export class UploadsService {
   constructor(private readonly configService: ConfigService) {}
 
-  async uploadFile(file: Express.Multer.File, fileName: string, option?: sharp.ResizeOptions): Promise<string> {
+  async uploadImage(file: Express.Multer.File, fileName: string, option?: sharp.ResizeOptions): Promise<string> {
     try {
       const UPLOADS_DIR = this.configService.getOrThrow<string>('UPLOADS_DIR') ?? 'uploads';
       const FILE_PATH = join(UPLOADS_DIR, fileName);

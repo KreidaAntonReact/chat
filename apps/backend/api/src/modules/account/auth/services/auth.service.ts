@@ -3,7 +3,6 @@ import { ConflictException, Injectable, NotFoundException, UnauthorizedException
 import { SignUpDto, SignInDto } from '@/modules/account/auth/dto';
 import { SessionService } from '@/modules/account/session';
 import { UserEntity, UserRepository } from '@/modules/account/user';
-import { UploadsService } from '@/modules/uploads/services';
 import { SuccessResponse } from '@/shared';
 
 import type { Request, Response } from 'express';
@@ -13,13 +12,9 @@ export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly sessionService: SessionService,
-    private readonly uploadsService: UploadsService,
   ) {}
 
-  async signUp(
-    { username, email, firstName, lastName, password }: SignUpDto,
-    avatar?: Express.Multer.File,
-  ): Promise<SuccessResponse> {
+  async signUp({ username, email, firstName, lastName, password }: SignUpDto): Promise<SuccessResponse> {
     const user = new UserEntity({
       username,
       email,
@@ -41,18 +36,6 @@ export class AuthService {
 
     if (isFindEmailUser) {
       throw new ConflictException('User with this email already exists');
-    }
-
-    if (avatar) {
-      const FILE_NAME = `avatar.${user.username}`;
-
-      const filePath = await this.uploadsService.uploadFile(avatar, FILE_NAME, {
-        fit: 'contain',
-        width: 300,
-        height: 300,
-      });
-
-      user.avatar = filePath;
     }
 
     await this.userRepository.create({

@@ -1,11 +1,10 @@
-import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException, UploadedFile } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SignInResponseSchema, TSignInResponseSchema } from '@packages/contracts';
 
 import { SignInDto, SignUpDto } from '@/modules/account/auth/dto';
 import { AuthService } from '@/modules/account/auth/services';
-import { Authorization, FileUpload, SuccessResponse } from '@/shared';
-import { filtersFileImage } from '@/shared/lib';
+import { Authorization, SuccessResponse } from '@/shared';
 
 import type { Request, Response } from 'express';
 
@@ -41,11 +40,8 @@ export class AuthController {
     type: SuccessResponse,
   })
   @Post('/sign-up')
-  @FileUpload('avatar', {
-    fileFilter: filtersFileImage,
-  })
-  async signUp(@Body() signUpDto: SignUpDto, @UploadedFile() avatar: Express.Multer.File): Promise<SuccessResponse> {
-    return await this.authService.signUp(signUpDto, avatar);
+  async signUp(@Body() signUpDto: SignUpDto): Promise<SuccessResponse> {
+    return await this.authService.signUp(signUpDto);
   }
 
   @ApiOperation({ summary: 'Sign-in user' })
