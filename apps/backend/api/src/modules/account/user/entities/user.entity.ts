@@ -5,12 +5,12 @@ import type { User as UserModel } from '@prisma/generated';
 type TUserEntity = Partial<UserModel> & Pick<UserModel, 'firstName' | 'lastName' | 'username' | 'email'>;
 
 export class UserEntity implements TUserEntity {
-  id?: string;
   firstName: string;
   lastName: string;
   username: string;
   email: string;
-  avatar?: string;
+  id?: string;
+  avatar?: string | null;
   createAt?: Date;
   updateAt?: Date;
   passwordHash?: string;
@@ -20,26 +20,11 @@ export class UserEntity implements TUserEntity {
     this.lastName = user.lastName;
     this.username = user.username;
     this.email = user.email;
-
-    if (user?.id) {
-      this.id = user.id;
-    }
-
-    if (user?.passwordHash) {
-      this.passwordHash = user.passwordHash;
-    }
-
-    if (user?.createAt) {
-      this.createAt = user.createAt;
-    }
-
-    if (user?.updateAt) {
-      this.updateAt = user.updateAt;
-    }
-
-    if (user?.avatar) {
-      this.avatar = user.avatar;
-    }
+    this.id = user?.id;
+    this.passwordHash = user?.passwordHash;
+    this.createAt = user.createAt;
+    this.updateAt = user?.updateAt;
+    this.avatar = user?.avatar;
   }
 
   async generatePassword(password: string): Promise<string> {

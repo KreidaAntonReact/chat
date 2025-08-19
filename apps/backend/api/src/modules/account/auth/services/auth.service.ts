@@ -43,7 +43,6 @@ export class AuthService {
       lastName: user.lastName,
       username: user.username,
       email: user.email,
-      avatar: user.avatar ?? null,
       passwordHash: await user.generatePassword(password),
     });
 

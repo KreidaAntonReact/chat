@@ -1,4 +1,3 @@
-import { ACCEPTED_IMAGE_TYPES, formatBytes, MAX_DIMENSIONS, MAX_FILE_SIZE, MIN_DIMENSIONS } from '@packages/utils';
 import { z } from 'zod';
 
 export const SignUpRequestSchema = z.object({
@@ -8,14 +7,12 @@ export const SignUpRequestSchema = z.object({
     }).min(1, {
         message: 'First name must be at least 1 character long',
     }),
-
     lastName: z.string({
         invalid_type_error: 'Last name must be a string',
         required_error: 'Last name is required',
     }).min(1, {
         message: 'Last name must be at least 1 character long',
     }),
-
     username: z.string({
         invalid_type_error: 'Username must be a string',
         required_error: 'Username is required',
@@ -24,7 +21,6 @@ export const SignUpRequestSchema = z.object({
     }).regex(/^[a-zA-Z0-9]+$/, {
         message: 'Username is invalid',
     }),
-
     password: z.string({
         invalid_type_error: 'Password must be a string',
         required_error: 'Password is required',
@@ -40,10 +36,6 @@ export const SignUpRequestSchema = z.object({
     }).email({
         message: 'Email is invalid',
     }),
-    avatar: z.string({
-        invalid_type_error: 'Avatar must be a string',
-        required_error: 'Avatar is required',
-    }).optional(),
 })
 
 export const SignUpResponseSchema = z.object({

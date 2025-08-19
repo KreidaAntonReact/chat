@@ -35,10 +35,6 @@ export const SignUpRequestSchema = z.object({
     }).email({
         message: 'Email is invalid',
     }),
-    avatar: z.string({
-        invalid_type_error: 'Avatar must be a string',
-        required_error: 'Avatar is required',
-    }).optional(),
 });
 export const SignUpResponseSchema = z.object({
     message: z.boolean({

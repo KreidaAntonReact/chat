@@ -1,12 +1,10 @@
 import { Controller, HttpStatus, Post, UploadedFile } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { TAvatarUploadResponse } from '@packages/contracts';
+import { avatarUploadResponseSchema, TAvatarUploadResponse } from '@packages/contracts';
 import { memoryStorage } from 'multer';
 
-import { Authorization, FileUpload, User } from '@/shared';
-import { filtersFileImage } from '@/shared/lib';
-
-import { UploadsService } from '../services';
+import { UploadsService } from '@/modules/uploads/services';
+import { Authorization, FileUpload, filtersFileImage, User } from '@/shared';
 
 @Controller('uploads')
 export class UploadsController {
@@ -34,7 +32,7 @@ export class UploadsController {
     status: HttpStatus.OK,
     description: 'Success',
     example: {
-      dir: 'path/to/file',
+      value: 'path/to/file',
     },
   })
   @Authorization()
@@ -46,8 +44,6 @@ export class UploadsController {
     @UploadedFile('file') file: Express.Multer.File,
     @User('username') username: string,
   ): Promise<TAvatarUploadResponse> {
-    return {
-      dir: await this.uploadsService.uploadImage(file, `${username}.${file.filename}`),
-    };
+    return avatarUploadResponseSchema.parse({ value: await this.uploadsService.uploadImage(file, username) });
   }
 }

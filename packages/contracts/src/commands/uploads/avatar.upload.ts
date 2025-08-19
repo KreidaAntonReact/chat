@@ -2,7 +2,7 @@ import { ACCEPTED_IMAGE_TYPES, formatBytes, MAX_DIMENSIONS, MAX_FILE_SIZE, MIN_D
 import { z } from 'zod';
 
 export const avatarUploadRequestSchema = z.object({
-    file: z.instanceof(File).refine(file => file.size <= MAX_FILE_SIZE, {
+    files: z.instanceof(File).refine(file => file.size <= MAX_FILE_SIZE, {
         message: `Avatar size must be less than ${formatBytes(MAX_FILE_SIZE)}`,
     }).refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
         message: 'Avatar type is invalid',
@@ -34,7 +34,7 @@ export const avatarUploadRequestSchema = z.object({
 })
 
 export const avatarUploadResponseSchema = z.object({
-    dir: z.string({
+    value: z.string({
         invalid_type_error: 'Dir must be a string',
         required_error: 'Dir is required',
     }),
