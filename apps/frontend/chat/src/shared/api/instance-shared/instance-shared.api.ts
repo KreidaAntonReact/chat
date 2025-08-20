@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const instance = axios.create({
+export const instanceShared = axios.create({
   baseURL: process.env.API_URL
 });

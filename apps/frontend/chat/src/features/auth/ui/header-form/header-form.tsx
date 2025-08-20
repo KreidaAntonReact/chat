@@ -1,9 +1,9 @@
-import { ROUTERS } from '@/shared/lib';
-import { Link } from '@/shared/ui';
+import { ROUTERS } from '@/shared/lib/constants/routers.constant';
+import { LinkRouter } from '@/shared/ui/link-router';
 
 export const HeaderForm = () => (
   <div className='chat:w-full chat:flex chat:justify-center chat:items-center'>
-    <Link to={`/${ROUTERS.SIGN_IN}`}>Sign In</Link>
-    <Link to={`/${ROUTERS.SIGN_UP}`}>Sign Up</Link>
+    <LinkRouter to={`/${ROUTERS.SIGN_IN}`}>Sign In</LinkRouter>
+    <LinkRouter to={`/${ROUTERS.SIGN_UP}`}>Sign Up</LinkRouter>
   </div>
 );

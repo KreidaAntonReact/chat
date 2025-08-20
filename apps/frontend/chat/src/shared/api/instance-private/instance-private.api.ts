@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { globalRouter } from '@/shared/lib/util';
+import { globalRouter } from '@/shared/lib/utils/global-router.util';
 
 import type {
   AxiosError,

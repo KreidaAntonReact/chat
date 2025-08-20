@@ -1,4 +1,4 @@
-import { Avatar } from '@/shared/ui';
+import { Avatar } from '@/shared/ui/avatar';
 
 export const ChatHeder = () => (
   <div className="chat:w-full chat:h-20 chat:bg-dark

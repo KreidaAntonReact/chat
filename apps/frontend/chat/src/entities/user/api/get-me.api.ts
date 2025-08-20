@@ -2,9 +2,9 @@ import { meResponseSchema, type TMeResponse } from '@packages/contracts';
 import { isAxiosError } from 'axios';
 import { z } from 'zod';
 
-import { instancePrivateWithInterceptors } from '@/shared/api';
+import { instancePrivateWithInterceptors } from '@/shared/api/instance-private';
 
-import type { IAxiosErrorData } from '@/shared/lib';
+import type { IAxiosErrorData } from '@/shared/lib/interfaces/axios-error-data.interface';
 
 export const getMe = async (): Promise<TMeResponse> => {
   try {

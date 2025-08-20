@@ -1,6 +1,6 @@
 import { createContext, type FC, type ReactNode } from 'react';
 
-import { useLocalStorage } from '@/shared/hooks';
+import { useLocalStorage } from '@/shared/hooks/use-local-storage';
 
 
 type TTheme = 'dark' | 'light';

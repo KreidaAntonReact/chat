@@ -1,1 +1,1 @@
-export * from './ui';
+export { SendingMessage } from './ui';

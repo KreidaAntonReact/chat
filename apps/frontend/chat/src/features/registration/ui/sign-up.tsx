@@ -1,4 +1,4 @@
-import { HeaderForm } from '../../auth/ui/header-form';
+import { HeaderForm } from '@/features/auth/ui/header-form';
 
 export const SignUp = () => (
   <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:dark:bg-dark/60 chat:bg-white'>

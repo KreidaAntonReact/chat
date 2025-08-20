@@ -3,7 +3,7 @@ import { isAxiosError, type AxiosError } from 'axios';
 import { ZodError } from 'zod';
 
 import { postSignIn } from '@/features/auth/api';
-import { QUERY_KEY } from '@/shared/lib';
+import { QUERY_KEY } from '@/shared/lib/constants/query-key.constant';
 
 
 import type { TSignInRequestSchema } from '@packages/contracts';

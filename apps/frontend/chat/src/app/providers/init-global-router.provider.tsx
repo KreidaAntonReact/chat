@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router';
 
-import { globalRouter } from '@/shared/lib';
+import { globalRouter } from '@/shared/lib/utils/global-router.util';
 
 
 export const InitGlobalProvider = () => {

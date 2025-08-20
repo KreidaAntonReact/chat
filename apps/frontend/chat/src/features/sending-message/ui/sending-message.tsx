@@ -1,6 +1,7 @@
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-import { Button, Textarea } from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
+import { Textarea } from '@/shared/ui/textarea';
 
 export const SendingMessage = () => (
   <div className="chat:w-full

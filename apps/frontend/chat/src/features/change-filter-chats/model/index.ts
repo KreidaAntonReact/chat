@@ -1,1 +1,1 @@
-export * from './use-change-filters';
+export { useChangeFilters } from './use-change-filters';

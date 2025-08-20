@@ -1,11 +1,9 @@
 import { useActionState } from 'react';
 
 import { authHandle, type IFormState } from '@/features/auth/lib';
-import {
-  Button,
-  Input,
-  InputPassword
-} from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
+import { InputPassword } from '@/shared/ui/input-password';
 
 import { HeaderForm } from './header-form';
 

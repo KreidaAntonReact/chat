@@ -1,4 +1,4 @@
-import { SendingMessage } from '@/features';
+import { SendingMessage } from '@/features/sending-message';
 import { ChatHeder, ChatMessages } from '@/widgets';
 
 export const ChatMemberId = () => (

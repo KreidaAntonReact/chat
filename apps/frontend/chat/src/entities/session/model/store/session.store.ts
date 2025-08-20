@@ -5,7 +5,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { getCheckSession } from '@/entities/session/api';
 
-import type { IAxiosErrorData } from '@/shared/lib';
+import type { IAxiosErrorData } from '@/shared/lib/interfaces/axios-error-data.interface';
 import type { StateCreator } from 'zustand';
 
 

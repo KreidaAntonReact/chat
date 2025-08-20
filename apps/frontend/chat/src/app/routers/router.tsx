@@ -3,7 +3,7 @@ import { createBrowserRouter, type RouteObject } from 'react-router';
 import { AuthLayout, ChatLayout, PageLayout } from '@/app/layout';
 import { CheckSessionProvider, InitGlobalProvider } from '@/app/providers';
 import { ChatMemberId, SignInPage, SignUpPage } from '@/pages';
-import { ROUTERS } from '@/shared/lib';
+import { ROUTERS } from '@/shared/lib/constants/routers.constant';
 
 
 export const routers: RouteObject[] = [

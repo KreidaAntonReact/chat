@@ -1,1 +1,1 @@
-export * from './get-check-session.api';
+export { getCheckSession } from './get-check-session.api';

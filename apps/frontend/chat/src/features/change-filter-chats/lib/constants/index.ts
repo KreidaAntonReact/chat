@@ -1,1 +1,1 @@
-export * from './list-options-filters';
+export { ListOptionsFilters } from './list-options-filters';

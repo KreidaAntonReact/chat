@@ -1,4 +1,5 @@
-import { ChangeFiltersChats, ChatSearch } from '@/features';
+import { ChangeFiltersChats } from '@/features/change-filter-chats';
+import { ChatSearch } from '@/features/chat-search';
 
 import { ChatItem } from './chat-item';
 

@@ -9,7 +9,7 @@ interface ILinkRouterProps {
   className?: string;
 }
 
-export const Link: FC<ILinkRouterProps> = ({ to, children, className }) => (
+export const LinkRouter: FC<ILinkRouterProps> = ({ to, children, className }) => (
   <NavLink
     className={({ isActive }) => cn(`chat:p-[10px] chat:border-b chat:w-full chat:text-center
       chat:border-brown/30 chat:dark:border-white/30

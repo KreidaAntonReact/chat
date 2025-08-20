@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { ListOptionsFilters } from '@/features/change-filter-chats/lib';
 import { useChangeFilters } from '@/features/change-filter-chats/model';
-import { Radio } from '@/shared/ui';
+import { Radio } from '@/shared/ui/radio';
 
 
 const MemoRadio = memo(Radio);
