@@ -1,1 +1,1 @@
-export * from './model';
+export { useSessionStore, getSessionStoreSelector } from './model';

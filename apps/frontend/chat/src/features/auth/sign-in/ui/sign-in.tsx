@@ -1,11 +1,11 @@
 import { useActionState } from 'react';
 
-import { authHandle, type IFormState } from '@/features/auth/lib';
+import { authHandle, type IFormState } from '@/features/auth/sign-in/lib';
+import { ROUTERS } from '@/shared/lib/constants/routers.constant';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { InputPassword } from '@/shared/ui/input-password';
-
-import { HeaderForm } from './header-form';
+import { LinkRouter } from '@/shared/ui/link-router';
 
 
 export const SignIn = () => {
@@ -19,7 +19,12 @@ export const SignIn = () => {
   return (
     <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:dark:bg-dark/60 chat:bg-white'>
       <div className='chat:py-20 chat:px-24 chat:w-full chat:h-full chat:flex chat:flex-col chat:gap-10'>
-        <HeaderForm/>
+
+        <div className='chat:w-full chat:flex chat:justify-center chat:items-center'>
+          <LinkRouter to={`/${ROUTERS.SIGN_IN}`}>Sign In</LinkRouter>
+          <LinkRouter to={`/${ROUTERS.SIGN_UP}`}>Sign Up</LinkRouter>
+        </div>
+
         <form
           className='chat:w-full chat:h-full chat:flex chat:flex-col chat:gap-5 chat:justify-between'
           action={submitAction}

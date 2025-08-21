@@ -1,4 +1,4 @@
-import { SignUp } from '@/features/registration';
+import { SignUp } from '@/features/auth/sign-up';
 
 
 export const SignUpPage = () => (

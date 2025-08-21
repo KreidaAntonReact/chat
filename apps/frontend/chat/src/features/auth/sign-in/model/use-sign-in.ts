@@ -2,7 +2,7 @@ import { QueryClient, useMutation } from '@tanstack/react-query';
 import { isAxiosError, type AxiosError } from 'axios';
 import { ZodError } from 'zod';
 
-import { postSignIn } from '@/features/auth/api';
+import { postSignIn } from '@/features/auth/sign-in/api';
 import { QUERY_KEY } from '@/shared/lib/constants/query-key.constant';
 
 
