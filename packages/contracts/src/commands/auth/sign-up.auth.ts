@@ -1,3 +1,4 @@
+import { PASSWORD_REG } from '@/lib';
 import { z } from 'zod';
 
 export const SignUpRequestSchema = z.object({
@@ -27,7 +28,7 @@ export const SignUpRequestSchema = z.object({
     }).min(7, {
         message: 'Password must be at least 7 characters long',
     })
-   .regex(/(?=.*[A-Za-z])(?=.*[!@#$%^&*?_-])(?=.*\d)[A-Za-z\d!@#$%^&*?_-]{7,}/g, {
+   .regex(PASSWORD_REG, {
     message: 'Password must be at least 7 characters long and contain at least one letter and one number, and one special character: !@#$%^&*?_-',
     }),
     email: z.string({

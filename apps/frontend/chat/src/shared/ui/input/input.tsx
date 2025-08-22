@@ -11,18 +11,21 @@ interface InputProps extends Omit<ComponentProps<'input'>, 'prefix' | 'suffix'> 
   prefix?: ReactNode;
   suffix?: ReactNode;
   error?: string;
+  classNameWrapper?: string
 }
 
 export const Input: FC<InputProps> = ({
   prefix,
   suffix,
   error,
+  className,
+  classNameWrapper,
   ...props
 }) => {
   const refInput = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className='chat:flex chat:flex-col chat:gap-2'>
+    <div className={cn('chat:flex chat:flex-col chat:gap-2', classNameWrapper)}>
       <div
         className={cn(`chat:w-full chat:h-9 chat:flex
         chat:items-center chat:bg-brown/30 chat:relative chat:z-10
@@ -42,7 +45,7 @@ export const Input: FC<InputProps> = ({
         </div>
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
-      chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`)}
+      chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`, className)}
           {...props}
           ref={refInput}
         />

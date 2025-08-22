@@ -17,18 +17,18 @@ export declare const SignInResponseSchema: z.ZodObject<{
     email: z.ZodString;
     avatar: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    username: string;
-    id: string;
     firstName: string;
     lastName: string;
+    username: string;
     email: string;
+    id: string;
     avatar?: string | undefined;
 }, {
-    username: string;
-    id: string;
     firstName: string;
     lastName: string;
+    username: string;
     email: string;
+    id: string;
     avatar?: string | undefined;
 }>;
 export type TSignInRequestSchema = z.infer<typeof SignInRequestSchema>;

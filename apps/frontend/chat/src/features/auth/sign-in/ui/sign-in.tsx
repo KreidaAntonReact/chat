@@ -53,7 +53,7 @@ export const SignIn = () => {
               </span>)}
           </div>
 
-          <Button type='submit' disabled={isPending}>Login</Button>
+          <Button type='submit' disabled={isPending}>Sign In</Button>
         </form>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { ZodError } from 'zod';
 
 import { ROUTERS } from '@/shared/lib/constants/routers.constant';
 
-import { postSignUp } from '../api';
+import { postSignUp } from '../../api';
 
 import type { TSignUpRequestSchema } from '@packages/contracts';
 import type { AxiosError } from 'axios';

@@ -10,11 +10,14 @@ import {
 } from 'react';
 
 interface IInputPasswordProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'prefix'>  {
-    prefix?: ReactNode
-    error?: string
+    prefix?: ReactNode;
+    error?: string;
+    classNameWrapper?: string
 }
 
-export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props }) => {
+export const InputPassword: FC<IInputPasswordProps> = ({
+  prefix, error, className, classNameWrapper, ...props
+}) => {
   const refInput = useRef<HTMLInputElement | null>(null);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(true);
 
@@ -31,7 +34,7 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
   }, [isShowPassword]);
 
   return (
-    <div className='chat:flex chat:flex-col chat:gap-2'>
+    <div className={cn('chat:flex chat:flex-col chat:gap-2', classNameWrapper)}>
       <div
         className={cn(`chat:w-full chat:h-9 chat:flex
             chat:items-center chat:bg-brown/30
@@ -52,7 +55,7 @@ export const InputPassword: FC<IInputPasswordProps> = ({ prefix, error, ...props
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
           chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent
-          chat:dark:bg-transparent chat:relative chat:z-10`)}
+          chat:dark:bg-transparent chat:relative chat:z-10`, className)}
           ref={refInput}
           type={isShowPassword ? 'password' : 'text'}
           {...props}
