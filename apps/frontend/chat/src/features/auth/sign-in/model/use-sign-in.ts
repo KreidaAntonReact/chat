@@ -1,7 +1,6 @@
 import { QueryClient, useMutation } from '@tanstack/react-query';
 import { isAxiosError, type AxiosError } from 'axios';
 import { useNavigate } from 'react-router';
-import { ZodError } from 'zod';
 
 import { postSignIn } from '@/features/auth/sign-in/api';
 import { QUERY_KEY } from '@/shared/lib/constants/query-key.constant';
@@ -22,20 +21,16 @@ export const useSignIn = () => {
   } = useMutation({
     mutationKey: [QUERY_KEY.ME],
     mutationFn: async (body: TSignInRequestSchema) => await postSignIn(body),
-    onError: (error: Error | AxiosError | ZodError) => {
+    onError: (error: Error | AxiosError) => {
       if (isAxiosError(error)) {
         return error.response?.data;
-      }
-
-      if (error instanceof ZodError) {
-        return error.errors;
       }
 
       return error.message;
     },
     onSuccess: (data) => {
       queryClient.setQueryData([QUERY_KEY.ME], data);
-      navigate(ROUTERS.HOME);
+      navigate(`/${ROUTERS.HOME}`);
     }
   });
 

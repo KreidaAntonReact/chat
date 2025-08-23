@@ -7,7 +7,7 @@ import { InputForm } from '@/shared/ui/input-form';
 import { InputPasswordForm } from '@/shared/ui/input-password-form';
 import { LinkRouter } from '@/shared/ui/link-router';
 
-import { SignUpFormSchema, type TSignUpFormSchema } from '../model';
+import { SignUpFormSchema, useSignUp, type TSignUpFormSchema } from '../model';
 
 import type { SubmitHandler } from 'react-hook-form';
 
@@ -36,9 +36,26 @@ export const SignUp = () => {
     reValidateMode: 'onChange'
   });
 
+  const {
+    handleSignUp,
+    isLoading: isLoadingSignUp,
+    isError: isErrorSignUp,
+    error,
+  } = useSignUp();
+
   const isError = !!Object.keys(errors).length;
 
-  const handleOnSubmit: SubmitHandler<TSignUpFormSchema> = () => {};
+  const handleOnSubmit: SubmitHandler<TSignUpFormSchema> = (data) => {
+    handleSignUp({
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      password: data.password,
+      username: data.username
+    });
+  };
+
+  const isLoadingRegister = isLoading || isLoadingSignUp;
 
   return (
     <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:dark:bg-dark/60 chat:bg-white chat:flex-1'>
@@ -60,20 +77,20 @@ export const SignUp = () => {
               control={control}
               name='firstName'
               placeholder='First Name'
+              disabled={isLoadingRegister}
             />
-
             <InputForm
               control={control}
               name='lastName'
               placeholder='Last Name'
+              disabled={isLoadingRegister}
             />
-
             <InputForm
               control={control}
               name='username'
               placeholder='Username'
+              disabled={isLoadingRegister}
             />
-
 
             <div className='chat:flex chat:gap-2'>
               <InputPasswordForm
@@ -81,6 +98,7 @@ export const SignUp = () => {
                 name='password'
                 placeholder='Password'
                 classNameWrapper='chat:shrink chat:flex-1'
+                disabled={isLoadingRegister}
               />
 
               <InputPasswordForm
@@ -88,6 +106,7 @@ export const SignUp = () => {
                 name='confirmPassword'
                 placeholder='Confirm Password'
                 classNameWrapper='chat:shrink chat:flex-1'
+                disabled={isLoadingRegister}
               />
             </div>
 
@@ -95,11 +114,19 @@ export const SignUp = () => {
               control={control}
               name='email'
               placeholder='Email'
+              disabled={isLoadingRegister}
             />
 
+            {isErrorSignUp && error && (
+              <span className='chat:text-red-600 chat:text-sm chat:relative chat:z-0
+                  chat:animate-show chat:transform-[translateY(-50%)]'
+              >
+                {error.message}
+              </span>
+            )}
           </div>
 
-          <Button type='submit' disabled={isLoading || isError}>Sign Up</Button>
+          <Button type='submit' disabled={isLoadingRegister || isError}>Sign Up</Button>
         </form>
       </div>
     </div>

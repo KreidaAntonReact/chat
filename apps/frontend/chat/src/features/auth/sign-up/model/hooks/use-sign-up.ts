@@ -1,14 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
+import { isAxiosError, type AxiosError   } from 'axios';
 import { useNavigate } from 'react-router';
-import { ZodError } from 'zod';
 
+
+import { postSignUp } from '@/features/auth/sign-up/api';
 import { ROUTERS } from '@/shared/lib/constants/routers.constant';
 
-import { postSignUp } from '../../api';
 
 import type { TSignUpRequestSchema } from '@packages/contracts';
-import type { AxiosError } from 'axios';
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -18,17 +17,12 @@ export const useSignUp = () => {
     error,
     isPending
   } = useMutation({
+    mutationKey: ['sign-up'],
     mutationFn: async (body: TSignUpRequestSchema) => await postSignUp(body),
-    onSuccess: () => {
-      navigate(ROUTERS.SIGN_IN);
-    },
-    onError:(error: Error | AxiosError | ZodError) => {
+    onSuccess: () => navigate(`/${ROUTERS.SIGN_IN}`),
+    onError:(error: Error | AxiosError) => {
       if (isAxiosError(error)) {
         return error.response?.data;
-      }
-
-      if (error instanceof ZodError) {
-        return error.errors;
       }
 
       return error.message;

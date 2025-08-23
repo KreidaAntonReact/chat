@@ -1,8 +1,8 @@
 import { SignInResponseSchema } from '@packages/contracts';
 import { isAxiosError, type AxiosResponse } from 'axios';
-import { ZodError } from 'zod';
 
 import { instanceShared } from '@/shared/api/instance-shared';
+import { validateDataError } from '@/shared/lib/utils/validate-data-error.util';
 
 import type { IAxiosErrorData } from '@/shared/lib/interfaces/axios-error-data.interface';
 import type { TSignInRequestSchema, TSignInResponseSchema } from '@packages/contracts';
@@ -10,16 +10,22 @@ import type { TSignInRequestSchema, TSignInResponseSchema } from '@packages/cont
 
 export const postSignIn = async (body: TSignInRequestSchema): Promise<TSignInResponseSchema> => {
   try {
-    const { data } = await instanceShared.post<AxiosResponse<TSignInResponseSchema>>('/auth/sign-in', body);
-    const response = SignInResponseSchema.parse(data);
+    const { data } = await instanceShared.post<
+    TSignInResponseSchema,
+    AxiosResponse<TSignInResponseSchema>,
+    TSignInRequestSchema>('/auth/sign-in', body);
+
+    const response = validateDataError({
+      schema: SignInResponseSchema,
+      data,
+      method: 'POST',
+      name: 'postSignIn'
+    });
+
     return response;
   } catch (error) {
     if (isAxiosError<IAxiosErrorData>(error)) {
       throw error;
-    }
-
-    if (error instanceof ZodError) {
-      throw error.errors;
     }
 
     throw new Error('Something went wrong!!!');

@@ -20,6 +20,7 @@ export const Input: FC<InputProps> = ({
   error,
   className,
   classNameWrapper,
+  disabled,
   ...props
 }) => {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -33,7 +34,8 @@ export const Input: FC<InputProps> = ({
         chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
         chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2
         chat:hover:outline-blue-200`, {
-          ['chat:!outline-red-500 chat:outline-2']: !!error
+          ['chat:!outline-red-500 chat:outline-2']: !!error,
+          ['chat:!bg-gray-400/30 chat:cursor-not-allowed chat:!outline-0']: disabled
         })}
       >
         <div
@@ -45,8 +47,11 @@ export const Input: FC<InputProps> = ({
         </div>
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
-      chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`, className)}
+      chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`, className, {
+          ['chat:cursor-not-allowed']: disabled,
+      })}
           {...props}
+          disabled={disabled}
           ref={refInput}
         />
         <div

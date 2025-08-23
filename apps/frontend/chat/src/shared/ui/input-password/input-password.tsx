@@ -16,7 +16,12 @@ interface IInputPasswordProps extends Omit<InputHTMLAttributes<HTMLInputElement>
 }
 
 export const InputPassword: FC<IInputPasswordProps> = ({
-  prefix, error, className, classNameWrapper, ...props
+  prefix,
+  error,
+  className,
+  classNameWrapper,
+  disabled,
+  ...props
 }) => {
   const refInput = useRef<HTMLInputElement | null>(null);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(true);
@@ -42,7 +47,8 @@ export const InputPassword: FC<IInputPasswordProps> = ({
             chat:p-1 chat:px-2 chat:has-[input:focus]:outline-2
             chat:has-[input:focus]:outline-blue-300 chat:hover:outline-2
             chat:hover:outline-blue-200`, {
-          ['chat:!outline-red-500 chat:outline-2']: !!error
+          ['chat:!outline-red-500 chat:outline-2']: !!error,
+          ['chat:!bg-gray-400/30 chat:cursor-not-allowed chat:!outline-0']: disabled
         })}
       >
         <div
@@ -55,15 +61,20 @@ export const InputPassword: FC<IInputPasswordProps> = ({
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
           chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent
-          chat:dark:bg-transparent chat:relative chat:z-10`, className)}
+          chat:dark:bg-transparent chat:relative chat:z-10`, className, {
+            ['chat:cursor-not-allowed']: disabled,
+          })}
           ref={refInput}
           type={isShowPassword ? 'password' : 'text'}
           {...props}
         />
         <button
-          className='chat:p-0 chat:border-0 chat:bg-none chat:cursor-pointer'
+          className={cn('chat:p-0 chat:border-0 chat:bg-none chat:cursor-pointer', {
+            ['chat:cursor-not-allowed']: disabled
+          })}
           onClick={handleOnClickButtonGlass}
           type='button'
+          disabled={disabled}
         >
           {isShowPassword
             ? (
