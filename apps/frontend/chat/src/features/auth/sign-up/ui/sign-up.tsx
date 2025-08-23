@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { InputForm } from '@/shared/ui/input-form';
 import { InputPasswordForm } from '@/shared/ui/input-password-form';
 import { LinkRouter } from '@/shared/ui/link-router';
+import { Loader } from '@/shared/ui/loader';
 
 import { SignUpFormSchema, useSignUp, type TSignUpFormSchema } from '../model';
 
@@ -125,6 +126,12 @@ export const SignUp = () => {
               </span>
             )}
           </div>
+
+          {!isLoadingRegister && (
+            <div className='chat:w-full chat:h-full chat:flex chat:items-center chat:justify-start'>
+              <Loader size='2xl' textLoading='You are sign up' />
+            </div>
+          )}
 
           <Button type='submit' disabled={isLoadingRegister || isError}>Sign Up</Button>
         </form>
