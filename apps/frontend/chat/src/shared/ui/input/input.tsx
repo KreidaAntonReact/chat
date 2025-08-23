@@ -48,8 +48,8 @@ export const Input: FC<InputProps> = ({
         <input
           className={cn(`chat:h-full chat:px-2 chat:text-white/80 chat:dark:text-white chat:border-none
       chat:w-full h-full chat:text-sm chat:outline-none chat:bg-transparent chat:dark:bg-transparent`, className, {
-          ['chat:cursor-not-allowed']: disabled,
-      })}
+            ['chat:cursor-not-allowed']: disabled,
+          })}
           {...props}
           disabled={disabled}
           ref={refInput}
