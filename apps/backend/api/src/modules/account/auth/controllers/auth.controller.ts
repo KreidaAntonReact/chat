@@ -118,6 +118,8 @@ export class AuthController {
   @Authorization()
   @Get('/check')
   async checkAuth(@Req() req: Request): Promise<SuccessResponse> {
+    console.log(req);
+
     const isAuth = await this.authService.checkSession(req);
 
     if (!isAuth) {

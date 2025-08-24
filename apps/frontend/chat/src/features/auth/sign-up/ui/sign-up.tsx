@@ -127,13 +127,16 @@ export const SignUp = () => {
             )}
           </div>
 
-          {!isLoadingRegister && (
-            <div className='chat:w-full chat:h-full chat:flex chat:items-center chat:justify-start'>
-              <Loader size='2xl' textLoading='You are sign up' />
-            </div>
-          )}
+          <div className='chat:w-full chat:flex chat:flex-col chat:gap-3'>
+            {isLoadingRegister && (
+              <div className='chat:w-full chat:h-fit chat:flex chat:items-center chat:justify-start'>
+                <Loader size='2xl' textLoading='You are sign up' />
+              </div>
+            )}
+            <Button type='submit' disabled={isLoadingRegister || isError}>Sign Up</Button>
+          </div>
 
-          <Button type='submit' disabled={isLoadingRegister || isError}>Sign Up</Button>
+
         </form>
       </div>
     </div>

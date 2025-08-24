@@ -17,19 +17,20 @@ export class SessionService {
 
   async createSession(req: Request, user: UserEntity): Promise<UserEntity> {
     return new Promise((resolve, reject) => {
+      if (!user?.id) {
+        reject(new Error('User not found'));
+        return;
+      }
+
+      req.session.userId = user.id;
+      req.session.username = user.username;
+
       req.session.save((error) => {
         if (error) {
           reject(error instanceof Error ? error : new Error('Create session error'));
           return;
         }
 
-        if (!user?.id) {
-          reject(new Error('User not found'));
-          return;
-        }
-
-        req.session.userId = user.id;
-        req.session.username = user.username;
         resolve(user);
       });
     });

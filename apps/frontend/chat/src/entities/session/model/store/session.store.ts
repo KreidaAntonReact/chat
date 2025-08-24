@@ -33,6 +33,7 @@ export const useSessionStore = create<TSessionStore>()(middlewaresSessionStore((
 
       set({ isSession: response });
       return get().isSession;
+
     } catch (error) {
       if(isAxiosError<IAxiosErrorData>(error) && error.response?.status === 401) {
         set({ isSession: false });

@@ -6,15 +6,25 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { InputPassword } from '@/shared/ui/input-password';
 import { LinkRouter } from '@/shared/ui/link-router';
+import { Loader } from '@/shared/ui/loader';
+
+import { useSignIn } from '../model';
 
 
 export const SignIn = () => {
-  const [state, submitAction, isPending] = useActionState<IFormState, FormData>(authHandle, {
-    data: null,
-    errors: null,
-    isSuccess: false
-  });
+  const {
+    signInHandle, isLoading, isError, error
+  } = useSignIn();
 
+  const [state, submitAction, isPending] = useActionState<IFormState, FormData>(
+    (state, payload) => authHandle(state, payload, signInHandle), {
+      data: null,
+      errors: null,
+      isSuccess: false
+    }
+  );
+
+  const isLoadingSignIn = isLoading || isPending;
 
   return (
     <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:dark:bg-dark/60 chat:bg-white'>
@@ -37,23 +47,33 @@ export const SignIn = () => {
                 type='text'
                 defaultValue={state.data?.username}
                 error={state.errors?.username}
+                disabled={isLoadingSignIn}
               />
               <InputPassword
                 placeholder='Password'
                 name='password'
                 defaultValue={state.data?.password}
                 error={state.errors?.password}
+                disabled={isLoadingSignIn}
               />
             </div>
-            {state.errors?.message && (
+            {isError && error && (
               <span className='chat:text-red-600 chat:text-sm chat:relative chat:z-0
                   chat:animate-show chat:transform-[translateY(-50%)]'
               >
-                {state.errors?.message}
+                {error.message}
               </span>)}
           </div>
 
-          <Button type='submit' disabled={isPending}>Sign In</Button>
+          <div className='chat:flex chat:flex-col chat:gap-3'>
+            {isLoadingSignIn && (
+              <div className='chat:w-full chat:h-fit chat:flex chat:items-center chat:justify-start'>
+                <Loader size='2xl' textLoading='You are sign in' />
+              </div>
+            )}
+
+            <Button type='submit' disabled={isLoadingSignIn}>Sign In</Button>
+          </div>
         </form>
       </div>
     </div>

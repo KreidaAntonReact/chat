@@ -13,7 +13,7 @@ export const CheckSessionProvider: FC<ICheckSessionProviderProps> = ({ children 
 
   useEffect(() => {
     fetchCheckSession().then((response) => {
-      if(response) {
+      if(!response) {
         navigate('/sign-in');
       }
     })

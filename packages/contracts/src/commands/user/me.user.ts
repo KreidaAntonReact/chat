@@ -20,7 +20,7 @@ export const meResponseSchema = z.object({
     avatar: z.string({
         invalid_type_error: 'Avatar must be a string',
         required_error: 'Avatar is required',
-    }).optional(),
+    }).nullable().optional(),
 })
 
 export type TMeResponse = z.infer<typeof meResponseSchema>;

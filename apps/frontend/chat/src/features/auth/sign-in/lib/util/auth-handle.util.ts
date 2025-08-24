@@ -1,23 +1,25 @@
 import { SignInRequestSchema } from '@packages/contracts';
-import { isAxiosError } from 'axios';
 import { ZodError } from 'zod';
 
-import { postSignIn } from '@/features/auth/sign-in/api';
 import { parseZodErrors } from '@/shared/lib/utils/parse-zod-errors.util';
 
 import type { IFormData, IFormState } from '@/features/auth/sign-in/lib/interfaces';
-import type { IAxiosErrorData } from '@/shared/lib/interfaces/axios-error-data.interface';
+import type { UseMutateFunction } from '@tanstack/react-query';
 
-export const authHandle = async (prevState: IFormState, formData: FormData): Promise<IFormState> => {
+export const authHandle =  async <T, D> (
+  prevState: IFormState,
+  formData: FormData,
+  postSignIn: UseMutateFunction<T, D, IFormData>
+): Promise<IFormState> => {
   const entriesFormData = Object.fromEntries(formData.entries()) as unknown as IFormData;
 
   try {
     const checkedData = SignInRequestSchema.parse(entriesFormData);
 
-    await postSignIn(checkedData);
+    postSignIn(checkedData);
 
     return {
-      data: null,
+      data: checkedData,
       errors: null,
       isSuccess: true,
     };
@@ -26,10 +28,6 @@ export const authHandle = async (prevState: IFormState, formData: FormData): Pro
 
     if(error instanceof ZodError) {
       errors = parseZodErrors(error.issues);
-    }
-
-    if (isAxiosError<IAxiosErrorData>(error) && error?.response) {
-      errors['message'] = error.response.data.message;
     }
 
     return {

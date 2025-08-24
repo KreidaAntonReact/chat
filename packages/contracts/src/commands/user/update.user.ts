@@ -52,7 +52,7 @@ export const updateUserResponseSchema = z.object({
     avatar: z.string({
         invalid_type_error: 'Avatar must be a string',
         required_error: 'Avatar is required',
-    }).optional(),
+    }).nullable().optional(),
     username: z.string({
         invalid_type_error: 'Username must be a string',
         required_error: 'Username is required',

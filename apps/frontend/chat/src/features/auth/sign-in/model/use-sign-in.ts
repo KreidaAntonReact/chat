@@ -21,7 +21,7 @@ export const useSignIn = () => {
   } = useMutation({
     mutationKey: [QUERY_KEY.ME],
     mutationFn: async (body: TSignInRequestSchema) => await postSignIn(body),
-    onError: (error: Error | AxiosError) => {
+    onError:(error: Error | AxiosError) => {
       if (isAxiosError(error)) {
         return error.response?.data;
       }
@@ -30,7 +30,7 @@ export const useSignIn = () => {
     },
     onSuccess: (data) => {
       queryClient.setQueryData([QUERY_KEY.ME], data);
-      navigate(`/${ROUTERS.HOME}`);
+      navigate(ROUTERS.HOME);
     }
   });
 

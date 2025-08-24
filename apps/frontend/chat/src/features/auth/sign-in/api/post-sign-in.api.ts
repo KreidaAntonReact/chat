@@ -1,7 +1,7 @@
 import { SignInResponseSchema } from '@packages/contracts';
 import { isAxiosError, type AxiosResponse } from 'axios';
 
-import { instanceShared } from '@/shared/api/instance-shared';
+import { instancePrivateWithInterceptors } from '@/shared/api/instance-private';
 import { validateDataError } from '@/shared/lib/utils/validate-data-error.util';
 
 import type { IAxiosErrorData } from '@/shared/lib/interfaces/axios-error-data.interface';
@@ -10,7 +10,7 @@ import type { TSignInRequestSchema, TSignInResponseSchema } from '@packages/cont
 
 export const postSignIn = async (body: TSignInRequestSchema): Promise<TSignInResponseSchema> => {
   try {
-    const { data } = await instanceShared.post<
+    const { data } = await instancePrivateWithInterceptors.post<
     TSignInResponseSchema,
     AxiosResponse<TSignInResponseSchema>,
     TSignInRequestSchema>('/auth/sign-in', body);
@@ -25,7 +25,7 @@ export const postSignIn = async (body: TSignInRequestSchema): Promise<TSignInRes
     return response;
   } catch (error) {
     if (isAxiosError<IAxiosErrorData>(error)) {
-      throw error;
+      throw error.response?.data;
     }
 
     throw new Error('Something went wrong!!!');
