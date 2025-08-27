@@ -1,1 +1,1 @@
-export * from './chat-messages';
+export { ChatMessagesBlock } from './chat-messages-block';

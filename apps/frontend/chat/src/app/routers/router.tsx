@@ -1,9 +1,14 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 
-import { AuthLayout, ChatLayout, PageLayout } from '@/app/layout';
-import { CheckSessionProvider, InitGlobalProvider } from '@/app/providers';
-import { ChatMemberId, SignInPage, SignUpPage } from '@/pages';
+import {
+  BaseLayoutProvider,
+  ChatsLayoutProvider,
+  CheckSessionProvider,
+  InitGlobalProvider,
+} from '@/app/providers';
+import { ChatPage, SignInPage, SignUpPage } from '@/pages';
 import { ROUTERS } from '@/shared/lib/constants/routers.constant';
+import { AuthLayout } from '@/shared/ui/auth-layout';
 
 
 export const routers: RouteObject[] = [
@@ -14,19 +19,19 @@ export const routers: RouteObject[] = [
         path: ROUTERS.HOME,
         element: (
           <CheckSessionProvider>
-            <PageLayout/>
+            <BaseLayoutProvider/>
           </CheckSessionProvider>
         ),
         children: [
           {
-            Component: ChatLayout,
+            Component: ChatsLayoutProvider,
             path: ROUTERS.CHATS.INDEX,
             children: [
               {
-                path: ROUTERS.CHATS.CHAT_MEMBER_ID(':id'),
+                path: ROUTERS.CHATS.CHAT_ID(':id'),
                 element: (
                   <CheckSessionProvider>
-                    <ChatMemberId/>
+                    <ChatPage/>
                   </CheckSessionProvider>
                 )
               }

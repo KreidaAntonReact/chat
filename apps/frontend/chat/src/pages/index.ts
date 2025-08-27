@@ -1,3 +1,3 @@
-export * from './chat-member-id';
-export * from './sign-up';
-export * from './sign-in';
+export { ChatPage } from './chat';
+export { SignUpPage } from './sign-up';
+export { SignInPage } from './sign-in';

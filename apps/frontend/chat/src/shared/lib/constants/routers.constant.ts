@@ -4,6 +4,6 @@ export const ROUTERS = {
   SIGN_UP: 'sign-up',
   CHATS: {
     INDEX: 'chats',
-    CHAT_MEMBER_ID: (id: string) => `chats/${id}`,
+    CHAT_ID: (id: string) => `/chats/${id}`,
   }
 } as const;

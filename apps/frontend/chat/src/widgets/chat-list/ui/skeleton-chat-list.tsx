@@ -1,10 +1,5 @@
 export const SkeletonChatList = () => (
-  <div className="chat:max-w-[320px] chat:w-full chat:bg-dark
-    chat:dark:bg-black chat:h-screen
-    chat:rounded-br-[5px] chat:rounded-t-[0px]
-    chat:flex chat:flex-col
-    chat:px-3 chat:py-[20px] chat:gap-6"
-  >
+  <>
     <div className="chat:w-full chat:h-7 chat:bg-brown/80 chat:dark:bg-darksLateGray chat:animate-pulse chat:rounded-2xl"/>
 
     <div className="chat:flex chat:flex-col chat:gap-3">
@@ -31,5 +26,5 @@ export const SkeletonChatList = () => (
       <div className="chat:w-full chat:h-18 chat:bg-darksLateGray chat:animate-pulse chat:rounded-lg"/>
       <div className="chat:w-full chat:h-18 chat:bg-darksLateGray chat:animate-pulse chat:rounded-lg"/>
     </div>
-  </div>
+  </>
 );
