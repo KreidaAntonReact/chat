@@ -11,12 +11,12 @@ interface ILinkRouterProps {
 
 export const LinkRouter: FC<ILinkRouterProps> = ({ to, children, className }) => (
   <NavLink
-    className={({ isActive }) => cn(`chat:p-[10px] chat:border-b chat:w-full chat:text-center
-      chat:border-brown/30 chat:dark:border-white/30
-      chat:transition-colors chat:hover:border-brown chat:dark:hover:border-white/60
-      chat:text-brown chat:dark:text-white/80`,
+    className={({ isActive }) => cn(`chat:p-[10px] chat:border-b
+      chat:w-full chat:text-center chat:border-white/30
+      chat:transition-colors chat:hover:border-white/60
+      chat:text-white/30 chat:hover:text-white/60`,
     {
-      'chat:border-brown chat:dark:!border-white chat:!text-white': isActive
+      'chat:border-white chat:dark:!border-white chat:!text-white': isActive
     },
     className)}
     to={to}

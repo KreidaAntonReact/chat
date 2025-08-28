@@ -59,7 +59,7 @@ export const SignUp = () => {
   const isLoadingRegister = isLoading || isLoadingSignUp;
 
   return (
-    <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:dark:bg-dark/60 chat:bg-white chat:flex-1'>
+    <div className='chat:max-w-xl chat:w-full chat:rounded-4xl chat:bg-dark chat:dark:bg-dark/60 chat:flex-1'>
       <div className='chat:py-20 chat:px-24 chat:h-full chat:w-full chat:flex chat:flex-col chat:gap-10'>
 
         <div className='chat:w-full chat:flex chat:justify-center chat:items-center'>
