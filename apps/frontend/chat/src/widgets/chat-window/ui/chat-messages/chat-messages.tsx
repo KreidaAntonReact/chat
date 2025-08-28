@@ -1,6 +1,6 @@
 import { ChatMessage } from './chat-message';
 
-export const ChatMessagesBlock = () => (
+export const ChatMessages = () => (
   <div className='chat:flex chat:flex-col chat:gap-3 chat:justify-center'>
     <div className='chat:text-white/80 chat:text-xl chat:text-center'>Date</div>
     <div className='chat:flex chat:flex-col chat:gap-5'>

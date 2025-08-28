@@ -1,4 +1,3 @@
-export * from './chat-list';
-export * from './chat-header';
-export * from './chat-messages';
-export * from './sidebar-wrapper';
+export { ChatList } from './chat-list';
+export { ChatWindow } from './chat-window';
+export { SidebarWrapper } from './sidebar-wrapper';

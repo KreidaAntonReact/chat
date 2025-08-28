@@ -1,14 +1,13 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 
 import {
-  BaseLayoutProvider,
-  ChatsLayoutProvider,
   CheckSessionProvider,
   InitGlobalProvider,
 } from '@/app/providers';
 import { ChatPage, SignInPage, SignUpPage } from '@/pages';
 import { ROUTERS } from '@/shared/lib/constants/routers.constant';
-import { AuthLayout } from '@/shared/ui/auth-layout';
+
+import { BaseLayout, AuthLayout, ChatsLayout } from '../layouts';
 
 
 export const routers: RouteObject[] = [
@@ -19,12 +18,12 @@ export const routers: RouteObject[] = [
         path: ROUTERS.HOME,
         element: (
           <CheckSessionProvider>
-            <BaseLayoutProvider/>
+            <BaseLayout/>
           </CheckSessionProvider>
         ),
         children: [
           {
-            Component: ChatsLayoutProvider,
+            Component: ChatsLayout,
             path: ROUTERS.CHATS.INDEX,
             children: [
               {

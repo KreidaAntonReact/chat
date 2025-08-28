@@ -1,8 +1,4 @@
-import { ChatLayout } from '@/shared/ui/chat-layout';
-import { ChatMessagesBlock } from '@/widgets';
+import { ChatWindow } from '@/widgets';
 
-export const ChatPage = () => (
-  <ChatLayout>
-    <ChatMessagesBlock/>
-  </ChatLayout>
-);
+
+export const ChatPage = () => <ChatWindow/>;
