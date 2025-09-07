@@ -1,8 +1,10 @@
-import { ChangeFiltersChats } from '@/features/change-filter-chats';
 import { ChatSearch } from '@/features/chat-search';
 import { ROUTERS } from '@/shared/lib/constants/routers.constant';
+import { Filters } from '@/shared/ui/filters';
 
 import { ChatItem } from './chat-item';
+import { ListOptionsFilters } from '../lib';
+
 
 export const ChatList = () => {
   const handleOnClickChat = () => {
@@ -15,7 +17,7 @@ export const ChatList = () => {
 
       <div className='chat:flex chat:gap-3 chat:flex-col chat:justify-center chat:w-full'>
         <h1 className='chat:text-2xl chat:text-white/80'>Chats</h1>
-        <ChangeFiltersChats/>
+        <Filters options={ListOptionsFilters} onChange={(value) => console.log(value)}/>
       </div>
 
       <div className='chat:flex chat:flex-col chat:gap-3

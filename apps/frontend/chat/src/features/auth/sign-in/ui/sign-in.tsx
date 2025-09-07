@@ -62,7 +62,8 @@ export const SignIn = () => {
                   chat:animate-show chat:transform-[translateY(-50%)]'
               >
                 {error.message}
-              </span>)}
+              </span>
+            )}
           </div>
 
           <div className='chat:flex chat:flex-col chat:gap-3'>

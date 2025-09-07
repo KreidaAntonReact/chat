@@ -14,4 +14,4 @@ export const ListOptionsFilters = [
     value: 'contacts',
     label: 'Contacts'
   }
-] as const;
+];

@@ -4,6 +4,7 @@
         "jsx": "react-jsx",
         "outDir": "./dist/",
         "resolveJsonModule": true,
+        "moduleResolution": "bundler",
         "baseUrl": ".",
         "paths": {
             "@/*": [
@@ -12,7 +13,7 @@
         },
         "types": [
             "@packages/event-bas/src/types/global.d.ts"
-        ]
+        ],
     },
     "include": [
         "./src/**/*.ts",
