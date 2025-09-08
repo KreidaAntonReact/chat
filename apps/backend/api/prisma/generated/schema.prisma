@@ -8,6 +8,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ENUM_TYPE_CHAT {
+  DIRECT
+  GROUP
+}
+
+enum ENUM_STATUS_FRIENDSHIP {
+  ACCESS
+  PENDING
+  REJECT
+}
+
 model User {
   id           String   @id @default(uuid(7))
   firstName    String
@@ -18,4 +29,57 @@ model User {
   passwordHash String
   createAt     DateTime @default(now())
   updateAt     DateTime @updatedAt
+
+  messages           Message[]
+  sentFriendship     Friendship[] @relation(name: "sentFriendship")
+  receivedFriendship Friendship[] @relation(name: "receivedFriendship")
+
+  chatsParticipantOne Chat[] @relation(name: "chatsParticipantOne")
+  chatsParticipantTwo Chat[] @relation(name: "chatsParticipantTwo")
+}
+
+model Chat {
+  id       String         @id @default(uuid(7))
+  chatType ENUM_TYPE_CHAT
+  createAt DateTime       @default(now())
+
+  messages Message[]
+
+  participantOneId String?
+  participantOne   User?   @relation(name: "chatsParticipantOne", fields: [participantOneId], references: [id])
+
+  participantTwoId String?
+  participantTwo   User?   @relation(name: "chatsParticipantTwo", fields: [participantTwoId], references: [id])
+
+  @@index([participantOneId, createAt])
+  @@index([participantTwoId, createAt])
+}
+
+model Message {
+  id       String   @id @default(uuid(7))
+  message  String
+  createAt DateTime @default(now())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  chatId String @unique
+  chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId, createAt])
+}
+
+model Friendship {
+  id       String                 @id @default(uuid(7))
+  status   ENUM_STATUS_FRIENDSHIP @default(PENDING)
+  createAt DateTime               @default(now())
+
+  userId String @unique
+  user   User   @relation(name: "sentFriendship", fields: [userId], references: [id], onDelete: Cascade)
+
+  friendId String @unique
+  friend   User   @relation(name: "receivedFriendship", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createAt])
+  @@index([friendId, createAt])
 }

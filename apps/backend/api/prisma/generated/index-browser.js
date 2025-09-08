@@ -132,6 +132,30 @@ exports.Prisma.UserScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
+exports.Prisma.ChatScalarFieldEnum = {
+  id: 'id',
+  chatType: 'chatType',
+  createAt: 'createAt',
+  participantOneId: 'participantOneId',
+  participantTwoId: 'participantTwoId'
+};
+
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  createAt: 'createAt',
+  userId: 'userId',
+  chatId: 'chatId'
+};
+
+exports.Prisma.FriendshipScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  createAt: 'createAt',
+  userId: 'userId',
+  friendId: 'friendId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,10 +170,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.ENUM_TYPE_CHAT = exports.$Enums.ENUM_TYPE_CHAT = {
+  DIRECT: 'DIRECT',
+  GROUP: 'GROUP'
+};
 
+exports.ENUM_STATUS_FRIENDSHIP = exports.$Enums.ENUM_STATUS_FRIENDSHIP = {
+  ACCESS: 'ACCESS',
+  PENDING: 'PENDING',
+  REJECT: 'REJECT'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Chat: 'Chat',
+  Message: 'Message',
+  Friendship: 'Friendship'
 };
 
 /**
